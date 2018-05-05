@@ -9,5 +9,6 @@
 import Foundation
 
 enum MyErrors: Error {
-    case failParseDateFromSring
+    case openDB(msg: String)
+    case creatingTable(msg: String)
 }

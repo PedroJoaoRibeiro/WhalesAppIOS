@@ -24,15 +24,13 @@ class ConnectionToServer {
                     let json = JSON(value)
                     for (_,subJson):(String, JSON) in json {
                         let id = subJson["deviceId"].string! + subJson["date"].string!
-                        if !db.insertDataIntoDb(id: id, jsonString: subJson.rawString()!, isfromserver: true) {
+                        if !db.insertDataIntoDb(id: id, jsonString: subJson.rawString()!, isFromServer: true) {
                             print("can't save data to db")
                         }
                     }
-                    print(db.getDataFromDB())
                 case .failure(let error):
                     print(error)
                 }
-                
         }
     }
 }
