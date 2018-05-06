@@ -8,6 +8,7 @@ target 'WhalesAppIOS' do
   # Pods for WhalesAppIOS
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
+  pod 'Charts'
 
   target 'WhalesAppIOSTests' do
     inherit! :search_paths

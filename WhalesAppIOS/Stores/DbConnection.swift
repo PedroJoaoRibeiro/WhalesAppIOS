@@ -109,8 +109,10 @@ class DbConnection {
             let jsonString = String(cString: sqlite3_column_text(stmt, 1))
             
             //adding values to list
-            array.append(JSON(jsonString))
+            array.append(JSON.init(parseJSON: jsonString))
         }
+        
+        array.sort(by: {DateFormatter().jsonDateToDate(str: $0["date"].string!)! < DateFormatter().jsonDateToDate(str: $1["date"].string!)!})
         return array
     }
     
@@ -137,8 +139,9 @@ class DbConnection {
             let jsonString = String(cString: sqlite3_column_text(stmt, 1))
             
             //adding values to list
-            array.append(JSON(jsonString))
+            array.append(JSON.init(parseJSON: jsonString))
         }
+        array.sort(by: {DateFormatter().jsonDateToDate(str: $0["date"].string!)! < DateFormatter().jsonDateToDate(str: $1["date"].string!)!})
         return array
     }
 }

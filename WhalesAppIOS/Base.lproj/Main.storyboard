@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aiw-1A-xmZ">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,19 +20,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6jm-Y5-vbC">
-                                <rect key="frame" x="8" y="52" width="359" height="718"/>
+                                <rect key="frame" x="8" y="96" width="359" height="674"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WhalesApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-Nl-ekR">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="355"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="333"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                         <color key="textColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0bV-XO-cHG">
-                                        <rect key="frame" x="0.0" y="363" width="359" height="355"/>
+                                        <rect key="frame" x="0.0" y="341" width="359" height="333"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNj-0j-oPp">
-                                                <rect key="frame" x="81.666666666666686" y="233" width="196" height="47"/>
+                                                <rect key="frame" x="81.666666666666686" y="211" width="196" height="47"/>
                                                 <color key="backgroundColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal" title="Explore Data">
@@ -43,9 +43,12 @@
                                                         <integer key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="LPz-rF-h8Z" kind="show" id="cLU-Gw-hJW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHZ-gG-S4i">
-                                                <rect key="frame" x="81" y="288" width="196" height="47"/>
+                                                <rect key="frame" x="81" y="266" width="196" height="47"/>
                                                 <color key="backgroundColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -81,10 +84,57 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="eXW-Bv-c3g"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="35.467980295566505"/>
+        </scene>
+        <!--Explore Data View Controller-->
+        <scene sceneID="6mj-ZQ-aPU">
+            <objects>
+                <viewController id="LPz-rF-h8Z" customClass="ExploreDataViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yA7-IR-HVA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7g-FM-0Xt" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="8" y="96" width="359" height="696"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="f7g-FM-0Xt" firstAttribute="top" secondItem="cAu-YT-sPE" secondAttribute="top" constant="8" id="Gq4-2e-bPZ"/>
+                            <constraint firstItem="cAu-YT-sPE" firstAttribute="trailing" secondItem="f7g-FM-0Xt" secondAttribute="trailing" constant="8" id="Hmv-W2-eth"/>
+                            <constraint firstItem="f7g-FM-0Xt" firstAttribute="leading" secondItem="cAu-YT-sPE" secondAttribute="leading" constant="8" id="Nr2-dG-Q0a"/>
+                            <constraint firstAttribute="bottom" secondItem="f7g-FM-0Xt" secondAttribute="bottom" constant="20" symbolic="YES" id="thv-DL-8O8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cAu-YT-sPE"/>
+                    </view>
+                    <connections>
+                        <outlet property="chtChart" destination="f7g-FM-0Xt" id="gL1-MT-7L6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FQ8-m0-avj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936.79999999999995" y="34.729064039408868"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="F1v-72-8R2">
+            <objects>
+                <navigationController id="aiw-1A-xmZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qY5-2I-v7d">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="flo-Hm-o7Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXs-OH-Xh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-868" y="35"/>
         </scene>
     </scenes>
 </document>
