@@ -17,5 +17,12 @@ extension DateFormatter {
         let yourDate = formatter.date(from: str)
         return yourDate
     }
+    
+    func csvDateToDate(str: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMddHH"
+        let yourDate = formatter.date(from: str)
+        return yourDate
+    }
 }
 

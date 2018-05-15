@@ -21,6 +21,7 @@ class DbConnection {
     // queries statements
     private let createtableQuerry = "CREATE TABLE IF NOT EXISTS Whales (id TEXT PRIMARY KEY, jsonString TEXT, isFromServer INTEGER)"
     private let insertQueryString = "INSERT OR IGNORE INTO Whales (id, jsonString, isFromServer) VALUES (?,?,?)"
+    private let updateQueryString = "UPDATE Whales SET isFromServer = ? WHERE id = ?"
     private let getDataQueryString = "SELECT * FROM Whales"
     private let getDataQueryStringWithOptions = "SELECT * FROM Whales WHERE isFromServer = ?"
     
@@ -79,6 +80,42 @@ class DbConnection {
         if sqlite3_bind_int(stmt, 3, Int32(result)) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding isFromServer: \(errmsg)")
+            return false
+        }
+        
+        //executing the query to insert values
+        if sqlite3_step(stmt) != SQLITE_DONE {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure inserting: \(errmsg)")
+            return false
+        }
+        
+        return true
+    }
+    
+    public func updateData(id: String, isFromServer: Bool) -> Bool {
+        //creating a statement
+        var stmt: OpaquePointer?
+        let result = isFromServer ? 1 : 0
+        
+        //prepare the querry
+        if sqlite3_prepare(db, updateQueryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insert: \(errmsg)")
+            return false
+        }
+        
+        //binding the parameters
+        
+        if sqlite3_bind_int(stmt, 1, Int32(result)) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure binding isFromServer: \(errmsg)")
+            return false
+        }
+        
+        if sqlite3_bind_text(stmt, 2, id, -1, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure binding id: \(errmsg)")
             return false
         }
         

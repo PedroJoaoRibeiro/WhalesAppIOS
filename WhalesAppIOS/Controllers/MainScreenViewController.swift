@@ -14,7 +14,9 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        ConnectionToServer().sendDataToServer()
         ConnectionToServer().getDataFromServer()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +24,10 @@ class MainScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    // button connect to device press
+    @IBAction func connectToDevice(_ sender: Any) {
+        ConnectionToDevice().getData(i: 0)
+    }
+    
 }
 
