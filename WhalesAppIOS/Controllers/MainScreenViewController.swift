@@ -14,8 +14,10 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        ConnectionToServer().sendDataToServer()
-        ConnectionToServer().getDataFromServer()
+        //ConnectionToServer().sendDataToServer()
+        //ConnectionToServer().getDataFromServer()
+        
+        
         
     }
 
@@ -26,6 +28,7 @@ class MainScreenViewController: UIViewController {
 
     // button connect to device press
     @IBAction func connectToDevice(_ sender: Any) {
+        print("button touched")
         ConnectionToDevice().getData(i: 0)
     }
     

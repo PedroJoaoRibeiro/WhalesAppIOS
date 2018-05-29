@@ -12,8 +12,38 @@ import UIKit
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     lazy var arrayUIViews: [UIViewController] = {
-        return [self.viewControllerInstance(name: "blue"),
-                self.viewControllerInstance(name: "green")]
+        return [self.viewControllerInstance(name: "MainPage"),
+                self.viewControllerInstance(name: "blue")]
+    }()
+    
+    private let previousButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(prevButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("NEXT", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.mainPink, for: .normal)
+        button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = arrayUIViews.count
+        //        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+        pc.currentPageIndicatorTintColor = .mainPink
+        pc.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+        return pc
     }()
     
     override func viewDidLoad() {
@@ -25,6 +55,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         if let firstViewController = arrayUIViews.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
+        
+        setupBottomControls()
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,19 +106,50 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         return arrayUIViews[nextIndex]
     }
     
-    public func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return arrayUIViews.count
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0]
+        pageControl.currentPage = arrayUIViews.index(of: pageContentViewController)!
     }
     
-    public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        guard let firstViewController = viewControllers?.first, let firstViewControllerIndex = arrayUIViews.index(of: firstViewController) else {
-            return 0
-        }
-        return firstViewControllerIndex
-    }
     
     // Private Methods
+    
+    // instantiates the views
     private func viewControllerInstance(name:String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
+    }
+    
+    
+    private func setupBottomControls() {
+        
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
+        
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomControlsStackView.distribution = .fillEqually        
+        
+        view.addSubview(bottomControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+            ])
+    }
+    
+    @objc private func prevButtonClicked(){
+        // prevents from having negative index
+        let nextIndex = max(pageControl.currentPage - 1, 0)
+        pageControl.currentPage = nextIndex
+        
+        setViewControllers([arrayUIViews[nextIndex]], direction: .reverse, animated: true, completion: nil)
+    }
+    
+    @objc private func nextButtonClicked(){
+        // prevents from having negative index
+        let nextIndex = min(pageControl.currentPage + 1, arrayUIViews.count - 1)
+        pageControl.currentPage = nextIndex
+        
+        setViewControllers([arrayUIViews[nextIndex]], direction: .forward, animated: true, completion: nil)
     }
 }
