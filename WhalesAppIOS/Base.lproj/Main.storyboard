@@ -119,19 +119,50 @@
             </objects>
             <point key="canvasLocation" x="-26" y="136"/>
         </scene>
-        <!--View Controller-->
+        <!--Crimea Rose View Controller-->
         <scene sceneID="Ynk-jK-mX0">
             <objects>
-                <viewController storyboardIdentifier="blue" id="sN3-cS-Unw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CrimeaRose" id="sN3-cS-Unw" customClass="CrimeaRoseViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23I-gk-IFi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="bpr-vN-DwD"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E79-k4-nJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727" y="136"/>
+            <point key="canvasLocation" x="849" y="-527"/>
+        </scene>
+        <!--Cubijsm View Controller-->
+        <scene sceneID="pzI-Mp-mrN">
+            <objects>
+                <viewController storyboardIdentifier="Cubijsm" id="SLy-zD-wd6" customClass="CubijsmViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="23D-4m-ECT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="iYF-TH-91v"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nzg-W2-Bv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="136"/>
+        </scene>
+        <!--Gps View Controller-->
+        <scene sceneID="4jH-Yd-9pR">
+            <objects>
+                <viewController storyboardIdentifier="Gps" id="Iyi-QI-wmK" customClass="GpsViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xKf-Xn-lgc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="hiV-MS-BUY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FjU-Pt-IED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="838"/>
         </scene>
     </scenes>
     <resources>
