@@ -10,6 +10,7 @@
 		1E9085EEC076C500338D4069 /* Pods_WhalesAppIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCABB9D27C2C08FAA499254 /* Pods_WhalesAppIOSTests.framework */; };
 		25D8EA725D889549852D6E68 /* Pods_WhalesAppIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2CF0B7BC13D573DAC5053B /* Pods_WhalesAppIOS.framework */; };
 		851B978C20A1EC750004D514 /* ConnectToDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851B978B20A1EC750004D514 /* ConnectToDevice.swift */; };
+		854C35D420BCD2F800069576 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C35D320BCD2F800069576 /* PageViewController.swift */; };
 		855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E9563209E3931005E3060 /* DateValueFormatter.swift */; };
 		85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */; };
 		85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA08209CEDA30068ADD4 /* DbConnection.swift */; };
@@ -47,6 +48,7 @@
 		0429A34364A46DD7E31D8D93 /* Pods-WhalesAppIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhalesAppIOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhalesAppIOSTests/Pods-WhalesAppIOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2590B64D46B5D96ED5E2E2D1 /* Pods_WhalesAppIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhalesAppIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		851B978B20A1EC750004D514 /* ConnectToDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToDevice.swift; sourceTree = "<group>"; };
+		854C35D320BCD2F800069576 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		855E9563209E3931005E3060 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionToServer.swift; sourceTree = "<group>"; };
 		85DADA08209CEDA30068ADD4 /* DbConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnection.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				85DF5349209CD8EC00958667 /* MainScreenViewController.swift */,
 				85E9A0E9209E140400D04393 /* ExploreDataViewController.swift */,
+				854C35D320BCD2F800069576 /* PageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85DF534A209CD8EC00958667 /* MainScreenViewController.swift in Sources */,
+				854C35D420BCD2F800069576 /* PageViewController.swift in Sources */,
 				85E9A0E6209D017D00D04393 /* Extensions.swift in Sources */,
 				855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */,
 				85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */,
