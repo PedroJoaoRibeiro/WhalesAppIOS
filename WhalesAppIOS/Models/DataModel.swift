@@ -8,6 +8,7 @@
 
 
 import RealmSwift
+import SwiftyJSON
 
 class DataModel: Object {
     
@@ -48,5 +49,25 @@ class DataModel: Object {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    public func toJson()->JSON {
+        var json = JSON()
+        
+        json["id"] = JSON(id)
+        json["deviceId"] = JSON(deviceId)
+        json["date"] = JSON(ISO8601DateFormatter().string(from: date))
+        
+         json["audioFile"] = JSON(audioFile)
+        
+         json["latitude"] = JSON(latitude)
+         json["longitude"] = JSON(longitude)
+        
+         json["temperature"] = JSON(temperature)
+         json["depth"] = JSON(depth)
+         json["pollution"] = JSON(pollution)
+         json["pressure"] = JSON(pressure)
+        
+        return json
     }
 }

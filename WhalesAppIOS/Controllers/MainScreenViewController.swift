@@ -15,13 +15,10 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //ConnectionToServer().sendDataToServer()
-        //ConnectionToServer().getDataFromServer()
+        ConnectionToServer().sendDataToServer()
+        ConnectionToServer().getDataFromServer()
         
-        
-        //print(DbConnection().getDataFromDB())
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        print(DbConnection().getDataFromDb(isFromServer: true))
     }
 
     override func didReceiveMemoryWarning() {

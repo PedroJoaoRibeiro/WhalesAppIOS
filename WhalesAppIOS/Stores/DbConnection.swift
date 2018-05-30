@@ -15,7 +15,7 @@ class DbConnection {
     
     public func saveModelToDb(obj: DataModel){
         try! realm.write {
-            realm.add(obj)
+            realm.add(obj, update: true)
         }
     }
     
@@ -32,6 +32,13 @@ class DbConnection {
             return true
         }
         return false
+    }
+    
+    public func updateData(id: String, isFromServer: Bool) -> Bool{
+        try! realm.write {
+            realm.create(DataModel.self, value: ["id": id, "isFromServer": isFromServer], update: true)
+        }
+        return true
     }
 }
 

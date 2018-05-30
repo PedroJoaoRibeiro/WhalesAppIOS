@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-/*
+
 
 class ConnectionToServer {
     private let serverUrl = URL(string: "http://127.0.0.1:8080/data")
@@ -17,7 +17,7 @@ class ConnectionToServer {
     public func sendDataToServer(){
         let db = DbConnection();
         
-        let arrayData = db.getDataFromDBWithRestrictions(isFromServer: false)
+        let arrayData = db.getDataFromDb(isFromServer: false)
         print(arrayData.count)
         if !arrayData.isEmpty {
             
@@ -25,8 +25,14 @@ class ConnectionToServer {
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            let data = (JSON(arrayData).rawString()! .data(using: .utf8))! as Data
+            var array = [JSON]()
+            for obj in arrayData {
+                array.append(obj.toJson())
+                
+            }
+            let data = (JSON(array).rawString()! .data(using: .utf8))! as Data
             
+            print(JSON(array).rawString()!)
             request.httpBody = data
             
             Alamofire.request(request).responseJSON { (response) in
@@ -34,43 +40,40 @@ class ConnectionToServer {
                 case .success(let value):
                     print(value)
                     
-                    for json in arrayData {
-                        let id = json["deviceId"].string! + json["date"].string!
-                        if !db.updateData(id: id, isFromServer: true){
+                    for obj in arrayData {
+                        if !db.updateData(id: obj.id, isFromServer: true){
                             print("can't update data in db")
                         }
                     }
-                    
-                    print(db.getDataFromDBWithRestrictions(isFromServer: false).count)
                 case .failure(let error):
                     print(error)
                 }
             }
         }
         else {
-                print("There is no data to send to the server")
-            }
+            print("There is no data to send to the server")
         }
-        
-        public func getDataFromServer() {
-            Alamofire.request(serverUrl!)
-                .validate()
-                .responseJSON{ response in
-                    switch response.result {
-                    case .success(let value):
-                        let db = DbConnection();
-                        let json = JSON(value)
-                        for (_,subJson):(String, JSON) in json {
-                            let id = subJson["deviceId"].string! + subJson["date"].string!
-                            if !db.insertDataIntoDb(id: id, jsonString: subJson.rawString()!, isFromServer: true) {
-                                print("can't save data to db")
-                            }
-                        }
-                    case .failure(let error):
-                        print(error)
+    }
+    
+    public func getDataFromServer() {
+        Alamofire.request(serverUrl!)
+            .validate()
+            .responseJSON{ response in
+                switch response.result {
+                case .success(let value):
+                    let db = DbConnection();
+                    let json = JSON(value)
+                    for (_,jsonObj):(String, JSON) in json {
+                        
+                        let dataObj = DataModel(isFromServer: true, deviceId: jsonObj["deviceId"].string!, date: jsonObj["date"].string!, audioFile: jsonObj["audioFile"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, pollution: jsonObj["pollution"].double!, pressure: jsonObj["pressure"].double!)
+                        
+                        db.saveModelToDb(obj: dataObj)
                     }
-            }
+                case .failure(let error):
+                    print(error)
+                }
         }
+    }
 }
- 
- */
+
+
