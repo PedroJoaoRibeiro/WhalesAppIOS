@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainScreenViewController: UIViewController {
 
@@ -18,7 +19,9 @@ class MainScreenViewController: UIViewController {
         //ConnectionToServer().getDataFromServer()
         
         
-        
+        //print(DbConnection().getDataFromDB())
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(DbConnection().getDataFromDb(isFromServer: true))
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,11 +29,10 @@ class MainScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // button connect to device press
-    @IBAction func connectToDevice(_ sender: Any) {
+    
+    @IBAction func connectToDevice(_ sender: UIButton) {
         print("button touched")
         ConnectionToDevice().getData(i: 0)
     }
-    
 }
 

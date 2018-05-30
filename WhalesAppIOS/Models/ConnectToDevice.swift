@@ -17,7 +17,7 @@ class ConnectionToDevice {
     func getData(i: Int){
         
         // url with id of the get part
-        let url = URL(string: "http://192.168.0.1/data?0")
+        let url = URL(string: baseUrlString + String(i))
         
         Alamofire.request(url!)
             .validate()
@@ -38,10 +38,12 @@ class ConnectionToDevice {
                     
                     // check if this is the last piece of data
                     if(json["isFinalData"].boolValue) {
+                        print("here")
                         self.convertCSVDataAndSaveToDb(deviceId: json["deviceId"].string!)
                         print("all the data from photon is saved")
                     } else {
-                        self.getData(i: i + 1)
+                        print(json["dataPart"].int!)
+                        self.getData(i: json["dataPart"].int!)
                     }
                 case .failure(let error):
                     print(error)
@@ -51,7 +53,7 @@ class ConnectionToDevice {
     }
     
     private func convertCSVDataAndSaveToDb(deviceId: String){
-        let db = DbConnection();
+        let db = DbConnection()
         let csv = upcomingDataDictionary[deviceId]!
         var linesArray = csv.split(separator: ";")
         
@@ -71,39 +73,23 @@ class ConnectionToDevice {
                 
                 switch  header{
                 case "date":
-                    let str = auxFuncFixNeed(str: String(currentLine[index]))
-                    jsonObj[header] = JSON(str)
+                    jsonObj[header] = JSON(String(currentLine[index]))
+                    break
+                case "audioFile":
+                    jsonObj[header] = JSON(String(currentLine[index]))
                     break
                 default:
                     jsonObj[header] = JSON(Double(String(currentLine[index]))!)
                 }
             }
             
-            // saves the obj to db
-            let id = jsonObj["deviceId"].string! + jsonObj["date"].string!
-            if !db.insertDataIntoDb(id: id, jsonString: jsonObj.rawString()!, isFromServer: false) {
-                print("can't save data to db")
+            if(!db.checkIfObjectExists(id:deviceId + jsonObj["date"].string!)){
+                
+                let dataObj = DataModel(isFromServer: false, deviceId: deviceId, date: jsonObj["date"].string!, audioFile: jsonObj["audioFile"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, pollution: jsonObj["pollution"].double!, pressure: jsonObj["pressure"].double!)
+                
+                db.saveModelToDb(obj: dataObj)
             }
+            
         }
-        
-    }
-    
-    //change the date format that the photon sends
-    private func auxFuncFixNeed(str: String) -> String {
-        let year = str.prefix(4)
-        
-        let start = str.index(str.startIndex, offsetBy: 4)
-        let end = str.index(str.endIndex, offsetBy: -4)
-        let range = start..<end
-        let month = str[range]
-        
-        let start1 = str.index(str.startIndex, offsetBy: 6)
-        let end1 = str.index(str.endIndex, offsetBy: -2)
-        let range1 = start1..<end1
-        let day = str[range1]
-        
-        let hour = str.suffix(2)
-        let string = "\(year)-\(month)-\(day)T\(hour):00:00.000Z"
-        return string
     }
 }

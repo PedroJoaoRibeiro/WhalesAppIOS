@@ -11,6 +11,8 @@ import UIKit
 import Charts
 import SwiftyJSON
 
+
+/*
 class ExploreDataViewController: UIViewController {
     
     @IBOutlet weak var chtChart: LineChartView!
@@ -74,4 +76,5 @@ class ExploreDataViewController: UIViewController {
     }
     
 }
+ */
 

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-
+/*
 
 class ConnectionToServer {
     private let serverUrl = URL(string: "http://127.0.0.1:8080/data")
@@ -72,3 +72,5 @@ class ConnectionToServer {
             }
         }
 }
+ 
+ */

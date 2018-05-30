@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
 extension DateFormatter {
     
@@ -18,9 +19,9 @@ extension DateFormatter {
         return yourDate
     }
     
-    func csvDateToDate(str: String) -> Date? {
+    func stringToDate(str: String) -> Date? {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMddHH"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let yourDate = formatter.date(from: str)
         return yourDate
     }
@@ -29,3 +30,4 @@ extension DateFormatter {
 extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
+

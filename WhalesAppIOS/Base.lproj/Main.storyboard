@@ -93,7 +93,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="connectToDevice:" destination="6Aq-4V-hL3" eventType="touchUpInside" id="gxE-fG-d9p"/>
+                                                    <action selector="connectToDevice:" destination="6Aq-4V-hL3" eventType="touchUpInside" id="c8n-pz-FJ1"/>
                                                 </connections>
                                             </button>
                                         </subviews>

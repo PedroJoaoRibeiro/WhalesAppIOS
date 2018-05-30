@@ -9,6 +9,7 @@ target 'WhalesAppIOS' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
   pod 'Charts'
+  pod 'RealmSwift' , :inhibit_warnings => true
 
   target 'WhalesAppIOSTests' do
     inherit! :search_paths
