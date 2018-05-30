@@ -1,6 +1,0 @@
-framework module Pods_WhalesAppIOS {
-  umbrella header "Pods-WhalesAppIOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
