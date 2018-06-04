@@ -12,11 +12,12 @@ import Charts
 import SwiftyJSON
 
 
-/*
+
 class ExploreDataViewController: UIViewController {
     
-    @IBOutlet weak var chtChart: LineChartView!
+
     
+    @IBOutlet weak var chtChart: LineChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +33,12 @@ class ExploreDataViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func btnButton(_ sender: UIButton) {
-        
-        
-    }
     
     private func drawLineChart(propertyToDraw: String){
         //connects to the database to get the data
         let db = DbConnection()
-        let arrayOfData = db.getDataFromDB()
+        let arrayOfData = db.getDataFromDb()
+        print(arrayOfData)
         
         setChartOptions();
         
@@ -53,8 +51,8 @@ class ExploreDataViewController: UIViewController {
         var lineChartEntry = [ChartDataEntry]()
         
         for json in arrayOfData {
-            let date = DateFormatter().jsonDateToDate(str: json["date"].string!)!
-            let value = ChartDataEntry(x: Double(date.timeIntervalSince1970), y: json[propertyToDraw].double!)
+            let date = json.date
+            let value = ChartDataEntry(x: Double(date.timeIntervalSince1970), y: json.temperature)
             lineChartEntry.append(value)
         }
         
@@ -76,5 +74,4 @@ class ExploreDataViewController: UIViewController {
     }
     
 }
- */
 

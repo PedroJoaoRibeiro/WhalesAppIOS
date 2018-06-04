@@ -20,11 +20,11 @@ class DbConnection {
     }
     
     public func getDataFromDb() -> [DataModel] {
-        return realm.objects(DataModel.self).map({$0 as DataModel})
+        return realm.objects(DataModel.self).map({$0 as DataModel}).sorted(){$0.date < $1.date }
     }
     
     public func getDataFromDb(isFromServer: Bool) -> [DataModel] {
-        return realm.objects(DataModel.self).filter("isFromServer = \(isFromServer)") .map({$0 as DataModel})
+        return realm.objects(DataModel.self).filter("isFromServer = \(isFromServer)") .map({$0 as DataModel}).sorted(){$0.date < $1.date }
     }
     
     public func checkIfObjectExists(id: String) -> Bool {

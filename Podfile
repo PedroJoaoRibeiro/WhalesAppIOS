@@ -9,6 +9,7 @@ target 'WhalesAppIOS' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
   pod 'Charts'
+  pod 'Highcharts'
   pod 'RealmSwift' , :inhibit_warnings => true
 
   target 'WhalesAppIOSTests' do

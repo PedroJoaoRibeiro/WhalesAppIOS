@@ -15,8 +15,6 @@ class CrimeaRoseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(DbConnection().checkIfObjectExists(id: "PhotonTest12018-05-21T13:16:02Z"))
-        
         
     }
 }
