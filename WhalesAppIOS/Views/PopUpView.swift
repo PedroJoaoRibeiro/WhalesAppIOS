@@ -16,11 +16,11 @@ class PopUpView: UIView {
     }
     
     
-    public func hideView(annotation: MapAnnotation){
+    public func hideView(){
         self.isHidden = true
     }
     
-    public func showView(annotation: MapAnnotation){
+    public func showView(){
         self.isHidden = false
     }
 }

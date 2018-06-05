@@ -47,6 +47,12 @@ class DataModel: Object {
     @objc dynamic var pollution: Double = 0.0
     @objc dynamic var pressure: Double = 0.0
     
+    var coordinates: String {
+        get {
+            return "Lat: \(self.latitude), Long: \(self.longitude)"
+        }
+    }
+    
     override static func primaryKey() -> String? {
         return "id"
     }
