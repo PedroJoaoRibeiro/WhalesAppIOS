@@ -17,6 +17,7 @@
 		855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E9563209E3931005E3060 /* DateValueFormatter.swift */; };
 		85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748720C5E66E006DEC7F /* MapAnnotation.swift */; };
 		85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748920C608D2006DEC7F /* MapAnnotationView.swift */; };
+		85C6749020C6C3D4006DEC7F /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748F20C6C3D4006DEC7F /* PopUpView.swift */; };
 		85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */; };
 		85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA08209CEDA30068ADD4 /* DbConnection.swift */; };
 		85DF5348209CD8EC00958667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DF5347209CD8EC00958667 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		855E9563209E3931005E3060 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		85C6748720C5E66E006DEC7F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		85C6748920C608D2006DEC7F /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
+		85C6748F20C6C3D4006DEC7F /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionToServer.swift; sourceTree = "<group>"; };
 		85DADA08209CEDA30068ADD4 /* DbConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnection.swift; sourceTree = "<group>"; };
 		85DF5344209CD8EC00958667 /* WhalesAppIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhalesAppIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				85C6748920C608D2006DEC7F /* MapAnnotationView.swift */,
+				85C6748F20C6C3D4006DEC7F /* PopUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				85DF534A209CD8EC00958667 /* MainScreenViewController.swift in Sources */,
 				854C35D420BCD2F800069576 /* PageViewController.swift in Sources */,
 				85E9A0E6209D017D00D04393 /* Extensions.swift in Sources */,
+				85C6749020C6C3D4006DEC7F /* PopUpView.swift in Sources */,
 				854C35DA20BDB08C00069576 /* GpsViewController.swift in Sources */,
 				855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */,
 				854C35D820BDB07300069576 /* CrimeaRoseViewController.swift in Sources */,

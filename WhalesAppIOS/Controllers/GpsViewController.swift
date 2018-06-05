@@ -12,6 +12,10 @@ import MapKit
 class GpsViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var popUpView: PopUpView!
+    
+    
     let regionRadius: CLLocationDistance = 10000
     
     
@@ -52,27 +56,28 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             annotationView?.canShowCallout = true
+            
         } else {
             annotationView?.annotation = annotation
         }
         
-        configureDetailView(annotationView: annotationView!)
-        
         return annotationView
     }
     
-    func configureDetailView(annotationView: MKAnnotationView) {
-        let width = 300
-        let height = 200
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? MapAnnotation else {
+            return
+        }
         
-        let snapshotView = UIView()
-        let views = ["snapshotView": snapshotView]
-        snapshotView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[snapshotView(300)]", options: [], metrics: nil, views: views))
-        snapshotView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[snapshotView(200)]", options: [], metrics: nil, views: views))
+        popUpView.showView(annotation: annotation)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView){
+        guard let annotation = view.annotation as? MapAnnotation else {
+            return
+        }
         
-        
-        
-        annotationView.detailCalloutAccessoryView = snapshotView
+        popUpView.hideView(annotation: annotation)
     }
     
     
