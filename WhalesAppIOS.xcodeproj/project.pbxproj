@@ -15,6 +15,8 @@
 		854C35DA20BDB08C00069576 /* GpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C35D920BDB08C00069576 /* GpsViewController.swift */; };
 		854C35DC20BDB09B00069576 /* CubijsmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C35DB20BDB09B00069576 /* CubijsmViewController.swift */; };
 		855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E9563209E3931005E3060 /* DateValueFormatter.swift */; };
+		85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748720C5E66E006DEC7F /* MapAnnotation.swift */; };
+		85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748920C608D2006DEC7F /* MapAnnotationView.swift */; };
 		85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */; };
 		85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA08209CEDA30068ADD4 /* DbConnection.swift */; };
 		85DF5348209CD8EC00958667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DF5347209CD8EC00958667 /* AppDelegate.swift */; };
@@ -57,6 +59,8 @@
 		854C35D920BDB08C00069576 /* GpsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsViewController.swift; sourceTree = "<group>"; };
 		854C35DB20BDB09B00069576 /* CubijsmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubijsmViewController.swift; sourceTree = "<group>"; };
 		855E9563209E3931005E3060 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		85C6748720C5E66E006DEC7F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		85C6748920C608D2006DEC7F /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionToServer.swift; sourceTree = "<group>"; };
 		85DADA08209CEDA30068ADD4 /* DbConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnection.swift; sourceTree = "<group>"; };
 		85DF5344209CD8EC00958667 /* WhalesAppIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhalesAppIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +197,7 @@
 				85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */,
 				851B978B20A1EC750004D514 /* ConnectToDevice.swift */,
 				85EE5AD020BE26BA00EB4BDD /* DataModel.swift */,
+				85C6748720C5E66E006DEC7F /* MapAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 		85DF5377209CDAD500958667 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				85C6748920C608D2006DEC7F /* MapAnnotationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +481,8 @@
 				854C35DA20BDB08C00069576 /* GpsViewController.swift in Sources */,
 				855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */,
 				854C35D820BDB07300069576 /* CrimeaRoseViewController.swift in Sources */,
+				85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */,
+				85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */,
 				85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */,
 				85EE5AD120BE26BA00EB4BDD /* DataModel.swift in Sources */,
 				85DF5348209CD8EC00958667 /* AppDelegate.swift in Sources */,
@@ -659,7 +667,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -675,7 +686,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -692,7 +706,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -710,7 +728,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -727,7 +749,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -744,7 +770,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

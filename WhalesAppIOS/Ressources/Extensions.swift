@@ -27,6 +27,19 @@ extension DateFormatter {
     }
 }
 
+extension Date {
+    
+    func toString(withFormat format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        let myString = formatter.string(from: self)
+        let yourDate = formatter.date(from: myString)
+        formatter.dateFormat = format
+        
+        return formatter.string(from: yourDate!)
+    }
+}
+
 extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
