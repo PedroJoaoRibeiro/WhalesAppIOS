@@ -15,6 +15,7 @@
 		854C35DA20BDB08C00069576 /* GpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C35D920BDB08C00069576 /* GpsViewController.swift */; };
 		854C35DC20BDB09B00069576 /* CubijsmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C35DB20BDB09B00069576 /* CubijsmViewController.swift */; };
 		855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E9563209E3931005E3060 /* DateValueFormatter.swift */; };
+		859ADF2220C75D5600AE1B3C /* Pompeii.wav in Resources */ = {isa = PBXBuildFile; fileRef = 859ADF2120C75D5600AE1B3C /* Pompeii.wav */; };
 		85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748720C5E66E006DEC7F /* MapAnnotation.swift */; };
 		85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748920C608D2006DEC7F /* MapAnnotationView.swift */; };
 		85C6749020C6C3D4006DEC7F /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748F20C6C3D4006DEC7F /* PopUpView.swift */; };
@@ -60,6 +61,7 @@
 		854C35D920BDB08C00069576 /* GpsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsViewController.swift; sourceTree = "<group>"; };
 		854C35DB20BDB09B00069576 /* CubijsmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubijsmViewController.swift; sourceTree = "<group>"; };
 		855E9563209E3931005E3060 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		859ADF2120C75D5600AE1B3C /* Pompeii.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pompeii.wav; sourceTree = "<group>"; };
 		85C6748720C5E66E006DEC7F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		85C6748920C608D2006DEC7F /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		85C6748F20C6C3D4006DEC7F /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 				855E9563209E3931005E3060 /* DateValueFormatter.swift */,
 			);
 			path = Formatters;
+			sourceTree = "<group>";
+		};
+		859ADF2020C75D4000AE1B3C /* SoundFiles */ = {
+			isa = PBXGroup;
+			children = (
+				859ADF2120C75D5600AE1B3C /* Pompeii.wav */,
+			);
+			path = SoundFiles;
 			sourceTree = "<group>";
 		};
 		85DF533B209CD8EC00958667 = {
@@ -237,6 +247,7 @@
 		85DF537A209CDAF900958667 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				859ADF2020C75D4000AE1B3C /* SoundFiles */,
 				855E9562209E3918005E3060 /* Formatters */,
 				85DF534E209CD8ED00958667 /* Assets.xcassets */,
 				85E9A0E5209D017D00D04393 /* Extensions.swift */,
@@ -368,6 +379,7 @@
 			files = (
 				85DF5352209CD8ED00958667 /* LaunchScreen.storyboard in Resources */,
 				85DF534F209CD8ED00958667 /* Assets.xcassets in Resources */,
+				859ADF2220C75D5600AE1B3C /* Pompeii.wav in Resources */,
 				85DF534D209CD8EC00958667 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
