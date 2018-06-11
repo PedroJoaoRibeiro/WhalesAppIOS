@@ -11,10 +11,16 @@ import UIKit
 
 class CrimeaRoseViewController: UIViewController {
 
-
+    
+    @IBOutlet weak var chartView: UIView!
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        
     }
+    
+    
 }

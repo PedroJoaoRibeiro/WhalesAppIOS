@@ -12,11 +12,10 @@ import AVFoundation
 
 class GpsViewController: UIViewController, MKMapViewDelegate {
     
+    
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var popUpView: PopUpView!
-    
-    @IBOutlet var arrayLabels: [UILabel]!
+    var selectedData: DataModel?
     
     weak var annotation: MapAnnotation?
     
@@ -27,6 +26,8 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let initialLocation = CLLocationCoordinate2D(latitude: 32.62317397863358, longitude: -16.90042078632814)
         
@@ -79,74 +80,18 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let annotation = annotation as? MapAnnotation else {
-            return nil
-        }
-        
+        if annotation is MKUserLocation { return nil }
         let reuseIdentifier = "pin"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         
         if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.canShowCallout = true
-            
+            annotationView = MapAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
         } else {
-            annotationView?.annotation = annotation
+            annotationView!.annotation = annotation
         }
-        
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation as? MapAnnotation else {
-            return
-        }
-        
-        self.annotation = annotation
-        
-        updateLabels(annotation: annotation)
-        
-        popUpView.showView()
-    }
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView){
-        guard let _ = view.annotation as? MapAnnotation else {
-            return
-        }
-        
-        popUpView.hideView()
-    }
-    
-    private func updateLabels(annotation: MapAnnotation){
-        for label in arrayLabels {
-            switch label.accessibilityIdentifier {
-            case "Date":
-                label.text = "Date: " + annotation.data.date.toString(withFormat: "yyyy-MM-dd HH:mm:ss")
-                break
-            case "Latitude":
-                label.text = "Lat: " + String(annotation.data.latitude)
-                break
-            case "Longitude":
-                label.text = "Long: " + String(annotation.data.longitude)
-                break
-            case "Temperature":
-                label.text = "Temperature: " + String(annotation.data.temperature)
-                break
-            case "Depth":
-                label.text = "Depth: " + String(annotation.data.depth)
-                break
-            case "Pollution":
-                label.text = "Pollution: " + String(annotation.data.pollution)
-                break
-            case "Pressure":
-                label.text = "Pressure: " + String(annotation.data.pressure)
-                break
-                
-            default:
-                break
-            }
-        }
-    }
     
     
 }

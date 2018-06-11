@@ -30,6 +30,8 @@ class DataModel: Object {
         self.pollution = pollution
         self.pressure = pressure
     }
+    
+    
     @objc dynamic var id = ""
     @objc dynamic var isFromServer = false
     
@@ -47,14 +49,28 @@ class DataModel: Object {
     @objc dynamic var pollution: Double = 0.0
     @objc dynamic var pressure: Double = 0.0
     
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     var coordinates: String {
         get {
             return "Lat: \(self.latitude), Long: \(self.longitude)"
         }
     }
     
-    override static func primaryKey() -> String? {
-        return "id"
+    var array: [String] {
+        get {
+            var array = [String]()
+            array.append("Lat: " + String(self.latitude))
+            array.append("Long: " + String(self.longitude))
+            array.append("Temperature: " + String(self.temperature))
+            array.append("Depth: " + String(self.depth))
+            array.append("Pollution: " + String(self.pollution))
+            array.append("Pressure: " + String(self.pressure))
+            return array
+        }
     }
     
     public func toJson()->JSON {
