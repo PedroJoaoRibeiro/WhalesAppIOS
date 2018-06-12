@@ -80,13 +80,18 @@ class CubijsmViewController: UIViewController {
     private func setChartOptions(){
         cubiChartView.chartDescription?.enabled = false
         
+        //disables x grid
+        cubiChartView.xAxis.drawGridLinesEnabled = false
+        
         //blocks zoom on Y axis
         cubiChartView.scaleYEnabled = false
         
         // calls the dateFormater to convert from interval to (dd MMM)
         cubiChartView.xAxis.valueFormatter = DateValueFormatter()
         
-        cubiChartView.animate(xAxisDuration: 1.5)
+        
+        
+        cubiChartView.animate(xAxisDuration: 1)
     }
 }
 

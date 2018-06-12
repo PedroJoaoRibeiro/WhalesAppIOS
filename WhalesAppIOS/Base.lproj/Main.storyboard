@@ -188,7 +188,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-wR-9ET">
-                                <rect key="frame" x="0.0" y="44" width="375" height="684"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
                                     <outlet property="delegate" destination="Iyi-QI-wmK" id="otD-l4-wnc"/>
                                 </connections>
@@ -197,8 +197,8 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gEy-wR-9ET" secondAttribute="trailing" id="HnE-sk-Pkc"/>
-                            <constraint firstItem="hiV-MS-BUY" firstAttribute="bottom" secondItem="gEy-wR-9ET" secondAttribute="bottom" constant="50" id="SrH-Ms-O1c"/>
-                            <constraint firstItem="gEy-wR-9ET" firstAttribute="top" secondItem="hiV-MS-BUY" secondAttribute="top" id="tbF-2D-mcd"/>
+                            <constraint firstAttribute="bottom" secondItem="gEy-wR-9ET" secondAttribute="bottom" id="SrH-Ms-O1c"/>
+                            <constraint firstItem="gEy-wR-9ET" firstAttribute="top" secondItem="xKf-Xn-lgc" secondAttribute="top" id="tbF-2D-mcd"/>
                             <constraint firstItem="gEy-wR-9ET" firstAttribute="leading" secondItem="xKf-Xn-lgc" secondAttribute="leading" id="vQP-9V-sYV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hiV-MS-BUY"/>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 
 class DataDetailMapView: UIView, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,6 +19,8 @@ class DataDetailMapView: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var playButton: UIButton!
     
     var data: DataModel!
+    
+    var player: AVAudioPlayer?
     
     
     override func awakeFromNib() {
@@ -54,7 +56,6 @@ class DataDetailMapView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        print("im here")
         
         // play button
         if let result = playButton.hitTest(convert(point, to: playButton), with: event) {
@@ -76,9 +77,53 @@ class DataDetailMapView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func stopMusic(_ sender: UIButton) {
         print("stop music")
+        
+        UIButton.animate(withDuration: 0.2,
+                         animations: {
+                            sender.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        },
+                         completion: { finish in
+                            UIButton.animate(withDuration: 0.2, animations: {
+                                sender.transform = CGAffineTransform.identity
+                            })
+        })
+        
+        player?.stop()
     }
     @IBAction func playMusic(_ sender: UIButton) {
         print("start music")
+        
+        UIButton.animate(withDuration: 0.2,
+                         animations: {
+                            sender.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        },
+                         completion: { finish in
+                            UIButton.animate(withDuration: 0.2, animations: {
+                                sender.transform = CGAffineTransform.identity
+                            })
+        })
+        
+        guard let url = Bundle.main.url(forResource: "Pompeii", withExtension: "wav") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            
+            /* iOS 10 and earlier require the following line:
+             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
     }
 
 }
