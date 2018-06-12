@@ -45,22 +45,25 @@ class CubijsmViewController: UIViewController {
             lineChartEntry3.append(value3)
         }
         
-        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [NSUIColor.blue])
-        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [NSUIColor.green])
-        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [NSUIColor.red])
+        
+        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
+        
+        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
+        
+        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
         
         
-        let data = LineChartData(dataSets: [line1, line2, line3])
+        let data = LineChartData(dataSets: [ line1, line2, line3])
         
         cubiChartView.data = data
         
         cubiChartView.setVisibleXRange(minXRange: 20, maxXRange: 150)
     }
     
-    private func lineChartGenerator(lineChartEntry: [ChartDataEntry], label: String, color: [NSUIColor]) -> LineChartDataSet{
+    private func lineChartGenerator(lineChartEntry: [ChartDataEntry], label: String, color: [UIColor]) -> LineChartDataSet{
         
         let line = LineChartDataSet(values: lineChartEntry, label: label)
-        line.colors = color // [NSUIColor.blue]
+        line.colors = color
         
         line.mode = .cubicBezier
         line.drawCirclesEnabled = false
