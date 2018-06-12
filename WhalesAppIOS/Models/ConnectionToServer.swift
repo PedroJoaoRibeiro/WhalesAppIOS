@@ -12,7 +12,7 @@ import SwiftyJSON
 
 
 class ConnectionToServer {
-    private let serverUrl = URL(string: "http://127.0.0.1:8080/data")
+    private let serverUrl = URL(string: "http://192.168.1.183:8080/data")
     
     public func sendDataToServer(){
         let db = DbConnection();

@@ -65,10 +65,10 @@ class DataModel: Object {
             var array = [String]()
             array.append("Lat: " + String(self.latitude))
             array.append("Long: " + String(self.longitude))
-            array.append("Temperature: " + String(self.temperature))
-            array.append("Depth: " + String(self.depth))
+            array.append("Temperature: " + String(self.temperature) + " °C")
+            array.append("Depth: " + String(self.depth) + " m")
             array.append("Pollution: " + String(self.pollution))
-            array.append("Pressure: " + String(self.pressure))
+            array.append("Pressure: " + String(self.pressure) + " Pa")
             return array
         }
     }

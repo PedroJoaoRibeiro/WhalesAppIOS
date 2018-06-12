@@ -53,6 +53,8 @@ class CubijsmViewController: UIViewController {
         let data = LineChartData(dataSets: [line1, line2, line3])
         
         cubiChartView.data = data
+        
+        cubiChartView.setVisibleXRange(minXRange: 20, maxXRange: 150)
     }
     
     private func lineChartGenerator(lineChartEntry: [ChartDataEntry], label: String, color: [NSUIColor]) -> LineChartDataSet{
@@ -88,7 +90,6 @@ class CubijsmViewController: UIViewController {
         
         // calls the dateFormater to convert from interval to (dd MMM)
         cubiChartView.xAxis.valueFormatter = DateValueFormatter()
-        
         
         
         cubiChartView.animate(xAxisDuration: 1)

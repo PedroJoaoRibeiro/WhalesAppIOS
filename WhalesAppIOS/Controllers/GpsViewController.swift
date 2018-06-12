@@ -37,6 +37,7 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
         let db = DbConnection()
         let arrayData = db.getDataFromDb()
         
+        
         let title = "Date: " + arrayData[0].date.toString(withFormat: "yyyy-MM-dd HH:mm:ss")
         
         let annotation = MapAnnotation(title: title, data: arrayData[0], coordinate: initialLocation)
