@@ -12,9 +12,9 @@ import Charts
 public class DateValueFormatter: NSObject, IAxisValueFormatter {
     private let dateFormatter = DateFormatter()
     
-    override init() {
+    init(format: String) {
         super.init()
-        dateFormatter.dateFormat = "dd MMM HH:mm"
+        dateFormatter.dateFormat = format
     }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {

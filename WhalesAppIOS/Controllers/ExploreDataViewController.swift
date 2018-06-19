@@ -70,7 +70,7 @@ class ExploreDataViewController: UIViewController {
         chtChart.scaleYEnabled = false
         
         // calls the dateFormater to convert from interval to (dd MMM)
-        chtChart.xAxis.valueFormatter = DateValueFormatter()
+        //chtChart.xAxis.valueFormatter = DateValueFormatter()
     }
     
 }

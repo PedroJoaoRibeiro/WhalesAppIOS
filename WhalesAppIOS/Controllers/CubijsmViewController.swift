@@ -24,8 +24,24 @@ class CubijsmViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        dateLabel.text = "Today"
-        drawCubicChart(arrayOfData: getDateForDay())
+        
+//        let db = DbConnection()
+//        let array = db.getDataFromDb()
+//        var date = DateFormatter().stringToDate(str: "2017-12-23T06:00:00Z")!
+//
+//        for i in array {
+//            if db.updateDates(id: i.id, newDate: date) {
+//                date = Calendar.current.date(byAdding: .hour, value: 6, to: date)!
+//            } else {
+//                print("here")
+//            }
+//        }
+//
+//        print(db.getDataFromDb())
+        
+        updateLabel()
+        setChartOptions()
+        drawCubicChartDay()
     }
     
     // Actions
@@ -33,13 +49,14 @@ class CubijsmViewController: UIViewController {
     @IBAction func segmentedControllChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
+            drawCubicChartDay()
             break
         case 1:
-            print("1")
+            drawCubicChartWeek()
         case 2:
-            print("2")
+            drawCubicChartMonth()
         case 3:
-            print("3")
+            drawCubicChartYear()
         default:
             break
         }
@@ -51,30 +68,24 @@ class CubijsmViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0: //subtract a day in the currentDate
             currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
-            if calendar.isDateInToday(currentDate){
-                dateLabel.text = "Today"
-            } else if calendar.isDateInYesterday(currentDate){
-                dateLabel.text = "Yesterday"
-            } else {
-                dateLabel.text = currentDate.toString(withFormat: "dd/MM/yyyy")
-            }
+            drawCubicChartDay()
             break
         case 1: //subtract a week in the currentDate
             currentDate = calendar.date(byAdding: .day, value: -7, to: currentDate)!
+            drawCubicChartWeek()
             break
         case 2: //subtract a month in the currentDate
             currentDate = calendar.date(byAdding: .month, value: -1, to: currentDate)!
-            dateLabel.text = currentDate.toString(withFormat: "MM/yyyy")
+            drawCubicChartMonth()
             break
         case 3: //subtract a year in the currentDate
             currentDate = calendar.date(byAdding: .year, value: -1, to: currentDate)!
-            dateLabel.text = currentDate.toString(withFormat: "yyyy")
+            drawCubicChartYear()
             break
         default:
             break
         }
         updateLabel()
-        print(currentDate)
     }
     
     
@@ -83,28 +94,27 @@ class CubijsmViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0: //add a day in the currentDate
             currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+            drawCubicChartDay()
             break
         case 1: //add a week in the currentDate
             currentDate = calendar.date(byAdding: .day, value: 7, to: currentDate)!
-            
+            drawCubicChartWeek()
             break
         case 2: //add a month in the currentDate
             currentDate = calendar.date(byAdding: .month, value: 1, to: currentDate)!
-            
+            drawCubicChartMonth()
             break
         case 3: //add a year in the currentDate
             currentDate = calendar.date(byAdding: .year, value: 1, to: currentDate)!
-            
+            drawCubicChartYear()
             break
         default:
             break
         }
         updateLabel()
-        print(currentDate)
     }
     
     // Date selection Methods
-    
     
     private func getDateForDay() -> [DataModel] {
         //connects to the database to get the data
@@ -114,8 +124,81 @@ class CubijsmViewController: UIViewController {
         return arrayOfData.filter { Calendar.current.isDate($0.date, inSameDayAs: currentDate)}
     }
     
+    private func getDateForWeek() -> [DataModel] {
+        //connects to the database to get the data
+        let db = DbConnection()
+        let arrayOfData = db.getDataFromDb()
+        
+        return arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear)}
+    }
+    
+    private func getDateForMonth() -> [DataModel] {
+        //connects to the database to get the data
+        let db = DbConnection()
+        var arrayOfData = db.getDataFromDb()
+        
+        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month)}
+        
+        let dict = Dictionary(grouping: arrayOfData) {$0.date.day}
+        
+        var finalArray = [DataModel]()
+
+        let range = Calendar.current.range(of: .day, in: .month, for: currentDate)!
+        
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
+        component.day = 1
+        var d = Calendar.current.date(from: component)!
+        
+        for _ in 0..<range.count {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .day, value: 1, to: d)!
+        }
+        
+        for (key, value) in dict {
+            for v in value {
+                finalArray[key-1].add(obj: v)
+            }
+            finalArray[key-1].divide(value: value.count)
+        }
+        return finalArray
+    }
+    
+    private func getDateForYear() -> [DataModel] {
+        //connects to the database to get the data
+        let db = DbConnection()
+        var arrayOfData = db.getDataFromDb()
+        
+        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
+        
+        let dict = Dictionary(grouping: arrayOfData) {$0.date.month}
+        
+        //initialize the array with fixed size
+        var finalArray = [DataModel]()
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
+        component.month = 1
+        component.day = 1
+        var d = Calendar.current.date(from: component)!
+        for _ in 0..<12 {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .month, value: 1, to: d)!
+        }
+        
+        for (key, value) in dict {
+            for v in value {
+                finalArray[key-1].add(obj: v)
+            }
+            finalArray[key-1].divide(value: value.count)
+        }
+        
+        return finalArray
+    }
     
     
+    // Updates the label of the current day
     private func updateLabel(){
         let calendar = Calendar.current
         switch segmentedControl.selectedSegmentIndex {
@@ -145,11 +228,59 @@ class CubijsmViewController: UIViewController {
     
     // Chart Methods
     
-    private func drawCubicChart(arrayOfData: [DataModel]){
+    private func drawCubicChartDay(){
+    }
+    
+    private func drawCubicChartWeek(){
+    }
+    
+    private func drawCubicChartMonth(){
+        cubiChartView.data = nil
         
-        setChartOptions();
+         let arrayOfData = getDateForMonth()
         
         // checks if there is data to show if not don't do anything
+        guard arrayOfData.count > 0 else {
+            print("There is no Data on Database")
+            return
+        }
+        
+        var lineChartEntry1 = [ChartDataEntry]()
+        var lineChartEntry2 = [ChartDataEntry]()
+        var lineChartEntry3 = [ChartDataEntry]()
+        
+        for obj in 0..<arrayOfData.count {
+            let value1 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].temperature)
+            let value2 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].depth)
+            let value3 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].pressure)
+            lineChartEntry1.append(value1)
+            lineChartEntry2.append(value2)
+            lineChartEntry3.append(value3)
+        }
+        
+        
+        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
+        
+        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
+        
+        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
+        
+        
+        let data = LineChartData(dataSets: [ line1, line2, line3])
+        
+        
+        
+        cubiChartView.xAxis.labelCount = 5
+        cubiChartView.xAxis.valueFormatter = MonthValueFormatter()
+        
+        cubiChartView.data = data
+    }
+    
+    
+    private func drawCubicChartYear() {
+        cubiChartView.data = nil
+        
+        let arrayOfData = getDateForYear()
         guard arrayOfData.count > 0 else {
             print("There is no Data on Database")
             return
@@ -178,17 +309,21 @@ class CubijsmViewController: UIViewController {
         
         let data = LineChartData(dataSets: [ line1, line2, line3])
         
-        cubiChartView.data = data
+        cubiChartView.xAxis.valueFormatter = YearValueFormatter()
+        cubiChartView.setVisibleXRangeMaximum(5)
         
-        cubiChartView.setVisibleXRange(minXRange: 20, maxXRange: 150)
+        // Just add the data in the end otherwise you will get errors
+        cubiChartView.data = data
     }
+    
+    
     
     private func lineChartGenerator(lineChartEntry: [ChartDataEntry], label: String, color: [UIColor]) -> LineChartDataSet{
         
         let line = LineChartDataSet(values: lineChartEntry, label: label)
         line.colors = color
         
-        line.mode = .cubicBezier
+        line.mode = .horizontalBezier
         line.drawCirclesEnabled = false
         line.lineWidth = 1.8
         line.circleRadius = 4
@@ -200,6 +335,7 @@ class CubijsmViewController: UIViewController {
         
         line.drawHorizontalHighlightIndicatorEnabled = false
         
+        // sets an area filled bellow the graph changed to zero to avoid that
         line.fillFormatter = CubicLineSampleFillFormatter()
         
         return line
@@ -214,22 +350,20 @@ class CubijsmViewController: UIViewController {
         //blocks zoom on Y axis
         cubiChartView.scaleYEnabled = false
         
-        // calls the dateFormater to convert from interval to (dd MMM)
-        cubiChartView.xAxis.valueFormatter = DateValueFormatter()
-        
-        
+        //animation
         cubiChartView.animate(xAxisDuration: 1)
+        
+        // xAxis defenitions
+        let xAxis = cubiChartView.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.granularity = 1
     }
-    
-    
-    
-    
     
     
 }
 
 private class CubicLineSampleFillFormatter: IFillFormatter {
     func getFillLinePosition(dataSet: ILineChartDataSet, dataProvider: LineChartDataProvider) -> CGFloat {
-        return -10
+        return 0
     }
 }

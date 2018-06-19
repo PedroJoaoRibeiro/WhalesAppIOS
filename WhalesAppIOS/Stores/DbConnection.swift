@@ -40,6 +40,15 @@ class DbConnection {
         }
         return true
     }
+    
+    
+    // TO REMOVE
+    public func updateDates(id: String, newDate: Date) -> Bool {
+        try! realm.write {
+            realm.create(DataModel.self, value: ["id": id, "date": newDate], update: true)
+        }
+        return true
+    }
 }
 
 

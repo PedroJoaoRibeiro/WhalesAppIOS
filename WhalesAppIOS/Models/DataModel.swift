@@ -92,4 +92,28 @@ class DataModel: Object {
         
         return json
     }
+    
+    public func add(obj: DataModel){
+        
+        //standard
+        self.deviceId = obj.deviceId
+        self.id = obj.id
+        self.latitude = obj.latitude
+        self.longitude = obj.longitude
+        //self.date = obj.date
+        
+        //add values
+        self.temperature += obj.temperature
+        self.depth += obj.depth
+        self.pressure += obj.pressure
+        self.pollution += obj.pollution
+    }
+    
+    public func divide(value: Int){
+        //divide
+        self.temperature /= Double(value)
+        self.depth /= Double(value)
+        self.pressure /= Double(value)
+        self.pollution /= Double(value)
+    }
 }
