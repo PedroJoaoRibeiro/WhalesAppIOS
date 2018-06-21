@@ -16,8 +16,9 @@ import SwiftyJSON
 class ExploreDataViewController: UIViewController {
     
 
-    
     @IBOutlet weak var chtChart: LineChartView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,15 +63,24 @@ class ExploreDataViewController: UIViewController {
         let data = LineChartData()
         data.addDataSet(line1)
         
+        
+        
         chtChart.data = data
+        
+        // calls the dateFormater to convert from interval to (dd MMM)
+        
+        chtChart.xAxis.labelCount = 10
+        //chtChart.setVisibleXRange(minXRange: 5, maxXRange: 20)
+        chtChart.moveViewToX(5)
+        
+       //chtChart.xAxis.valueFormatter = YearValueFormatter()
     }
     
     private func setChartOptions(){
         //blocks zoom on Y axis
         chtChart.scaleYEnabled = false
         
-        // calls the dateFormater to convert from interval to (dd MMM)
-        //chtChart.xAxis.valueFormatter = DateValueFormatter()
+        
     }
     
 }

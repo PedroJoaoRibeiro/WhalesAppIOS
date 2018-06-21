@@ -42,6 +42,7 @@ class CubijsmViewController: UIViewController {
         updateLabel()
         setChartOptions()
         drawCubicChartDay()
+        
     }
     
     // Actions
@@ -265,15 +266,16 @@ class CubijsmViewController: UIViewController {
         
         let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
         
-        
         let data = LineChartData(dataSets: [ line1, line2, line3])
         
-        
-        
-        cubiChartView.xAxis.labelCount = 5
+        //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = MonthValueFormatter()
         
         cubiChartView.data = data
+        
+        //always place after adding the data
+        cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: Double(arrayOfData.count))
+        cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
     
@@ -291,9 +293,9 @@ class CubijsmViewController: UIViewController {
         var lineChartEntry3 = [ChartDataEntry]()
         
         for obj in arrayOfData {
-            let value1 = ChartDataEntry(x: Double(obj.date.timeIntervalSince1970), y: obj.temperature)
-            let value2 = ChartDataEntry(x: Double(obj.date.timeIntervalSince1970), y: obj.depth)
-            let value3 = ChartDataEntry(x: Double(obj.date.timeIntervalSince1970), y: obj.pressure)
+            let value1 = ChartDataEntry(x: Double(obj.date.month), y: obj.temperature)
+            let value2 = ChartDataEntry(x: Double(obj.date.month), y: obj.depth)
+            let value3 = ChartDataEntry(x: Double(obj.date.month), y: obj.pressure)
             lineChartEntry1.append(value1)
             lineChartEntry2.append(value2)
             lineChartEntry3.append(value3)
@@ -309,14 +311,15 @@ class CubijsmViewController: UIViewController {
         
         let data = LineChartData(dataSets: [ line1, line2, line3])
         
+        //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = YearValueFormatter()
-        cubiChartView.setVisibleXRangeMaximum(5)
         
-        // Just add the data in the end otherwise you will get errors
         cubiChartView.data = data
+        
+        //always place after adding the data
+        cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: Double(arrayOfData.count))
+        cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
-    
-    
     
     private func lineChartGenerator(lineChartEntry: [ChartDataEntry], label: String, color: [UIColor]) -> LineChartDataSet{
         

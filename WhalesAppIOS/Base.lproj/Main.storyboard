@@ -121,15 +121,15 @@
             </objects>
             <point key="canvasLocation" x="-26" y="136"/>
         </scene>
-        <!--Crimea Rose View Controller-->
+        <!--Explore Data View Controller-->
         <scene sceneID="Ynk-jK-mX0">
             <objects>
-                <viewController storyboardIdentifier="CrimeaRose" id="sN3-cS-Unw" customClass="CrimeaRoseViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CrimeaRose" id="sN3-cS-Unw" customClass="ExploreDataViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23I-gk-IFi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6W-Rx-yeZ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6W-Rx-yeZ" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="44" width="375" height="634"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -144,7 +144,7 @@
                         <viewLayoutGuide key="safeArea" id="bpr-vN-DwD"/>
                     </view>
                     <connections>
-                        <outlet property="chartView" destination="L6W-Rx-yeZ" id="6Ph-nt-ujf"/>
+                        <outlet property="chtChart" destination="L6W-Rx-yeZ" id="ucx-GC-iCF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E79-k4-nJt" userLabel="First Responder" sceneMemberID="firstResponder"/>

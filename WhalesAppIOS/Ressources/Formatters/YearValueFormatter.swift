@@ -11,7 +11,6 @@ import Charts
 
 public class YearValueFormatter: NSObject, IAxisValueFormatter {
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let date = Date(timeIntervalSince1970: value)
-        return Calendar.current.shortMonthSymbols[date.month-1]
+        return Calendar.current.shortMonthSymbols[Int(value) - 1]
     }
 }
