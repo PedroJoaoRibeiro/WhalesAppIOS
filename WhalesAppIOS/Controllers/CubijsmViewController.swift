@@ -250,9 +250,9 @@ class CubijsmViewController: UIViewController {
         
          let arrayOfData = getDateForMonth()
         
-        // checks if there is data to show if not don't do anything
+        //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
-            print("There is no Data on Database for the current selected month")
+            cubiChartView.noDataText = "There is no data for the current selected month"
             return
         }
         
@@ -293,8 +293,10 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = nil
         
         let arrayOfData = getDateForYear()
+        
+        // prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
-            print("There is no Data on Database for the current selected year")
+            cubiChartView.noDataText = "There is no data for the current selected year"
             return
         }
         
