@@ -140,6 +140,11 @@ class CubijsmViewController: UIViewController {
         
         arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month)}
         
+        // if there is no data just return nil
+        if arrayOfData.isEmpty {
+            return [DataModel]()
+        }
+        
         let dict = Dictionary(grouping: arrayOfData) {$0.date.day}
         
         var finalArray = [DataModel]()
@@ -172,6 +177,11 @@ class CubijsmViewController: UIViewController {
         var arrayOfData = db.getDataFromDb()
         
         arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
+        
+        // if there is no data just return nil
+        if arrayOfData.isEmpty {
+            return [DataModel]()
+        }
         
         let dict = Dictionary(grouping: arrayOfData) {$0.date.month}
         
@@ -242,7 +252,7 @@ class CubijsmViewController: UIViewController {
         
         // checks if there is data to show if not don't do anything
         guard arrayOfData.count > 0 else {
-            print("There is no Data on Database")
+            print("There is no Data on Database for the current selected month")
             return
         }
         
@@ -284,7 +294,7 @@ class CubijsmViewController: UIViewController {
         
         let arrayOfData = getDateForYear()
         guard arrayOfData.count > 0 else {
-            print("There is no Data on Database")
+            print("There is no Data on Database for the current selected year")
             return
         }
         
