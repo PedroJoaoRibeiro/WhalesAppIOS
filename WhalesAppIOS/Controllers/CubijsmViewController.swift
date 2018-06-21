@@ -199,7 +199,7 @@ class CubijsmViewController: UIViewController {
     }
     
     
-    // Updates the label of the current day
+    /// Updates the label of the current day
     private func updateLabel(){
         let calendar = Calendar.current
         switch segmentedControl.selectedSegmentIndex {
@@ -321,6 +321,7 @@ class CubijsmViewController: UIViewController {
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
+    ///generates the line to then add to the graph
     private func lineChartGenerator(lineChartEntry: [ChartDataEntry], label: String, color: [UIColor]) -> LineChartDataSet{
         
         let line = LineChartDataSet(values: lineChartEntry, label: label)
@@ -344,6 +345,8 @@ class CubijsmViewController: UIViewController {
         return line
     }
     
+    
+    ///sets some standard options to the graph just called once at the start
     private func setChartOptions(){
         cubiChartView.chartDescription?.enabled = false
         
@@ -361,7 +364,6 @@ class CubijsmViewController: UIViewController {
         xAxis.labelPosition = .bottom
         xAxis.granularity = 1
     }
-    
     
 }
 
