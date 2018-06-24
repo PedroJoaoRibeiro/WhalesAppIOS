@@ -29,6 +29,10 @@ extension DateFormatter {
 
 extension Date {
     
+    var hour: Int {
+        return Calendar.current.component(.hour, from: self)
+    }
+    
     var day: Int {
         return Calendar.current.component(.day, from: self)
     }

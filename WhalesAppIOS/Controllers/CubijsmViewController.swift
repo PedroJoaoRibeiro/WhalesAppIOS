@@ -120,17 +120,60 @@ class CubijsmViewController: UIViewController {
     private func getDateForDay() -> [DataModel] {
         //connects to the database to get the data
         let db = DbConnection()
-        let arrayOfData = db.getDataFromDb()
+        var arrayOfData = db.getDataFromDb()
         
-        return arrayOfData.filter { Calendar.current.isDate($0.date, inSameDayAs: currentDate)}
+        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day)}
+        
+        // if there is no data just return nil
+        if arrayOfData.isEmpty {
+            return [DataModel]()
+        }
+    
+        return arrayOfData
     }
     
     private func getDateForWeek() -> [DataModel] {
         //connects to the database to get the data
         let db = DbConnection()
-        let arrayOfData = db.getDataFromDb()
+        var arrayOfData = db.getDataFromDb()
         
-        return arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear)}
+        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear )}
+        
+        
+        // if there is no data just return nil
+        if arrayOfData.isEmpty {
+            return [DataModel]()
+        }
+        
+        let dict = Dictionary(grouping: arrayOfData) {$0.date.day}
+        
+        var finalArray = [DataModel]()
+        
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
+        component.day = currentDate.startOfWeek?.day
+        var d = Calendar.current.date(from: component)!
+        
+        for _ in 0..<7 {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .day, value: 1, to: d)!
+        }
+        
+        for (_, value) in dict {
+            for obj in finalArray {
+                for v in value {
+                    if(obj.date.day == v.date.day){
+                        print(v.temperature)
+                        obj.add(obj: v)
+                    }
+                }
+                if(value.count > 0 && value[0].date.day == obj.date.day ){
+                    obj.divide(value: value.count)
+                }
+            }
+        }
+        return finalArray
     }
     
     private func getDateForMonth() -> [DataModel] {
@@ -240,9 +283,90 @@ class CubijsmViewController: UIViewController {
     // Chart Methods
     
     private func drawCubicChartDay(){
+        cubiChartView.data = nil
+        
+        let arrayOfData = getDateForDay()
+        
+        //prevent from drawing if there is no data
+        guard arrayOfData.count > 0 else {
+            cubiChartView.noDataText = "There is no data for the current selected day"
+            return
+        }
+        
+        var lineChartEntry1 = [ChartDataEntry]()
+        var lineChartEntry2 = [ChartDataEntry]()
+        var lineChartEntry3 = [ChartDataEntry]()
+        
+        for obj in arrayOfData {
+            let value1 = ChartDataEntry(x: Double(obj.date.hour), y: obj.temperature)
+            let value2 = ChartDataEntry(x: Double(obj.date.hour), y: obj.depth)
+            let value3 = ChartDataEntry(x: Double(obj.date.hour), y: obj.pressure)
+            lineChartEntry1.append(value1)
+            lineChartEntry2.append(value2)
+            lineChartEntry3.append(value3)
+        }
+        
+        
+        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
+        
+        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
+        
+        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
+        
+        let data = LineChartData(dataSets: [ line1, line2, line3])
+        
+        //place this before data otherwise might get errors
+        cubiChartView.xAxis.valueFormatter = DayValueFormatter()
+        
+        cubiChartView.data = data
+        
+        //always place after adding the data
+        cubiChartView.setVisibleXRange(minXRange: 3, maxXRange: 24)
+        //cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
     private func drawCubicChartWeek(){
+        cubiChartView.data = nil
+        
+        let arrayOfData = getDateForWeek()
+        
+        //prevent from drawing if there is no data
+        guard arrayOfData.count > 0 else {
+            cubiChartView.noDataText = "There is no data for the current selected month"
+            return
+        }
+        
+        var lineChartEntry1 = [ChartDataEntry]()
+        var lineChartEntry2 = [ChartDataEntry]()
+        var lineChartEntry3 = [ChartDataEntry]()
+        
+        for obj in 0..<arrayOfData.count {
+            let value1 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].temperature)
+            let value2 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].depth)
+            let value3 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].pressure)
+            lineChartEntry1.append(value1)
+            lineChartEntry2.append(value2)
+            lineChartEntry3.append(value3)
+        }
+        
+        
+        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
+        
+        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
+        
+        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
+        
+        let data = LineChartData(dataSets: [ line1, line2, line3])
+        
+        //place this before data otherwise might get errors
+        cubiChartView.xAxis.valueFormatter = WeekValueFormatter(initialWeekDate: currentDate.startOfWeek!)
+        
+        cubiChartView.data = data
+        
+        //always place after adding the data
+        cubiChartView.setVisibleXRange(minXRange: 6, maxXRange: 7)
+        cubiChartView.moveViewToX(Double(arrayOfData.count/2))
+        
     }
     
     private func drawCubicChartMonth(){
@@ -284,7 +408,7 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = data
         
         //always place after adding the data
-        cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: Double(arrayOfData.count))
+        cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: 24)
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
