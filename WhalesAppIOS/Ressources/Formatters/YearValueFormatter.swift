@@ -11,6 +11,11 @@ import Charts
 
 public class YearValueFormatter: NSObject, IAxisValueFormatter {
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return Calendar.current.shortMonthSymbols[Int(value) - 1]
+        // to prevent error
+        var x = Int(value)
+        if(x > 11){
+            x = 11
+        }
+        return Calendar.current.shortMonthSymbols[x]
     }
 }

@@ -17,8 +17,10 @@ class CubijsmViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var valueSelectedLabel: UILabel!
     
     private var currentDate = Date()
+    private var arrayOfData = [DataModel]()
     
     
     override func viewDidLoad(){
@@ -38,6 +40,8 @@ class CubijsmViewController: UIViewController {
 //        }
 //
 //        print(db.getDataFromDb())
+        
+        cubiChartView.delegate = self
         
         updateLabel()
         setChartOptions()
@@ -120,32 +124,32 @@ class CubijsmViewController: UIViewController {
     private func getDateForDay() -> [DataModel] {
         //connects to the database to get the data
         let db = DbConnection()
-        var arrayOfData = db.getDataFromDb()
+        var array = db.getDataFromDb()
         
-        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day)}
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day)}
         
         // if there is no data just return nil
-        if arrayOfData.isEmpty {
+        if array.isEmpty {
             return [DataModel]()
         }
     
-        return arrayOfData
+        return array
     }
     
     private func getDateForWeek() -> [DataModel] {
         //connects to the database to get the data
         let db = DbConnection()
-        var arrayOfData = db.getDataFromDb()
+        var array = db.getDataFromDb()
         
-        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear )}
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear )}
         
         
         // if there is no data just return nil
-        if arrayOfData.isEmpty {
+        if array.isEmpty {
             return [DataModel]()
         }
         
-        let dict = Dictionary(grouping: arrayOfData) {$0.date.day}
+        let dict = Dictionary(grouping: array) {$0.date.day}
         
         var finalArray = [DataModel]()
         
@@ -179,16 +183,16 @@ class CubijsmViewController: UIViewController {
     private func getDateForMonth() -> [DataModel] {
         //connects to the database to get the data
         let db = DbConnection()
-        var arrayOfData = db.getDataFromDb()
+        var array = db.getDataFromDb()
         
-        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month)}
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month)}
         
         // if there is no data just return nil
-        if arrayOfData.isEmpty {
+        if array.isEmpty {
             return [DataModel]()
         }
         
-        let dict = Dictionary(grouping: arrayOfData) {$0.date.day}
+        let dict = Dictionary(grouping: array) {$0.date.day}
         
         var finalArray = [DataModel]()
 
@@ -217,16 +221,16 @@ class CubijsmViewController: UIViewController {
     private func getDateForYear() -> [DataModel] {
         //connects to the database to get the data
         let db = DbConnection()
-        var arrayOfData = db.getDataFromDb()
+        var array = db.getDataFromDb()
         
-        arrayOfData = arrayOfData.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
         
         // if there is no data just return nil
-        if arrayOfData.isEmpty {
+        if array.isEmpty {
             return [DataModel]()
         }
         
-        let dict = Dictionary(grouping: arrayOfData) {$0.date.month}
+        let dict = Dictionary(grouping: array) {$0.date.month}
         
         //initialize the array with fixed size
         var finalArray = [DataModel]()
@@ -285,7 +289,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartDay(){
         cubiChartView.data = nil
         
-        let arrayOfData = getDateForDay()
+        arrayOfData = getDateForDay()
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -328,7 +332,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartWeek(){
         cubiChartView.data = nil
         
-        let arrayOfData = getDateForWeek()
+        arrayOfData = getDateForWeek()
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -372,7 +376,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartMonth(){
         cubiChartView.data = nil
         
-         let arrayOfData = getDateForMonth()
+         arrayOfData = getDateForMonth()
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -416,7 +420,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartYear() {
         cubiChartView.data = nil
         
-        let arrayOfData = getDateForYear()
+        arrayOfData = getDateForYear()
         
         // prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -429,9 +433,9 @@ class CubijsmViewController: UIViewController {
         var lineChartEntry3 = [ChartDataEntry]()
         
         for obj in arrayOfData {
-            let value1 = ChartDataEntry(x: Double(obj.date.month), y: obj.temperature)
-            let value2 = ChartDataEntry(x: Double(obj.date.month), y: obj.depth)
-            let value3 = ChartDataEntry(x: Double(obj.date.month), y: obj.pressure)
+            let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.temperature)
+            let value2 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.depth)
+            let value3 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.pressure)
             lineChartEntry1.append(value1)
             lineChartEntry2.append(value2)
             lineChartEntry3.append(value3)
@@ -453,7 +457,7 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = data
         
         //always place after adding the data
-        cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: Double(arrayOfData.count))
+        cubiChartView.setVisibleXRange(minXRange: Double(8), maxXRange: Double(12))
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
@@ -484,7 +488,6 @@ class CubijsmViewController: UIViewController {
     
     ///sets some standard options to the graph just called once at the start
     private func setChartOptions(){
-        cubiChartView.chartDescription?.enabled = false
         
         //disables x grid
         cubiChartView.xAxis.drawGridLinesEnabled = false
@@ -494,6 +497,12 @@ class CubijsmViewController: UIViewController {
         
         //animation
         cubiChartView.animate(xAxisDuration: 1)
+        
+        let leftAxis = cubiChartView.leftAxis
+        leftAxis.xOffset = 10
+        
+        let rightAxis = cubiChartView.rightAxis
+        rightAxis.enabled = false
         
         // xAxis defenitions
         let xAxis = cubiChartView.xAxis
@@ -507,4 +516,24 @@ private class CubicLineSampleFillFormatter: IFillFormatter {
     func getFillLinePosition(dataSet: ILineChartDataSet, dataProvider: LineChartDataProvider) -> CGFloat {
         return 0
     }
+}
+
+
+extension CubijsmViewController: ChartViewDelegate {
+    
+    public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            for obj in arrayOfData {
+                if obj.date.hour == Int(entry.x) {
+                    valueSelectedLabel.text = "Temperature: \(obj.temperature) Depth: \(obj.depth) Pressure: \(obj.pressure)"
+                }
+            }
+        } else {
+            let obj = arrayOfData[Int(entry.x)]
+            valueSelectedLabel.text = String(format: "Average Temperature: %.02f", obj.temperature) + String(format: "\nAverage Depth: %.02f", obj.depth) + String(format: "\nAverage Pressure: %.02f", obj.pressure)
+        }
+        
+    }
+    
 }

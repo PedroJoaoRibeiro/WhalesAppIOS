@@ -208,22 +208,34 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvH-F1-Zgz" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="143" width="355" height="585"/>
+                                <rect key="frame" x="10" y="143" width="355" height="510"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yr1-uD-MYz">
+                                <rect key="frame" x="10" y="653" width="355" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="VL5-Sk-jD6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="iYF-TH-91v" firstAttribute="trailing" secondItem="tvH-F1-Zgz" secondAttribute="trailing" constant="10" id="2mg-kH-1kj"/>
                             <constraint firstItem="tvH-F1-Zgz" firstAttribute="top" secondItem="p7b-td-a5r" secondAttribute="bottom" constant="8" symbolic="YES" id="5AU-d6-1Eh"/>
+                            <constraint firstItem="iYF-TH-91v" firstAttribute="bottom" secondItem="yr1-uD-MYz" secondAttribute="bottom" constant="50" id="60I-EC-xpz"/>
                             <constraint firstItem="J8N-dA-7mK" firstAttribute="top" secondItem="iYF-TH-91v" secondAttribute="top" constant="5" id="Lfp-6x-R4Q"/>
+                            <constraint firstItem="iYF-TH-91v" firstAttribute="trailing" secondItem="yr1-uD-MYz" secondAttribute="trailing" constant="10" id="R16-Qe-N21"/>
                             <constraint firstItem="J8N-dA-7mK" firstAttribute="leading" secondItem="iYF-TH-91v" secondAttribute="leading" constant="10" id="RU0-eX-9EU"/>
                             <constraint firstItem="tvH-F1-Zgz" firstAttribute="leading" secondItem="iYF-TH-91v" secondAttribute="leading" constant="10" id="SAL-CR-fYi"/>
                             <constraint firstItem="p7b-td-a5r" firstAttribute="top" secondItem="J8N-dA-7mK" secondAttribute="bottom" constant="8" symbolic="YES" id="aoj-5D-rmV"/>
                             <constraint firstItem="iYF-TH-91v" firstAttribute="trailing" secondItem="J8N-dA-7mK" secondAttribute="trailing" constant="10" id="fQ1-Y0-Tim"/>
-                            <constraint firstItem="iYF-TH-91v" firstAttribute="bottom" secondItem="tvH-F1-Zgz" secondAttribute="bottom" constant="50" id="p7I-Ea-32I"/>
+                            <constraint firstItem="yr1-uD-MYz" firstAttribute="leading" secondItem="iYF-TH-91v" secondAttribute="leading" constant="10" id="nJ9-uQ-obn"/>
                             <constraint firstItem="iYF-TH-91v" firstAttribute="trailing" secondItem="p7b-td-a5r" secondAttribute="trailing" constant="10" id="pB6-Cs-LgK"/>
                             <constraint firstItem="p7b-td-a5r" firstAttribute="leading" secondItem="iYF-TH-91v" secondAttribute="leading" constant="10" id="q5P-TP-bft"/>
+                            <constraint firstItem="tvH-F1-Zgz" firstAttribute="bottom" secondItem="yr1-uD-MYz" secondAttribute="top" id="yQ3-Yx-2Lz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iYF-TH-91v"/>
                     </view>
@@ -233,6 +245,7 @@
                         <outlet property="dateLabel" destination="v9e-XS-yOi" id="JyZ-y3-CBZ"/>
                         <outlet property="forwardButton" destination="4lz-na-TJE" id="4bc-NG-a11"/>
                         <outlet property="segmentedControl" destination="J8N-dA-7mK" id="ejs-Jo-QB2"/>
+                        <outlet property="valueSelectedLabel" destination="yr1-uD-MYz" id="i3e-rh-IsY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzg-W2-Bv3" userLabel="First Responder" sceneMemberID="firstResponder"/>

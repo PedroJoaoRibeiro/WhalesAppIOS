@@ -39,7 +39,7 @@ class ExploreDataViewController: UIViewController {
         //connects to the database to get the data
         let db = DbConnection()
         let arrayOfData = db.getDataFromDb()
-        print(arrayOfData)
+        //print(arrayOfData)
         
         setChartOptions();
         
