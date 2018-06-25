@@ -13,6 +13,8 @@ class CubijsmViewController: UIViewController {
     
     @IBOutlet weak var cubiChartView: LineChartView!
     
+    
+    @IBOutlet weak var optionSelectionViewControl: UISegmentedControl!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!

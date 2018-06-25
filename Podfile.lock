@@ -3,7 +3,7 @@ PODS:
   - Charts (3.1.1):
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
-  - Highcharts (6.1.0)
+  - DLRadioButton (1.4.12)
   - Realm (3.6.0):
     - Realm/Headers (= 3.6.0)
   - Realm/Headers (3.6.0)
@@ -12,17 +12,17 @@ PODS:
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
-  - Charts
-  - Highcharts
-  - RealmSwift
-  - SwiftyJSON
+  - Alamofire (~> 4.7.2)
+  - Charts (~> 3.1.1)
+  - DLRadioButton (~> 1.4)
+  - RealmSwift (~> 3.6.0)
+  - SwiftyJSON (~> 4.1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Charts
-    - Highcharts
+    - DLRadioButton
     - Realm
     - RealmSwift
     - SwiftyJSON
@@ -30,11 +30,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  Highcharts: 09e1f5a3904aef9ef29ec3aa5807d968b8903ec2
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Realm: 08b464b462d4f31bbd4ba5f5a1c8722ef0a700b7
   RealmSwift: 973e1499c44ab571f894c2c908e2db450be280c3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 165e0b493fbd2da7228539256b849e34365ae977
+PODFILE CHECKSUM: 56b4ff08905533684aa2c96ff730372847418084
 
 COCOAPODS: 1.5.3

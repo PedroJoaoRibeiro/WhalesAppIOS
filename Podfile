@@ -6,11 +6,11 @@ target 'WhalesAppIOS' do
   use_frameworks!
 
   # Pods for WhalesAppIOS
-  pod 'Alamofire', '~> 4.7'
-  pod 'SwiftyJSON'
-  pod 'Charts'
-  pod 'Highcharts'
-  pod 'RealmSwift' , :inhibit_warnings => true
+  pod 'Alamofire', '~> 4.7.2'
+  pod 'SwiftyJSON', '~> 4.1.0'
+  pod 'Charts', '~> 3.1.1'
+  pod 'DLRadioButton', '~> 1.4'
+  pod 'RealmSwift' , '~> 3.6.0', :inhibit_warnings => true
 
   target 'WhalesAppIOSTests' do
     inherit! :search_paths
