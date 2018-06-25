@@ -15,6 +15,12 @@ class ConnectionToServer {
     private let serverUrl = URL(string: "http://192.168.1.183:8080/data")
     
     public func sendDataToServer(){
+        //checks to see if there is internte connection
+        if !NetworkReachabilityManager()!.isReachable {
+            print("Network not available")
+            return
+        }
+        
         let db = DbConnection();
         
         let arrayData = db.getDataFromDb(isFromServer: false)
@@ -56,6 +62,12 @@ class ConnectionToServer {
     }
     
     public func getDataFromServer() {
+        //checks to see if there is internte connection
+        if !NetworkReachabilityManager()!.isReachable {
+            print("Network not available")
+            return
+        }
+        
         Alamofire.request(serverUrl!)
             .validate()
             .responseJSON{ response in

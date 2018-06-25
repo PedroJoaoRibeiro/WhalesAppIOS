@@ -336,7 +336,7 @@ class CubijsmViewController: UIViewController {
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
-            cubiChartView.noDataText = "There is no data for the current selected month"
+            cubiChartView.noDataText = "There is no data for the current selected week"
             return
         }
         
@@ -521,19 +521,27 @@ private class CubicLineSampleFillFormatter: IFillFormatter {
 
 extension CubijsmViewController: ChartViewDelegate {
     
+    /// shows the information for the selected item on the chart
     public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         if segmentedControl.selectedSegmentIndex == 0 {
             for obj in arrayOfData {
                 if obj.date.hour == Int(entry.x) {
-                    valueSelectedLabel.text = String(format: "Temperature: %.02f", obj.temperature) + "\n" + String(format: "Depth: %.02f", obj.depth) + String(format: "\nPressure: %.02f", obj.pressure)
+                    if obj.temperature == 0 && obj.pressure == 0 && obj.temperature == 0 {
+                        valueSelectedLabel.text = ""
+                    } else {
+                    valueSelectedLabel.text = String(format: "Temperature: %.02f °C", obj.temperature) + "\n" + String(format: "Depth: %.02f m", obj.depth) + String(format: "\nPressure: %.02f Pa", obj.pressure)
+                    }
                 }
             }
         } else {
             let obj = arrayOfData[Int(entry.x)]
-            valueSelectedLabel.text = String(format: "Average Temperature: %.02f", obj.temperature) + String(format: "\nAverage Depth: %.02f", obj.depth) + String(format: "\nAverage Pressure: %.02f", obj.pressure)
+            if obj.temperature == 0 && obj.pressure == 0 && obj.temperature == 0 {
+                valueSelectedLabel.text = ""
+            } else {
+                valueSelectedLabel.text = String(format: "Average Temperature: %.02f °C", obj.temperature) + String(format: "\nAverage Depth: %.02f m", obj.depth) + String(format: "\nAverage Pressure: %.02f Pa", obj.pressure)
+            }
         }
-        
     }
     
 }

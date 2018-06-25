@@ -11,9 +11,12 @@ import Alamofire
 import SwiftyJSON
 
 class ConnectionToDevice {
+    
     let baseUrlString = "http://192.168.0.1/data?";
     var upcomingDataDictionary = [String: String]()    // deviceId; csvData
     
+    
+    /// gets the data from the photon
     func getData(i: Int){
         
         // url with id of the get part
@@ -52,6 +55,7 @@ class ConnectionToDevice {
         
     }
     
+    /// convert all the data received from the photon and saves it into the database
     private func convertCSVDataAndSaveToDb(deviceId: String){
         let db = DbConnection()
         let csv = upcomingDataDictionary[deviceId]!
