@@ -526,7 +526,7 @@ extension CubijsmViewController: ChartViewDelegate {
         if segmentedControl.selectedSegmentIndex == 0 {
             for obj in arrayOfData {
                 if obj.date.hour == Int(entry.x) {
-                    valueSelectedLabel.text = "Temperature: \(obj.temperature) Depth: \(obj.depth) Pressure: \(obj.pressure)"
+                    valueSelectedLabel.text = String(format: "Temperature: %.02f", obj.temperature) + "\n" + String(format: "Depth: %.02f", obj.depth) + String(format: "\nPressure: %.02f", obj.pressure)
                 }
             }
         } else {
