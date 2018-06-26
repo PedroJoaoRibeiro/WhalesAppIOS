@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Highcharts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

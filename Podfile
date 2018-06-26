@@ -9,7 +9,7 @@ target 'WhalesAppIOS' do
   pod 'Alamofire', '~> 4.7.2'
   pod 'SwiftyJSON', '~> 4.1.0'
   pod 'Charts', '~> 3.1.1'
-  pod 'DLRadioButton', '~> 1.4'
+  pod 'DLRadioButton', '~> 1.4', :inhibit_warnings => true
   pod 'RealmSwift' , '~> 3.6.0', :inhibit_warnings => true
 
   target 'WhalesAppIOSTests' do
