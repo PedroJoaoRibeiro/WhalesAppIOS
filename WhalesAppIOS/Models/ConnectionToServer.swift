@@ -77,7 +77,7 @@ class ConnectionToServer {
                     let json = JSON(value)
                     for (_,jsonObj):(String, JSON) in json {
                         
-                        let dataObj = DataModel(isFromServer: true, deviceId: jsonObj["deviceId"].string!, date: jsonObj["date"].string!, audioFile: jsonObj["audioFile"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, pollution: jsonObj["pollution"].double!, pressure: jsonObj["pressure"].double!)
+                        let dataObj = DataModel(isFromServer: true, deviceId: jsonObj["deviceId"].string!, date: jsonObj["date"].string!, audioFile: jsonObj["audioFile"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, altitude: jsonObj["altitude"].double!, pressure: jsonObj["pressure"].double!, turbidity: jsonObj["turbidity"].double!, ph: jsonObj["ph"].double!, oxygen: jsonObj["oxygen"].double!)
                         
                         db.saveModelToDb(obj: dataObj)
                     }
