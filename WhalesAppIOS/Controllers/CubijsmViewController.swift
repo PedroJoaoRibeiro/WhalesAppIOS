@@ -14,15 +14,17 @@ class CubijsmViewController: UIViewController {
     @IBOutlet weak var cubiChartView: LineChartView!
     
     
-    @IBOutlet weak var optionSelectionViewControl: UISegmentedControl!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var valueSelectedLabel: UILabel!
+    @IBOutlet var switches: [UISwitch]!
+    
     
     private var currentDate = Date()
     private var arrayOfData = [DataModel]()
+    
     
     
     override func viewDidLoad(){
@@ -119,6 +121,11 @@ class CubijsmViewController: UIViewController {
             break
         }
         updateLabel()
+    }
+    
+    ///handels the change of the switches -> calls the method to update the data
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        segmentedControllChanged(segmentedControl);
     }
     
     // Date selection Methods
@@ -319,7 +326,7 @@ class CubijsmViewController: UIViewController {
         
         let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
         
-        let data = LineChartData(dataSets: [ line1, line2, line3])
+        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = DayValueFormatter()
@@ -362,7 +369,7 @@ class CubijsmViewController: UIViewController {
         
         let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
         
-        let data = LineChartData(dataSets: [ line1, line2, line3])
+        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = WeekValueFormatter(initialWeekDate: currentDate.startOfWeek!)
@@ -406,7 +413,7 @@ class CubijsmViewController: UIViewController {
         
         let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
         
-        let data = LineChartData(dataSets: [ line1, line2, line3])
+        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = MonthValueFormatter()
@@ -451,7 +458,7 @@ class CubijsmViewController: UIViewController {
         let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
         
         
-        let data = LineChartData(dataSets: [ line1, line2, line3])
+        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = YearValueFormatter()
@@ -461,6 +468,29 @@ class CubijsmViewController: UIViewController {
         //always place after adding the data
         cubiChartView.setVisibleXRange(minXRange: Double(8), maxXRange: Double(12))
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
+    }
+    
+    private func selectDataToDisplay(temperature: LineChartDataSet, depth: LineChartDataSet, pressure: LineChartDataSet) -> LineChartData{
+        let data = LineChartData()
+        for swit in switches {
+            if(swit.accessibilityIdentifier! == "temperature"){
+                if(swit.isOn){
+                    data.addDataSet(temperature)
+                }
+            }
+            if(swit.accessibilityIdentifier! == "depth"){
+                if(swit.isOn){
+                    data.addDataSet(depth)
+                }
+            }
+            if(swit.accessibilityIdentifier! == "pressure"){
+                if(swit.isOn){
+                    data.addDataSet(pressure)
+                }
+            }
+        }
+        
+        return data;
     }
     
     ///generates the line to then add to the graph
@@ -490,6 +520,8 @@ class CubijsmViewController: UIViewController {
     
     ///sets some standard options to the graph just called once at the start
     private func setChartOptions(){
+        
+        cubiChartView.chartDescription?.enabled = false
         
         //disables x grid
         cubiChartView.xAxis.drawGridLinesEnabled = false
