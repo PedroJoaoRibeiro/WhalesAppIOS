@@ -25,25 +25,23 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        let initialLocation = CLLocationCoordinate2D(latitude: 32.62317397863358, longitude: -16.90042078632814)
-        
-        centerMapOnLocation(location: initialLocation)
-        
-        
         mapView.delegate = self
         
         let db = DbConnection()
         let arrayData = db.getDataFromDb()
         
+        let obj = arrayData[0]
         
-        let title = "Date: " + arrayData[0].date.toString(withFormat: "yyyy-MM-dd HH:mm:ss")
+        let initialLocation = CLLocationCoordinate2D(latitude: 0.0001, longitude: 0.0001)
+        centerMapOnLocation(location: initialLocation)
         
-        let annotation = MapAnnotation(title: title, data: arrayData[0], coordinate: initialLocation)
-        mapView.addAnnotation(annotation)
         
-        //playSound()
+        
+            let title = "Date: " + obj.date.toString(withFormat: "yyyy-MM-dd HH:mm:ss")
+            let coordinate = CLLocationCoordinate2D(latitude: 0.0001, longitude: 0.0001)
+            let annotation = MapAnnotation(title: title, data: obj, coordinate: coordinate)
+            mapView.addAnnotation(annotation)
+        
         
     }
     

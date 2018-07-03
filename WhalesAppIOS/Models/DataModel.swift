@@ -70,15 +70,15 @@ class DataModel: Object {
     var array: [String] {
         get {
             var array = [String]()
-            array.append("Lat: " + String(self.latitude))
-            array.append("Long: " + String(self.longitude))
-            array.append("Temperature: " + String(self.temperature) + " °C")
-            array.append("Depth: " + String(self.depth) + " m")
-            array.append("Altitude: " + String(self.altitude))
-            array.append("Pressure: " + String(self.pressure) + " Pa")
-            array.append("Turbidity: " + String(self.turbidity))
-            array.append("Ph: " + String(self.ph))
-            array.append("Oxygen: " + String(self.oxygen))
+            array.append(String(format: "Lat: %.04f", self.latitude))
+            array.append(String(format: "Long: %.04f", self.longitude))
+            array.append(String(format: "Temperature: %.02f °C", self.temperature))
+            array.append(String(format: "Depth: %.02f m", self.depth))
+            array.append(String(format: "Altitude: %.02f m", self.altitude))
+            array.append(String(format: "Pressure: %.02f bar", self.pressure))
+            array.append(String(format: "Turbidity: %d", self.turbidity))
+            array.append(String(format: "Ph: %.02f", self.ph))
+            array.append(String(format: "Oxygen: %.02f mg/L", self.oxygen))
             return array
         }
     }

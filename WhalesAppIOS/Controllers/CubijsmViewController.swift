@@ -564,7 +564,7 @@ extension CubijsmViewController: ChartViewDelegate {
                     if obj.temperature == 0 && obj.pressure == 0 && obj.temperature == 0 {
                         valueSelectedLabel.text = ""
                     } else {
-                    valueSelectedLabel.text = String(format: "Temperature: %.02f °C", obj.temperature) + "\n" + String(format: "Depth: %.02f m", obj.depth) + String(format: "\nPressure: %.02f Pa", obj.pressure)
+                    valueSelectedLabel.text = String(format: "Temperature: %.02f °C", obj.temperature) + "\n" + String(format: "Depth: %.02f m", obj.depth) + String(format: "\nPressure: %.02f bar", obj.pressure)
                     }
                 }
             }
@@ -573,7 +573,7 @@ extension CubijsmViewController: ChartViewDelegate {
             if obj.temperature == 0 && obj.pressure == 0 && obj.temperature == 0 {
                 valueSelectedLabel.text = ""
             } else {
-                valueSelectedLabel.text = String(format: "Average Temperature: %.02f °C", obj.temperature) + String(format: "\nAverage Depth: %.02f m", obj.depth) + String(format: "\nAverage Pressure: %.02f Pa", obj.pressure)
+                valueSelectedLabel.text = String(format: "Average Temperature: %.02f °C", obj.temperature) + String(format: "\nAverage Depth: %.02f m", obj.depth) + String(format: "\nAverage Pressure: %.02f bar", obj.pressure)
             }
         }
     }
