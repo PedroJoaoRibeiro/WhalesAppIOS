@@ -9,6 +9,5 @@
 import Foundation
 
 enum MyErrors: Error {
-    case openDB(msg: String)
-    case creatingTable(msg: String)
+    case DiferentNumberOfElements(msg: String)
 }

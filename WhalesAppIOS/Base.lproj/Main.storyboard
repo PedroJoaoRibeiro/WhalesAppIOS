@@ -121,10 +121,40 @@
             </objects>
             <point key="canvasLocation" x="-26" y="136"/>
         </scene>
+        <!--Crimea Rose View Controller-->
+        <scene sceneID="ppf-cS-Fa8">
+            <objects>
+                <viewController storyboardIdentifier="CrimeaRose" id="oNY-yc-QyK" customClass="CrimeaRoseViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IvF-Qb-hR7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="iGq-T9-Wc7" customClass="CrimeaRoseView" customModule="WhalesAppIOS" customModuleProvider="target">
+                                <rect key="frame" x="10" y="30" width="355" height="627"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hKj-j6-fQX" firstAttribute="bottom" secondItem="iGq-T9-Wc7" secondAttribute="bottom" constant="10" id="Epm-As-UNh"/>
+                            <constraint firstItem="iGq-T9-Wc7" firstAttribute="leading" secondItem="hKj-j6-fQX" secondAttribute="leading" constant="10" id="Jhg-SP-bEu"/>
+                            <constraint firstItem="hKj-j6-fQX" firstAttribute="trailing" secondItem="iGq-T9-Wc7" secondAttribute="trailing" constant="10" id="UaF-0U-7fx"/>
+                            <constraint firstItem="iGq-T9-Wc7" firstAttribute="top" secondItem="hKj-j6-fQX" secondAttribute="top" constant="10" id="Xgo-xz-OnT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hKj-j6-fQX"/>
+                    </view>
+                    <connections>
+                        <outlet property="crimeaRoseView" destination="iGq-T9-Wc7" id="BgL-BI-nis"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oVr-o5-aPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="-1237"/>
+        </scene>
         <!--Explore Data View Controller-->
         <scene sceneID="Ynk-jK-mX0">
             <objects>
-                <viewController storyboardIdentifier="CrimeaRose" id="sN3-cS-Unw" customClass="ExploreDataViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompareData" id="sN3-cS-Unw" customClass="ExploreDataViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23I-gk-IFi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

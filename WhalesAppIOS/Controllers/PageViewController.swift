@@ -14,6 +14,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     lazy var arrayUIViews: [UIViewController] = {
         return [self.viewControllerInstance(name: "MainPage"),
                 self.viewControllerInstance(name: "CrimeaRose"),
+                self.viewControllerInstance(name: "CompareData"),
                 self.viewControllerInstance(name: "Cubijsm"),
                 self.viewControllerInstance(name: "Gps")]
     }()

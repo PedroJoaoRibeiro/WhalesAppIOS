@@ -19,6 +19,7 @@
 		855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E9563209E3931005E3060 /* DateValueFormatter.swift */; };
 		8571D36320D935D200839E19 /* YearValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8571D36220D935D200839E19 /* YearValueFormatter.swift */; };
 		8571D36520D9A65500839E19 /* MonthValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8571D36420D9A65500839E19 /* MonthValueFormatter.swift */; };
+		858C562620ED39F4004C4073 /* CrimeaRoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C562520ED39F4004C4073 /* CrimeaRoseView.swift */; };
 		859ADF2220C75D5600AE1B3C /* Pompeii.wav in Resources */ = {isa = PBXBuildFile; fileRef = 859ADF2120C75D5600AE1B3C /* Pompeii.wav */; };
 		85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748720C5E66E006DEC7F /* MapAnnotation.swift */; };
 		85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748920C608D2006DEC7F /* MapAnnotationView.swift */; };
@@ -73,6 +74,7 @@
 		855E9563209E3931005E3060 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		8571D36220D935D200839E19 /* YearValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearValueFormatter.swift; sourceTree = "<group>"; };
 		8571D36420D9A65500839E19 /* MonthValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthValueFormatter.swift; sourceTree = "<group>"; };
+		858C562520ED39F4004C4073 /* CrimeaRoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeaRoseView.swift; sourceTree = "<group>"; };
 		859ADF2120C75D5600AE1B3C /* Pompeii.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pompeii.wav; sourceTree = "<group>"; };
 		85C6748720C5E66E006DEC7F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		85C6748920C608D2006DEC7F /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				85F837A720CED30A0040F6B0 /* DataDetailCustomCell.swift */,
 				85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */,
 				85F837A520CED2740040F6B0 /* CustomCell.xib */,
+				858C562520ED39F4004C4073 /* CrimeaRoseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */,
 				85E9A0E8209D33B100D04393 /* Errors.swift in Sources */,
 				8534748C20DD645A00645D07 /* DayValueFormatter.swift in Sources */,
+				858C562620ED39F4004C4073 /* CrimeaRoseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,7 +720,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -732,7 +739,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -749,7 +759,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -767,7 +781,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -784,7 +802,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -801,7 +823,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
