@@ -37,6 +37,9 @@ class CrimeaRoseView: UIView {
         if(arrayOfLabels.count == 0) {
             //TODO
         } else {
+            
+            var arrayOfObjs = [ObjtoDraw]()
+            
             for array in arrayOfCrimeaRoseData {
                 
                 //seting the angle of each small circle
@@ -44,9 +47,16 @@ class CrimeaRoseView: UIView {
                 var startAngle = CGFloat(2*CGFloat.pi);
                 
                 for obj in array.arrayOfData{
-                    drawSmallSemiCircle(value: obj, startAngle: startAngle, endAngle: startAngle - angle, fillColor: array.color)
+                    let radius = scale(value: CGFloat(obj))
+                    
+                    arrayOfObjs.append(ObjtoDraw(radius: radius, startAngle: startAngle, endAngle: startAngle - angle, fillColor: array.color))
+                    
                     startAngle = startAngle - angle
                 }
+            }
+            
+            for obj in arrayOfObjs.sorted(by: {$0.radius > $1.radius}){
+                drawSmallSemiCircle(radius: obj.radius, startAngle: obj.startAngle, endAngle: obj.endAngle, fillColor: obj.fillColor)
             }
         }
     }
@@ -85,11 +95,9 @@ class CrimeaRoseView: UIView {
     }
     
     ///draws a semicircle in the center of the view
-    private func drawSmallSemiCircle(value: Double, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor) {
+    private func drawSmallSemiCircle(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor) {
         
         let path = UIBezierPath()
-        
-        let radius = scale(value: CGFloat(value))
         
         path.addArc(withCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
         path.addLine(to: CGPoint(x: bounds.midX, y: bounds.midY))
@@ -99,8 +107,7 @@ class CrimeaRoseView: UIView {
         
         lineColor.setStroke()
         fillColor.setFill()
-        
-        path.fill(with: .normal, alpha: 1)
+        path.fill()
         path.stroke()
     }
     
@@ -142,3 +149,18 @@ struct CrimeaRoseData {
         self.color = color
     }
 }
+
+struct ObjtoDraw {
+    var radius: CGFloat = 0
+    var startAngle: CGFloat = 0
+    var endAngle: CGFloat = 0
+    var fillColor = UIColor()
+    
+    init(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor) {
+        self.radius = radius
+        self.startAngle = startAngle
+        self.endAngle = endAngle
+        self.fillColor = fillColor
+    }
+}
+

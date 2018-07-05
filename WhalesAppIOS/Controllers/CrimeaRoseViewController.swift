@@ -21,28 +21,35 @@ class CrimeaRoseViewController: UIViewController {
         
         
         let array = getDateForYear()
-        
-        var arrayOfData = [Double]()
         var arrayOfLabels = [String]()
         
-        var incre = -26.0
-        for i in 0..<array.count {
-            arrayOfData.append(incre)
-            arrayOfLabels.append(Calendar.current.shortMonthSymbols[i])
-            incre += 10
-        }
-        
         var arrayOfCrimeaRoseData = [CrimeaRoseData]()
-        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)))
         
-        incre = -26.0
-        arrayOfData = [Double]()
+        
+        var incre = -26.0
+        var arrayOfData = [Double]()
         for _ in 0..<array.count {
             arrayOfData.append(incre)
             incre += 5
         }
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)))
         
+        arrayOfData = [Double]()
+        incre = 0.0
+        for _ in 0..<array.count {
+            arrayOfData.append(incre)
+            incre += 5
+        }
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)))
+        
+        arrayOfData = [Double]()
+         incre = -26.0
+        for i in 0..<array.count {
+            arrayOfData.append(incre)
+            arrayOfLabels.append(Calendar.current.shortMonthSymbols[i])
+            incre += 10
+        }
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)))
         
         do {
             try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: arrayOfLabels)
