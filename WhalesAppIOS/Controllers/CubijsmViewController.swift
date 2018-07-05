@@ -128,142 +128,6 @@ class CubijsmViewController: UIViewController {
         segmentedControllChanged(segmentedControl);
     }
     
-    // Date selection Methods
-    
-    private func getDateForDay() -> [DataModel] {
-        //connects to the database to get the data
-        let db = DbConnection()
-        var array = db.getDataFromDb()
-        
-        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day)}
-        
-        // if there is no data just return nil
-        if array.isEmpty {
-            return [DataModel]()
-        }
-    
-        return array
-    }
-    
-    private func getDateForWeek() -> [DataModel] {
-        //connects to the database to get the data
-        let db = DbConnection()
-        var array = db.getDataFromDb()
-        
-        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear )}
-        
-        
-        // if there is no data just return nil
-        if array.isEmpty {
-            return [DataModel]()
-        }
-        
-        let dict = Dictionary(grouping: array) {$0.date.day}
-        
-        var finalArray = [DataModel]()
-        
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        component.day = currentDate.startOfWeek?.day
-        var d = Calendar.current.date(from: component)!
-        
-        for _ in 0..<7 {
-            let obj = DataModel()
-            obj.date = d
-            finalArray.append(obj)
-            d = Calendar.current.date(byAdding: .day, value: 1, to: d)!
-        }
-        
-        for (_, value) in dict {
-            for obj in finalArray {
-                for v in value {
-                    if(obj.date.day == v.date.day){
-                        print(v.temperature)
-                        obj.add(obj: v)
-                    }
-                }
-                if(value.count > 0 && value[0].date.day == obj.date.day ){
-                    obj.divide(value: value.count)
-                }
-            }
-        }
-        return finalArray
-    }
-    
-    private func getDateForMonth() -> [DataModel] {
-        //connects to the database to get the data
-        let db = DbConnection()
-        var array = db.getDataFromDb()
-        
-        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month)}
-        
-        // if there is no data just return nil
-        if array.isEmpty {
-            return [DataModel]()
-        }
-        
-        let dict = Dictionary(grouping: array) {$0.date.day}
-        
-        var finalArray = [DataModel]()
-
-        let range = Calendar.current.range(of: .day, in: .month, for: currentDate)!
-        
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        component.day = 1
-        var d = Calendar.current.date(from: component)!
-        
-        for _ in 0..<range.count {
-            let obj = DataModel()
-            obj.date = d
-            finalArray.append(obj)
-            d = Calendar.current.date(byAdding: .day, value: 1, to: d)!
-        }
-        
-        for (key, value) in dict {
-            for v in value {
-                finalArray[key-1].add(obj: v)
-            }
-            finalArray[key-1].divide(value: value.count)
-        }
-        return finalArray
-    }
-    
-    private func getDateForYear() -> [DataModel] {
-        //connects to the database to get the data
-        let db = DbConnection()
-        var array = db.getDataFromDb()
-        
-        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
-        
-        // if there is no data just return nil
-        if array.isEmpty {
-            return [DataModel]()
-        }
-        
-        let dict = Dictionary(grouping: array) {$0.date.month}
-        
-        //initialize the array with fixed size
-        var finalArray = [DataModel]()
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        component.month = 1
-        component.day = 1
-        var d = Calendar.current.date(from: component)!
-        for _ in 0..<12 {
-            let obj = DataModel()
-            obj.date = d
-            finalArray.append(obj)
-            d = Calendar.current.date(byAdding: .month, value: 1, to: d)!
-        }
-        
-        for (key, value) in dict {
-            for v in value {
-                finalArray[key-1].add(obj: v)
-            }
-            finalArray[key-1].divide(value: value.count)
-        }
-        
-        return finalArray
-    }
-    
     
     /// Updates the label of the current day
     private func updateLabel(){
@@ -298,7 +162,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartDay(){
         cubiChartView.data = nil
         
-        arrayOfData = getDateForDay()
+        arrayOfData = DbConnection().getDateForDay(currentDate: currentDate)
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -341,7 +205,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartWeek(){
         cubiChartView.data = nil
         
-        arrayOfData = getDateForWeek()
+        arrayOfData = DbConnection().getDateForWeek(currentDate: currentDate)
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -385,7 +249,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartMonth(){
         cubiChartView.data = nil
         
-         arrayOfData = getDateForMonth()
+         arrayOfData = DbConnection().getDateForMonth(currentDate: currentDate)
         
         //prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {
@@ -429,7 +293,7 @@ class CubijsmViewController: UIViewController {
     private func drawCubicChartYear() {
         cubiChartView.data = nil
         
-        arrayOfData = getDateForYear()
+        arrayOfData = DbConnection().getDateForYear(currentDate: currentDate)
         
         // prevent from drawing if there is no data
         guard arrayOfData.count > 0 else {

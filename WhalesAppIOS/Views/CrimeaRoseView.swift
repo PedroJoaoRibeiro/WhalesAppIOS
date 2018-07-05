@@ -28,6 +28,15 @@ class CrimeaRoseView: UIView {
     
     ///minimum value to show
     public var minValue:CGFloat = -25
+    
+    ///font for the labels around the circle -> default "Helvetica-Bold" size: 12
+    public var labelFont = UIFont(name: "Helvetica-Bold", size: 12)
+    
+    ///color for the labels around the circle -> default black
+    public var labelTextColor = UIColor.black
+    
+    ///hides the labels around the circles -> default false
+    private var areLabelsHidden = false
 
     
     //----------------- Main Drawing function -------------//
@@ -199,12 +208,12 @@ class CrimeaRoseView: UIView {
         let x: CGFloat = bounds.midX + ((radius + 15) * cos(angle))
         let y: CGFloat = bounds.midY + ((radius + 15) * sin(angle))
         
-        label.font = UIFont(name: "Helvetica-Bold", size: 12)
+        label.font = labelFont
         label.frame = CGRect(x: x, y: y, width: 30, height: 30)
         label.text = string
         label.textAlignment = .center
-        label.textColor = UIColor.black
-        label.isHidden = false
+        label.textColor = labelTextColor
+        label.isHidden = areLabelsHidden
         
         label.center = CGPoint(x: x, y: y)
         

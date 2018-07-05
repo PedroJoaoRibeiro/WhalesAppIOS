@@ -42,12 +42,142 @@ class DbConnection {
     }
     
     
-    // TO REMOVE
-    public func updateDates(id: String, newDate: Date) -> Bool {
-        try! realm.write {
-            realm.create(DataModel.self, value: ["id": id, "date": newDate], update: true)
+    //-------------------- To Manage Data easly --------------//
+    
+    ///gets the data for one day
+    public func getDateForDay(currentDate: Date) -> [DataModel] {
+        //connects to the database to get the data
+        let db = DbConnection()
+        var array = db.getDataFromDb()
+        
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .day)}
+        
+        // if there is no data just return nil
+        if array.isEmpty {
+            return [DataModel]()
         }
-        return true
+        
+        return array
+    }
+    
+    ///gets the data for one week all days grouped in average
+    public func getDateForWeek(currentDate: Date) -> [DataModel] {
+        //connects to the database to get the data
+        let db = DbConnection()
+        var array = db.getDataFromDb()
+        
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .weekOfYear )}
+        
+        
+        // if there is no data just return nil
+        if array.isEmpty {
+            return [DataModel]()
+        }
+        
+        let dict = Dictionary(grouping: array) {$0.date.day}
+        
+        var finalArray = [DataModel]()
+        
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
+        component.day = currentDate.startOfWeek?.day
+        var d = Calendar.current.date(from: component)!
+        
+        for _ in 0..<7 {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .day, value: 1, to: d)!
+        }
+        
+        for (_, value) in dict {
+            for obj in finalArray {
+                for v in value {
+                    if(obj.date.day == v.date.day){
+                        print(v.temperature)
+                        obj.add(obj: v)
+                    }
+                }
+                if(value.count > 0 && value[0].date.day == obj.date.day ){
+                    obj.divide(value: value.count)
+                }
+            }
+        }
+        return finalArray
+    }
+    
+    ///gets the data for one month all days grouped in average
+    public func getDateForMonth(currentDate: Date) -> [DataModel] {
+        //connects to the database to get the data
+        let db = DbConnection()
+        var array = db.getDataFromDb()
+        
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month)}
+        
+        // if there is no data just return nil
+        if array.isEmpty {
+            return [DataModel]()
+        }
+        
+        let dict = Dictionary(grouping: array) {$0.date.day}
+        
+        var finalArray = [DataModel]()
+        
+        let range = Calendar.current.range(of: .day, in: .month, for: currentDate)!
+        
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
+        component.day = 1
+        var d = Calendar.current.date(from: component)!
+        
+        for _ in 0..<range.count {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .day, value: 1, to: d)!
+        }
+        
+        for (key, value) in dict {
+            for v in value {
+                finalArray[key-1].add(obj: v)
+            }
+            finalArray[key-1].divide(value: value.count)
+        }
+        return finalArray
+    }
+    
+    ///gets the data for one year all grouped in average
+    public func getDateForYear(currentDate: Date) -> [DataModel] {
+        var array = self.getDataFromDb()
+        
+        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
+        
+        // if there is no data just return nil
+        if array.isEmpty {
+            return [DataModel]()
+        }
+        
+        let dict = Dictionary(grouping: array) {$0.date.month}
+        
+        //initialize the array with fixed size
+        var finalArray = [DataModel]()
+        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
+        component.month = 1
+        component.day = 1
+        var d = Calendar.current.date(from: component)!
+        for _ in 0..<12 {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .month, value: 1, to: d)!
+        }
+        
+        for (key, value) in dict {
+            for v in value {
+                finalArray[key-1].add(obj: v)
+            }
+            finalArray[key-1].divide(value: value.count)
+        }
+        
+        return finalArray
     }
 }
 
