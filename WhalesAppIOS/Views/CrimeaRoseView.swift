@@ -58,10 +58,60 @@ class CrimeaRoseView: UIView {
             for obj in arrayOfObjs.sorted(by: {$0.radius > $1.radius}){
                 drawSmallSemiCircle(radius: obj.radius, startAngle: obj.startAngle, endAngle: obj.endAngle, fillColor: obj.fillColor)
             }
+            
+            for str in arrayOfLabels {
+                
+            }
+        }
+        
+        
+    }
+    
+    
+    //------------------- Handling Events ---------------//
+    
+    /// handles the pinch to zoom gesture -> just scales the view
+    @objc func didPinch(pinchGR: UIPinchGestureRecognizer){
+        switch pinchGR.state {
+        case .changed, .ended:
+            let scale = pinchGR.scale
+            self.transform = self.transform.scaledBy(x: scale, y: scale)
+            pinchGR.scale = 1.0
+        default:
+            break
+        }
+    }
+    
+    /// handles the pan gesture -> just changes the center of the view to the new coordinates
+    @objc func didPan(panGR: UIPanGestureRecognizer){
+        switch panGR.state {
+        case .changed, .ended:
+            let translation = panGR.translation(in: self)
+            
+            self.center.x += translation.x
+            self.center.y += translation.y
+            
+            panGR.setTranslation(CGPoint(x: 0, y: 0), in: self)
+        default:
+            break
+        }
+    }
+    
+    /// handles the rotation of the view -> does a transformation on the view based on the rotation aplied
+    @objc func didRotate(rotationGR: UIRotationGestureRecognizer){
+        switch rotationGR.state {
+        case .changed, .ended :
+            let rotation = rotationGR.rotation
+            self.transform = self.transform.rotated(by: rotation)
+            rotationGR.rotation = 0.0
+        default:
+            break
         }
     }
     
     //------------------- Methods -----------------------//
+    
+    
     
     /// updates the view call this when there is changes in the data
     private func updateDisplay(){
@@ -117,6 +167,8 @@ class CrimeaRoseView: UIView {
         return (viewRadius * (value - minValue)) / (maxValue - minValue)
     }
     
+    
+    
 
 }
 
@@ -137,6 +189,7 @@ extension CrimeaRoseView {
             return abs(maxValue) + abs(minValue)
         }
     }
+    
     
 }
 

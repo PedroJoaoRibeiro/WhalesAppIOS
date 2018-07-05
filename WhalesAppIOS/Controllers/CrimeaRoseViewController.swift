@@ -11,7 +11,19 @@ import UIKit
 
 class CrimeaRoseViewController: UIViewController {
 
-    @IBOutlet weak var crimeaRoseView: CrimeaRoseView!
+    @IBOutlet weak var crimeaRoseView: CrimeaRoseView! {
+        didSet {
+            // sets the gestures recognizers for the view
+            let pinch = UIPinchGestureRecognizer(target: crimeaRoseView, action: #selector(crimeaRoseView.didPinch(pinchGR:)))
+            let panGR = UIPanGestureRecognizer(target: crimeaRoseView, action: #selector(crimeaRoseView.didPan(panGR:)))
+            let rotationGR = UIRotationGestureRecognizer(target: crimeaRoseView, action: #selector(crimeaRoseView.didRotate(rotationGR:)))
+            
+            crimeaRoseView.addGestureRecognizer(pinch)
+            crimeaRoseView.addGestureRecognizer(panGR)
+            crimeaRoseView.addGestureRecognizer(rotationGR)
+            
+        }
+    }
     
     private var currentDate = Date()
     
@@ -95,6 +107,11 @@ class CrimeaRoseViewController: UIViewController {
         }
         
         return finalArray
+    }
+    
+    //------------------- Handling touch events
+    @objc func viewTap(){
+        
     }
     
     
