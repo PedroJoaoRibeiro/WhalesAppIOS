@@ -59,12 +59,18 @@ class CrimeaRoseView: UIView {
                 drawSmallSemiCircle(radius: obj.radius, startAngle: obj.startAngle, endAngle: obj.endAngle, fillColor: obj.fillColor)
             }
             
-            for str in arrayOfLabels {
+            
+            // draws labels
+            let angle = (2*CGFloat.pi) / CGFloat(arrayOfLabels.count)
+            var startAngle = CGFloat(2*CGFloat.pi);
+            for i in 0..<arrayOfLabels.count {
+                let obj = arrayOfObjs.filter({$0.startAngle == startAngle}).max(by: {$0.radius < $1.radius})!
                 
+                drawLabels(string: arrayOfLabels[i], angle: startAngle - (angle/2), radius: obj.radius)
+                
+                startAngle = startAngle - angle
             }
         }
-        
-        
     }
     
     
@@ -121,6 +127,10 @@ class CrimeaRoseView: UIView {
     
     /// calls the method to draw the vew with the data. Needs the values, the labels, and the colors
     public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String]) throws{
+        //cleans the data
+        self.arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        self.arrayOfLabels = [String]()
+        
         
         for obj in arrayOfCrimeaRoseData {
             if(obj.arrayOfData.count != arrayOfLabels.count){
@@ -165,6 +175,24 @@ class CrimeaRoseView: UIView {
     /// a is 0 and b is the viewRadius
     private func scale(value: CGFloat) -> CGFloat{
         return (viewRadius * (value - minValue)) / (maxValue - minValue)
+    }
+    
+    private func drawLabels(string: String, angle: CGFloat, radius: CGFloat){
+        let label = UILabel()
+        
+        let x: CGFloat = bounds.midX + ((radius + 15) * cos(angle))
+        let y: CGFloat = bounds.midY + ((radius + 15) * sin(angle))
+        
+        label.font = UIFont(name: "Helvetica-Bold", size: 12)
+        label.frame = CGRect(x: x, y: y, width: 30, height: 30)
+        label.text = string
+        label.textAlignment = .center
+        label.textColor = UIColor.black
+        label.isHidden = false
+        
+        label.center = CGPoint(x: x, y: y)
+        
+        self.addSubview(label)
     }
     
     
