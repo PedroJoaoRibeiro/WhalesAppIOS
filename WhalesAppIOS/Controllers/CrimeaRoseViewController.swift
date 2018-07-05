@@ -17,10 +17,12 @@ class CrimeaRoseViewController: UIViewController {
             let pinch = UIPinchGestureRecognizer(target: crimeaRoseView, action: #selector(crimeaRoseView.didPinch(pinchGR:)))
             let panGR = UIPanGestureRecognizer(target: crimeaRoseView, action: #selector(crimeaRoseView.didPan(panGR:)))
             let rotationGR = UIRotationGestureRecognizer(target: crimeaRoseView, action: #selector(crimeaRoseView.didRotate(rotationGR:)))
+            let tapGR = UITapGestureRecognizer(target: self, action: #selector(didTap(tapGR:)))
             
             crimeaRoseView.addGestureRecognizer(pinch)
             crimeaRoseView.addGestureRecognizer(panGR)
             crimeaRoseView.addGestureRecognizer(rotationGR)
+            crimeaRoseView.addGestureRecognizer(tapGR)
             
         }
     }
@@ -110,8 +112,16 @@ class CrimeaRoseViewController: UIViewController {
     }
     
     //------------------- Handling touch events
-    @objc func viewTap(){
-        
+    @objc func didTap(tapGR: UITapGestureRecognizer){
+        switch tapGR.state {
+        case .ended:
+            let index = crimeaRoseView.checkTap(point: tapGR.location(in: crimeaRoseView))
+            if(index != -1){
+                print(Calendar.current.monthSymbols[index])
+            }
+        default:
+            break
+        }
     }
     
     

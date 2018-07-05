@@ -13,6 +13,7 @@ class CrimeaRoseView: UIView {
     
     private var arrayOfCrimeaRoseData = [CrimeaRoseData]()
     private var arrayOfLabels = [String]()
+    private var arrayOfPaths = [UIBezierPath: Int]()
     
     //------------------- public vars can be set by the user
     
@@ -46,17 +47,17 @@ class CrimeaRoseView: UIView {
                 let angle = (2*CGFloat.pi) / CGFloat(arrayOfLabels.count)
                 var startAngle = CGFloat(2*CGFloat.pi);
                 
-                for obj in array.arrayOfData{
-                    let radius = scale(value: CGFloat(obj))
+                for i in 0..<array.arrayOfData.count{
+                    let radius = scale(value: CGFloat(array.arrayOfData[i]))
                     
-                    arrayOfObjs.append(ObjtoDraw(radius: radius, startAngle: startAngle, endAngle: startAngle - angle, fillColor: array.color))
+                    arrayOfObjs.append(ObjtoDraw(radius: radius, startAngle: startAngle, endAngle: startAngle - angle, fillColor: array.color, category: i))
                     
                     startAngle = startAngle - angle
                 }
             }
             
             for obj in arrayOfObjs.sorted(by: {$0.radius > $1.radius}){
-                drawSmallSemiCircle(radius: obj.radius, startAngle: obj.startAngle, endAngle: obj.endAngle, fillColor: obj.fillColor)
+                drawSmallSemiCircle(radius: obj.radius, startAngle: obj.startAngle, endAngle: obj.endAngle, fillColor: obj.fillColor, category: obj.category)
             }
             
             
@@ -115,6 +116,15 @@ class CrimeaRoseView: UIView {
         }
     }
     
+    public func checkTap(point: CGPoint)->Int{
+        for (path, index) in arrayOfPaths {
+            if path.contains(point){
+                return index
+            }
+        }
+        return -1
+    }
+    
     //------------------- Methods -----------------------//
     
     
@@ -130,6 +140,8 @@ class CrimeaRoseView: UIView {
         //cleans the data
         self.arrayOfCrimeaRoseData = [CrimeaRoseData]()
         self.arrayOfLabels = [String]()
+        self.arrayOfPaths = [UIBezierPath: Int]()
+
         
         
         for obj in arrayOfCrimeaRoseData {
@@ -155,7 +167,7 @@ class CrimeaRoseView: UIView {
     }
     
     ///draws a semicircle in the center of the view
-    private func drawSmallSemiCircle(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor) {
+    private func drawSmallSemiCircle(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor, category: Int) {
         
         let path = UIBezierPath()
         
@@ -169,6 +181,8 @@ class CrimeaRoseView: UIView {
         fillColor.setFill()
         path.fill()
         path.stroke()
+        
+        arrayOfPaths[path] = category
     }
     
     ///https://stackoverflow.com/questions/5294955/how-to-scale-down-a-range-of-numbers-with-a-known-min-and-max-value ---
@@ -177,6 +191,8 @@ class CrimeaRoseView: UIView {
         return (viewRadius * (value - minValue)) / (maxValue - minValue)
     }
     
+    
+    /// draws the text Labels -> label is centered 15 points away from the maximum radius value obtained
     private func drawLabels(string: String, angle: CGFloat, radius: CGFloat){
         let label = UILabel()
         
@@ -236,12 +252,13 @@ struct ObjtoDraw {
     var startAngle: CGFloat = 0
     var endAngle: CGFloat = 0
     var fillColor = UIColor()
-    
-    init(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor) {
+    var category = -1;
+    init(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor, category: Int) {
         self.radius = radius
         self.startAngle = startAngle
         self.endAngle = endAngle
         self.fillColor = fillColor
+        self.category = category
     }
 }
 
