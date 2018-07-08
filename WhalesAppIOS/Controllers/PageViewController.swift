@@ -60,6 +60,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
         
         setupBottomControls()
+        
+        
+        //NSNotification.addObserver(self)
     }
     
     override func viewDidLayoutSubviews() {

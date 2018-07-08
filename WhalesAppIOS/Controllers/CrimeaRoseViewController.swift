@@ -26,15 +26,21 @@ class CrimeaRoseViewController: UIViewController {
             
         }
     }
+    @IBOutlet weak var dateTypePicker: UIPickerView!
     
     private var currentDate = Date()
+    
+    private let pickerData = ["Day", "Week", "Moth", "Year"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dateTypePicker.delegate = self
+        self.dateTypePicker.dataSource = self
         
-        let array = getDateForYear()
+        
+        let array = DbConnection().getDateForYear(currentDate: Date())
         var arrayOfLabels = [String]()
         
         var arrayOfCrimeaRoseData = [CrimeaRoseData]()
@@ -72,44 +78,19 @@ class CrimeaRoseViewController: UIViewController {
         }
         
     }
-    
-    
-    private func getDateForYear() -> [DataModel] {
-        //connects to the database to get the data
-        let db = DbConnection()
-        var array = db.getDataFromDb()
+    private func drawChartForDay(){
         
-        array = array.filter { Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)}
-        
-        // if there is no data just return nil
-        if array.isEmpty {
-            return [DataModel]()
-        }
-        
-        let dict = Dictionary(grouping: array) {$0.date.month}
-        
-        //initialize the array with fixed size
-        var finalArray = [DataModel]()
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        component.month = 1
-        component.day = 1
-        var d = Calendar.current.date(from: component)!
-        for _ in 0..<12 {
-            let obj = DataModel()
-            obj.date = d
-            finalArray.append(obj)
-            d = Calendar.current.date(byAdding: .month, value: 1, to: d)!
-        }
-        
-        for (key, value) in dict {
-            for v in value {
-                finalArray[key-1].add(obj: v)
-            }
-            finalArray[key-1].divide(value: value.count)
-        }
-        
-        return finalArray
     }
+    private func drawChartForWeek(){
+        
+    }
+    private func drawChartForMonth(){
+        
+    }
+    private func drawChartForYear(){
+        
+    }
+    
     
     //------------------- Handling touch events
     @objc func didTap(tapGR: UITapGestureRecognizer){
@@ -125,4 +106,21 @@ class CrimeaRoseViewController: UIViewController {
     }
     
     
+}
+
+extension CrimeaRoseViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    /// The number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    /// The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    /// The data to return for the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
 }

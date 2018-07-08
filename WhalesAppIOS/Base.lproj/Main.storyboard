@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B0I-6I-Zds">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,17 +24,17 @@
             <objects>
                 <viewController storyboardIdentifier="MainPage" id="6Aq-4V-hL3" customClass="MainScreenViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8z8-dr-KeE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cPB-w8-9Lc">
-                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="684"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lv-Qn-h2x">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ocean Monitor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxb-vj-nPX">
-                                                <rect key="frame" x="104.5" y="59.5" width="166" height="31.5"/>
+                                                <rect key="frame" x="104.66666666666669" y="70.333333333333329" width="166" height="31.333333333333329"/>
                                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <color key="textColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,10 +48,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhY-Kb-DNM">
-                                        <rect key="frame" x="0.0" y="149.5" width="375" height="149"/>
+                                        <rect key="frame" x="0.0" y="171" width="375" height="171"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whaleIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eAt-nO-ZAR">
-                                                <rect key="frame" x="20" y="20" width="335" height="109"/>
+                                                <rect key="frame" x="20" y="20" width="335" height="131"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -63,10 +63,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKR-fp-nQ9">
-                                        <rect key="frame" x="0.0" y="298.5" width="375" height="149.5"/>
+                                        <rect key="frame" x="0.0" y="342" width="375" height="171"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start swiping to explore!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBO-CQ-99f">
-                                                <rect key="frame" x="90.5" y="65" width="195" height="20.5"/>
+                                                <rect key="frame" x="90.666666666666686" y="76" width="195" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -79,10 +79,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYK-Ga-bhp">
-                                        <rect key="frame" x="0.0" y="448" width="375" height="149"/>
+                                        <rect key="frame" x="0.0" y="513" width="375" height="171"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zv-lM-anJ">
-                                                <rect key="frame" x="109.5" y="59.5" width="157" height="31"/>
+                                                <rect key="frame" x="109.66666666666669" y="70.666666666666629" width="157" height="31"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
@@ -126,12 +126,55 @@
             <objects>
                 <viewController storyboardIdentifier="CrimeaRose" id="oNY-yc-QyK" customClass="CrimeaRoseViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IvF-Qb-hR7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="iGq-T9-Wc7" customClass="CrimeaRoseView" customModule="WhalesAppIOS" customModuleProvider="target">
-                                <rect key="frame" x="10" y="30" width="355" height="627"/>
+                                <rect key="frame" x="10" y="54" width="355" height="714"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ukT-sj-pgO">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="KYN-g1-u39"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Temp."/>
+                                            <segment title="Depth"/>
+                                            <segment title="Pressure"/>
+                                            <segment title="Turbidity"/>
+                                            <segment title="pH"/>
+                                            <segment title="Oxygen"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9nO-af-Wrg">
+                                        <rect key="frame" x="10" y="387.5" width="335" height="664"/>
+                                        <subviews>
+                                            <pickerView tag="1" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2n4-z5-rP0">
+                                                <rect key="frame" x="7.6666666666666572" y="0.0" width="320" height="216"/>
+                                            </pickerView>
+                                            <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5b4-oB-Piv">
+                                                <rect key="frame" x="7.6666666666666572" y="224" width="320" height="216"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="552758625.85769796">
+                                                    <!--2018-07-08 16:03:45 +0000-->
+                                                </date>
+                                            </datePicker>
+                                            <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kbc-46-pmB">
+                                                <rect key="frame" x="7.6666666666666572" y="448" width="320" height="216"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="552758642.90189397">
+                                                    <!--2018-07-08 16:04:02 +0000-->
+                                                </date>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ukT-sj-pgO" firstAttribute="leading" secondItem="iGq-T9-Wc7" secondAttribute="leading" id="95c-J6-bnH"/>
+                                    <constraint firstAttribute="trailing" secondItem="9nO-af-Wrg" secondAttribute="trailing" constant="10" id="I9r-Zr-FIU"/>
+                                    <constraint firstAttribute="trailing" secondItem="ukT-sj-pgO" secondAttribute="trailing" id="Q4b-4B-4Xa"/>
+                                    <constraint firstItem="ukT-sj-pgO" firstAttribute="top" secondItem="iGq-T9-Wc7" secondAttribute="top" id="fHt-22-k6R"/>
+                                    <constraint firstItem="9nO-af-Wrg" firstAttribute="leading" secondItem="iGq-T9-Wc7" secondAttribute="leading" constant="10" id="kle-4B-TaL"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -145,22 +188,23 @@
                     </view>
                     <connections>
                         <outlet property="crimeaRoseView" destination="iGq-T9-Wc7" id="BgL-BI-nis"/>
+                        <outlet property="dateTypePicker" destination="2n4-z5-rP0" id="Bi5-vg-TKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVr-o5-aPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="-1237"/>
+            <point key="canvasLocation" x="848.79999999999995" y="-1237.6847290640394"/>
         </scene>
         <!--Explore Data View Controller-->
         <scene sceneID="Ynk-jK-mX0">
             <objects>
                 <viewController storyboardIdentifier="CompareData" id="sN3-cS-Unw" customClass="ExploreDataViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23I-gk-IFi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6W-Rx-yeZ" customClass="RadarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="20" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="634"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -186,17 +230,17 @@
             <objects>
                 <viewController storyboardIdentifier="Cubijsm" id="SLy-zD-wd6" customClass="CubijsmViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="23D-4m-ECT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2a7-3X-9TP">
-                                <rect key="frame" x="-0.5" y="20" width="375.5" height="597"/>
+                                <rect key="frame" x="-0.66666666666665719" y="44" width="375.66666666666663" height="684"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRu-xb-IQH">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="759"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375.33333333333331" height="759"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J8N-dA-7mK">
-                                                <rect key="frame" x="10" y="20" width="355" height="29"/>
+                                                <rect key="frame" x="10.333333333333343" y="20" width="355" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="SDT-MW-HkS"/>
                                                 </constraints>
@@ -211,7 +255,7 @@
                                                 </connections>
                                             </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p7b-td-a5r">
-                                                <rect key="frame" x="10" y="56" width="355" height="50"/>
+                                                <rect key="frame" x="10.333333333333343" y="56" width="355" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVu-0e-5ld">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="50"/>
@@ -221,7 +265,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9e-XS-yOi">
-                                                        <rect key="frame" x="156.5" y="0.0" width="42" height="50"/>
+                                                        <rect key="frame" x="156.66666666666669" y="0.0" width="41.666666666666657" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -240,14 +284,14 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvH-F1-Zgz" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="10" y="114" width="355" height="450"/>
+                                                <rect key="frame" x="10.333333333333343" y="114" width="355" height="450"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="450" id="K9t-N5-dMH"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yr1-uD-MYz">
-                                                <rect key="frame" x="9.5" y="564" width="355" height="75"/>
+                                                <rect key="frame" x="9.6666666666666572" y="564" width="355" height="75"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="VL5-Sk-jD6"/>
                                                 </constraints>
@@ -256,7 +300,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QlK-5H-Yrk" userLabel="optionSelection">
-                                                <rect key="frame" x="10" y="639" width="355" height="100"/>
+                                                <rect key="frame" x="10.333333333333343" y="639" width="355" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="I3m-WZ-4Li">
                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="28"/>
@@ -385,11 +429,11 @@
             <objects>
                 <viewController storyboardIdentifier="Gps" id="Iyi-QI-wmK" customClass="GpsViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xKf-Xn-lgc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-wR-9ET">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
                                     <outlet property="delegate" destination="Iyi-QI-wmK" id="otD-l4-wnc"/>
                                 </connections>
