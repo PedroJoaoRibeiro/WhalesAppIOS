@@ -24,10 +24,10 @@ class CrimeaRoseView: UIView {
     public var lineWidth:CGFloat = 1.0
     
     ///maximum value to show
-    public var maxValue:CGFloat = 25
+    public var maxValue:CGFloat = CGFloat.leastNormalMagnitude
     
     ///minimum value to show
-    public var minValue:CGFloat = -25
+    public var minValue:CGFloat = CGFloat.greatestFiniteMagnitude
     
     ///font for the labels around the circle -> default "Helvetica-Bold" size: 12
     public var labelFont = UIFont(name: "Helvetica-Bold", size: 12)

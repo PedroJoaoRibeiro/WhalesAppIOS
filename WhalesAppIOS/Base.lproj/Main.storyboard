@@ -162,11 +162,11 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH8-dt-pUL">
                                                 <rect key="frame" x="0.0" y="0.0" width="177.66666666666666" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="First Date"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvz-TJ-SlQ">
                                                 <rect key="frame" x="177.66666666666663" y="0.0" width="177.33333333333337" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Second Date"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -231,41 +231,12 @@
                         <outlet property="leftDateLabel" destination="GMn-j5-zDn" id="EbZ-oh-adz"/>
                         <outlet property="rightButtonDatePicker" destination="hvz-TJ-SlQ" id="auQ-9P-pNu"/>
                         <outlet property="rightDateLabel" destination="sar-bZ-bw5" id="CJk-0z-eib"/>
+                        <outlet property="segmentedControl" destination="ukT-sj-pgO" id="zXT-k0-naq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVr-o5-aPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848.79999999999995" y="-1237.6847290640394"/>
-        </scene>
-        <!--Explore Data View Controller-->
-        <scene sceneID="Ynk-jK-mX0">
-            <objects>
-                <viewController storyboardIdentifier="CompareData" id="sN3-cS-Unw" customClass="ExploreDataViewController" customModule="WhalesAppIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="23I-gk-IFi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6W-Rx-yeZ" customClass="CrimeaRoseLayerView" customModule="WhalesAppIOS" customModuleProvider="target">
-                                <rect key="frame" x="50" y="94" width="275" height="584"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="bpr-vN-DwD" firstAttribute="trailing" secondItem="L6W-Rx-yeZ" secondAttribute="trailing" constant="50" id="BnQ-Br-ufY"/>
-                            <constraint firstItem="bpr-vN-DwD" firstAttribute="bottom" secondItem="L6W-Rx-yeZ" secondAttribute="bottom" constant="100" id="T3q-qI-dQI"/>
-                            <constraint firstItem="L6W-Rx-yeZ" firstAttribute="leading" secondItem="bpr-vN-DwD" secondAttribute="leading" constant="50" id="gxR-OQ-LuM"/>
-                            <constraint firstItem="L6W-Rx-yeZ" firstAttribute="top" secondItem="bpr-vN-DwD" secondAttribute="top" constant="50" id="p68-5A-h1g"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="bpr-vN-DwD"/>
-                    </view>
-                    <connections>
-                        <outlet property="crimeaRoseView" destination="L6W-Rx-yeZ" id="NRV-XS-EbV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E79-k4-nJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="849" y="-527"/>
+            <point key="canvasLocation" x="849" y="-587"/>
         </scene>
         <!--Cubijsm View Controller-->
         <scene sceneID="pzI-Mp-mrN">

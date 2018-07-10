@@ -21,7 +21,6 @@
 		8571D36520D9A65500839E19 /* MonthValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8571D36420D9A65500839E19 /* MonthValueFormatter.swift */; };
 		858C562620ED39F4004C4073 /* CrimeaRoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C562520ED39F4004C4073 /* CrimeaRoseView.swift */; };
 		859ADF2220C75D5600AE1B3C /* Pompeii.wav in Resources */ = {isa = PBXBuildFile; fileRef = 859ADF2120C75D5600AE1B3C /* Pompeii.wav */; };
-		85AE4D4820F3BEF100E5C95C /* CrimeaRoseLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AE4D4720F3BEF100E5C95C /* CrimeaRoseLayerView.swift */; };
 		85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748720C5E66E006DEC7F /* MapAnnotation.swift */; };
 		85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748920C608D2006DEC7F /* MapAnnotationView.swift */; };
 		85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */; };
@@ -35,7 +34,6 @@
 		85DF5368209CD8EE00958667 /* WhalesAppIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DF5367209CD8EE00958667 /* WhalesAppIOSUITests.swift */; };
 		85E9A0E6209D017D00D04393 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A0E5209D017D00D04393 /* Extensions.swift */; };
 		85E9A0E8209D33B100D04393 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A0E7209D33B100D04393 /* Errors.swift */; };
-		85E9A0EA209E140400D04393 /* ExploreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A0E9209E140400D04393 /* ExploreDataViewController.swift */; };
 		85EE5AD120BE26BA00EB4BDD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE5AD020BE26BA00EB4BDD /* DataModel.swift */; };
 		85F837A020CEC58C0040F6B0 /* DataDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F8379F20CEC58C0040F6B0 /* DataDetailMapView.swift */; };
 		85F837A220CEC6060040F6B0 /* DataDetailMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */; };
@@ -77,7 +75,6 @@
 		8571D36420D9A65500839E19 /* MonthValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthValueFormatter.swift; sourceTree = "<group>"; };
 		858C562520ED39F4004C4073 /* CrimeaRoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeaRoseView.swift; sourceTree = "<group>"; };
 		859ADF2120C75D5600AE1B3C /* Pompeii.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pompeii.wav; sourceTree = "<group>"; };
-		85AE4D4720F3BEF100E5C95C /* CrimeaRoseLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeaRoseLayerView.swift; sourceTree = "<group>"; };
 		85C6748720C5E66E006DEC7F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		85C6748920C608D2006DEC7F /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionToServer.swift; sourceTree = "<group>"; };
@@ -97,7 +94,6 @@
 		85DF5369209CD8EE00958667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85E9A0E5209D017D00D04393 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		85E9A0E7209D33B100D04393 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		85E9A0E9209E140400D04393 /* ExploreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDataViewController.swift; sourceTree = "<group>"; };
 		85EE5AD020BE26BA00EB4BDD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		85F8379F20CEC58C0040F6B0 /* DataDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailMapView.swift; sourceTree = "<group>"; };
 		85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataDetailMapView.xib; sourceTree = "<group>"; };
@@ -247,7 +243,6 @@
 				85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */,
 				85F837A520CED2740040F6B0 /* CustomCell.xib */,
 				858C562520ED39F4004C4073 /* CrimeaRoseView.swift */,
-				85AE4D4720F3BEF100E5C95C /* CrimeaRoseLayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				85DF5349209CD8EC00958667 /* MainScreenViewController.swift */,
-				85E9A0E9209E140400D04393 /* ExploreDataViewController.swift */,
 				854C35D320BCD2F800069576 /* PageViewController.swift */,
 				854C35D720BDB07300069576 /* CrimeaRoseViewController.swift */,
 				854C35D920BDB08C00069576 /* GpsViewController.swift */,
@@ -542,11 +536,9 @@
 				85DF5348209CD8EC00958667 /* AppDelegate.swift in Sources */,
 				854C35DC20BDB09B00069576 /* CubijsmViewController.swift in Sources */,
 				851B978C20A1EC750004D514 /* ConnectToDevice.swift in Sources */,
-				85E9A0EA209E140400D04393 /* ExploreDataViewController.swift in Sources */,
 				85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */,
 				85E9A0E8209D33B100D04393 /* Errors.swift in Sources */,
 				8534748C20DD645A00645D07 /* DayValueFormatter.swift in Sources */,
-				85AE4D4820F3BEF100E5C95C /* CrimeaRoseLayerView.swift in Sources */,
 				858C562620ED39F4004C4073 /* CrimeaRoseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

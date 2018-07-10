@@ -26,6 +26,10 @@ class CrimeaRoseViewController: UIViewController {
             
         }
     }
+    
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var dateTypePicker: UIPickerView!
     
     @IBOutlet weak var leftButtonDatePicker: UIButton!
@@ -33,10 +37,17 @@ class CrimeaRoseViewController: UIViewController {
     
     @IBOutlet weak var leftDateLabel: UILabel!
     @IBOutlet weak var rightDateLabel: UILabel!
+    
     private var currentDate = Date()
+    
+    private var firstDateToCompare = Date()
+    private var secondDateToCompare = Date()
     
     private let pickerData = ["Day", "Week", "Moth", "Year"]
     
+    
+    private let firstUIColor = UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)
+    private let secondUIColor = UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,46 +55,49 @@ class CrimeaRoseViewController: UIViewController {
         self.dateTypePicker.delegate = self
         self.dateTypePicker.dataSource = self
         
+        dateTypePicker.selectRow(3, inComponent: 0, animated: false)
         
-        let array = DbConnection().getDateForYear(currentDate: Date())
-        var arrayOfLabels = [String]()
+        defaultData()
         
+    }
+    
+    private func defaultData(){
+        firstDateToCompare = Date() // current Date
+        secondDateToCompare = Calendar.current.date(byAdding: .year, value: -1, to: firstDateToCompare)! // subtract one year to the current date
+        
+        let arrayFirstYear = DbConnection().getDateForYear(currentDate: firstDateToCompare)
+        let arraySecondYear = DbConnection().getDateForYear(currentDate: secondDateToCompare)
+        
+        var arrayOfDataFirst: [Double]
+        var arrayOfDataSecond: [Double]
+        
+        if arrayFirstYear.isEmpty {
+            arrayOfDataFirst = Array(repeating: 0, count: 12)
+        } else {
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstYear)
+        }
+        
+        if arraySecondYear.isEmpty {
+            arrayOfDataSecond = Array(repeating: 0, count: 12)
+        } else {
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondYear)
+        }
+        
+        
+        //array that handles the data
         var arrayOfCrimeaRoseData = [CrimeaRoseData]()
         
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
-        var incre = -26.0
-        var arrayOfData = [Double]()
-        for _ in 0..<array.count {
-            arrayOfData.append(incre)
-            incre += 5
-        }
-        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)))
-        
-        arrayOfData = [Double]()
-        incre = 0.0
-        for _ in 0..<array.count {
-            arrayOfData.append(incre)
-            incre += 5
-        }
-        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)))
-        
-        arrayOfData = [Double]()
-         incre = -26.0
-        for i in 0..<array.count {
-            arrayOfData.append(incre)
-            arrayOfLabels.append(Calendar.current.shortMonthSymbols[i])
-            incre += 10
-        }
-        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfData, color: UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)))
         
         do {
-            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: arrayOfLabels)
+            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
         } catch {
             print(error)
         }
         
     }
-    
     
     private func drawChartForDay(){
         
@@ -96,6 +110,65 @@ class CrimeaRoseViewController: UIViewController {
     }
     private func drawChartForYear(){
         
+    }
+    
+    
+    /// returns an array based on the component selected in the segmentedControl
+    private func getArrayOfDataFromSelectedComponent(array: [DataModel])->[Double]{
+        var arrayOfData = [Double]()
+        
+        for obj in array {
+            switch segmentedControl.selectedSegmentIndex {
+                case 0:
+                    arrayOfData.append(obj.temperature)
+                    break
+                case 1:
+                    arrayOfData.append(obj.depth)
+                    break
+                case 2:
+                    arrayOfData.append(obj.pressure)
+                    break
+                case 3:
+                    arrayOfData.append(obj.turbidity)
+                    break
+                case 4:
+                    arrayOfData.append(obj.ph)
+                    break
+                case 5:
+                    arrayOfData.append(obj.oxygen)
+                    break
+                default:
+                    fatalError("segmented control index error in CrimeaRoseViewController")
+            }
+        }
+        
+        return arrayOfData
+    }
+    
+    /// returns an array of the labels for the selected data
+    private func getArrayOfLabels() -> [String]{
+        var arrayOfLabels = [String]()
+        
+        switch dateTypePicker.selectedRow(inComponent: 0) {
+        case 0: //Day
+            
+            break
+        case 1: //Week
+            
+            break
+        case 2: //Month
+            
+            break
+        case 3: //Year
+            for i in 0..<12 {
+                arrayOfLabels.append(Calendar.current.shortMonthSymbols[i])
+            }
+            break
+        default:
+            fatalError("pickerView in crimeaRose have more items then expected")
+        }
+        
+        return arrayOfLabels
     }
     
     
@@ -130,5 +203,25 @@ extension CrimeaRoseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     /// The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
+    }
+    
+    /// Handles the selection of a new row
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch row {
+        case 0: //Day
+            drawChartForDay()
+            break
+        case 1: //Week
+            drawChartForWeek()
+            break
+        case 2: //Month
+            drawChartForMonth()
+            break
+        case 3: //Year
+            drawChartForYear()
+            break
+        default:
+            fatalError("pickerView in crimeaRose have more items then expected")
+        }
     }
 }
