@@ -28,6 +28,11 @@ class CrimeaRoseViewController: UIViewController {
     }
     @IBOutlet weak var dateTypePicker: UIPickerView!
     
+    @IBOutlet weak var leftButtonDatePicker: UIButton!
+    @IBOutlet weak var rightButtonDatePicker: UIButton!
+    
+    @IBOutlet weak var leftDateLabel: UILabel!
+    @IBOutlet weak var rightDateLabel: UILabel!
     private var currentDate = Date()
     
     private let pickerData = ["Day", "Week", "Moth", "Year"]
@@ -78,6 +83,8 @@ class CrimeaRoseViewController: UIViewController {
         }
         
     }
+    
+    
     private func drawChartForDay(){
         
     }
@@ -93,6 +100,7 @@ class CrimeaRoseViewController: UIViewController {
     
     
     //------------------- Handling touch events
+    ///recognizer for the tap on a view
     @objc func didTap(tapGR: UITapGestureRecognizer){
         switch tapGR.state {
         case .ended:

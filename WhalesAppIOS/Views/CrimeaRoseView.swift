@@ -108,6 +108,8 @@ class CrimeaRoseView: UIView {
             self.center.y += translation.y
             
             panGR.setTranslation(CGPoint(x: 0, y: 0), in: self)
+            
+            
         default:
             break
         }
