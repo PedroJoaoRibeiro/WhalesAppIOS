@@ -57,14 +57,27 @@ class CrimeaRoseViewController: UIViewController {
         
         dateTypePicker.selectRow(3, inComponent: 0, animated: false)
         
-        defaultData()
-        
-    }
-    
-    private func defaultData(){
         firstDateToCompare = Date() // current Date
         secondDateToCompare = Calendar.current.date(byAdding: .year, value: -1, to: firstDateToCompare)! // subtract one year to the current date
         
+        
+        drawChartForYear()
+        
+    }
+    
+    
+    private func drawChartForDay(){
+        
+    }
+    private func drawChartForWeek(){
+        
+    }
+    private func drawChartForMonth(){
+        
+    }
+    
+    ///draws the data to compare by year
+    private func drawChartForYear(){
         let arrayFirstYear = DbConnection().getDateForYear(currentDate: firstDateToCompare)
         let arraySecondYear = DbConnection().getDateForYear(currentDate: secondDateToCompare)
         
@@ -93,23 +106,10 @@ class CrimeaRoseViewController: UIViewController {
         
         do {
             try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+            updateLabels()
         } catch {
             print(error)
         }
-        
-    }
-    
-    private func drawChartForDay(){
-        
-    }
-    private func drawChartForWeek(){
-        
-    }
-    private func drawChartForMonth(){
-        
-    }
-    private func drawChartForYear(){
-        
     }
     
     
@@ -171,12 +171,46 @@ class CrimeaRoseViewController: UIViewController {
         return arrayOfLabels
     }
     
+    private func updateLabels(){
+        switch dateTypePicker.selectedRow(inComponent: 0) {
+        case 0: //Day
+            leftDateLabel.text = "Year: \(firstDateToCompare.toString(withFormat: "dd MMM yyyy"))"
+            rightDateLabel.text = "Year: \(secondDateToCompare.toString(withFormat: "dd MMM yyyy"))"
+            break
+        case 1: //Week
+            leftDateLabel.text = "Year: \(firstDateToCompare.toString(withFormat: "yyyy")) TODO"
+            rightDateLabel.text = "Year: \(secondDateToCompare.toString(withFormat: "yyyy")) TODO"
+            break
+        case 2: //Month
+            leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "MMM yyyy"))"
+            rightDateLabel.text = "\(secondDateToCompare.toString(withFormat: "MMM yyyy"))"
+
+            break
+        case 3: //Year
+            leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "yyyy"))"
+            rightDateLabel.text = "\(secondDateToCompare.toString(withFormat: "yyyy"))"
+            break
+        default:
+            fatalError("pickerView in crimeaRose have more items then expected")
+        }
+        
+    }
+    
     
     //------------------- Handling touch events
     ///recognizer for the tap on a view
     @objc func didTap(tapGR: UITapGestureRecognizer){
         switch tapGR.state {
         case .ended:
+            for subview in crimeaRoseView.subviews {
+                if subview.frame.contains(tapGR.location(in: crimeaRoseView)) {
+                    if let label = subview as? UILabel {
+                        print(label.text!)
+                    }
+                }
+            }
+            
+            
             let index = crimeaRoseView.checkTap(point: tapGR.location(in: crimeaRoseView))
             if(index != -1){
                 print(Calendar.current.monthSymbols[index])
@@ -187,6 +221,32 @@ class CrimeaRoseViewController: UIViewController {
     }
     
     
+    //--------------Handles changes
+    ///handles the change on the segmented control, basicly only needs to check which dateTypePicker is selected and call the respective method
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        switch dateTypePicker.selectedRow(inComponent: 0) {
+        case 0: //Day
+            drawChartForDay()
+            break
+        case 1: //Week
+            drawChartForWeek()
+            break
+        case 2: //Month
+            drawChartForMonth()
+            break
+        case 3: //Year
+            drawChartForYear()
+            break
+        default:
+            fatalError("pickerView in crimeaRose have more items then expected")
+        }
+    }
+    
+    @IBAction func firstDateButtonTouched(_ sender: UIButton) {
+    }
+    
+    @IBAction func secondDateButtonTouched(_ sender: UIButton) {
+    }
 }
 
 extension CrimeaRoseViewController: UIPickerViewDelegate, UIPickerViewDataSource {

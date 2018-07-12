@@ -142,6 +142,9 @@
                                     <segment title="pH"/>
                                     <segment title="Oxygen"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="oNY-yc-QyK" eventType="valueChanged" id="T5D-01-Roh"/>
+                                </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9nO-af-Wrg" userLabel="pickerStack">
                                 <rect key="frame" x="10" y="519.66666666666663" width="355" height="150"/>
@@ -163,10 +166,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH8-dt-pUL">
                                                 <rect key="frame" x="0.0" y="0.0" width="177.66666666666666" height="30"/>
                                                 <state key="normal" title="First Date"/>
+                                                <connections>
+                                                    <action selector="firstDateButtonTouched:" destination="oNY-yc-QyK" eventType="touchUpInside" id="RT1-6z-9PS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvz-TJ-SlQ">
                                                 <rect key="frame" x="177.66666666666663" y="0.0" width="177.33333333333337" height="30"/>
                                                 <state key="normal" title="Second Date"/>
+                                                <connections>
+                                                    <action selector="secondDateButtonTouched:" destination="oNY-yc-QyK" eventType="touchUpInside" id="mNa-NO-vkZ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

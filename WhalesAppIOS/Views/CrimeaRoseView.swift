@@ -37,6 +37,43 @@ class CrimeaRoseView: UIView {
     
     ///hides the labels around the circles -> default false
     private var areLabelsHidden = false
+    
+    
+    //----------------------- Public Methods ------------------------//
+    
+    /// calls the method to draw the vew with the data. Needs the values, the labels, and the colors
+    public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String]) throws{
+        //cleans the data
+        self.arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        self.arrayOfLabels = [String]()
+        self.arrayOfPaths = [UIBezierPath: Int]()
+        maxValue = CGFloat.leastNormalMagnitude
+        minValue = CGFloat.greatestFiniteMagnitude
+        
+        _ = self.subviews.map({$0.removeFromSuperview()})
+        
+        
+        for obj in arrayOfCrimeaRoseData {
+            if(obj.arrayOfData.count != arrayOfLabels.count){
+                throw MyErrors.DiferentNumberOfElements(msg: "the number of labels doesn't match the number of elements in one of the arrays")
+            }
+        }
+        
+        
+        self.arrayOfCrimeaRoseData = arrayOfCrimeaRoseData
+        self.arrayOfLabels = arrayOfLabels
+        
+        // sets the scale to be the maximum of the data
+        for array in arrayOfCrimeaRoseData {
+            if(maxValue < CGFloat(array.arrayOfData.max()!)){
+                maxValue = CGFloat(array.arrayOfData.max()!)
+            }
+            if(minValue > CGFloat(array.arrayOfData.min()!)){
+                minValue = CGFloat(array.arrayOfData.min()!)
+            }
+        }
+        updateDisplay()
+    }
 
     
     //----------------- Main Drawing function -------------//
@@ -81,6 +118,7 @@ class CrimeaRoseView: UIView {
                 startAngle = startAngle - angle
             }
         }
+        
     }
     
     
@@ -133,6 +171,7 @@ class CrimeaRoseView: UIView {
                 return index
             }
         }
+        
         return -1
     }
     
@@ -146,36 +185,6 @@ class CrimeaRoseView: UIView {
         self.setNeedsLayout()
     }
     
-    /// calls the method to draw the vew with the data. Needs the values, the labels, and the colors
-    public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String]) throws{
-        //cleans the data
-        self.arrayOfCrimeaRoseData = [CrimeaRoseData]()
-        self.arrayOfLabels = [String]()
-        self.arrayOfPaths = [UIBezierPath: Int]()
-
-        
-        
-        for obj in arrayOfCrimeaRoseData {
-            if(obj.arrayOfData.count != arrayOfLabels.count){
-                throw MyErrors.DiferentNumberOfElements(msg: "the number of labels doesn't match the number of elements in one of the arrays")
-            }
-        }
-        
-        
-        self.arrayOfCrimeaRoseData = arrayOfCrimeaRoseData
-        self.arrayOfLabels = arrayOfLabels
-        
-        // sets the scale to be the maximum of the data
-        for array in arrayOfCrimeaRoseData {
-            if(maxValue < CGFloat(array.arrayOfData.max()!)){
-                maxValue = CGFloat(array.arrayOfData.max()!)
-            }
-            if(minValue > CGFloat(array.arrayOfData.min()!)){
-                minValue = CGFloat(array.arrayOfData.min()!)
-            }
-        }
-        updateDisplay()
-    }
     
     ///draws a semicircle in the center of the view
     private func drawSmallSemiCircle(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, fillColor: UIColor, category: Int) {
@@ -207,8 +216,16 @@ class CrimeaRoseView: UIView {
     private func drawLabels(string: String, angle: CGFloat, radius: CGFloat){
         let label = UILabel()
         
-        let x: CGFloat = bounds.midX + ((radius + 15) * cos(angle))
-        let y: CGFloat = bounds.midY + ((radius + 15) * sin(angle))
+        var r: CGFloat
+        
+        if radius > viewRadius/2 {
+            r = radius
+        } else {
+            r = viewRadius/2
+        }
+        
+        let x: CGFloat = bounds.midX + ((r + 15) * cos(angle))
+        let y: CGFloat = bounds.midY + ((r + 15) * sin(angle))
         
         label.font = labelFont
         label.frame = CGRect(x: x, y: y, width: 30, height: 30)
@@ -232,9 +249,9 @@ extension CrimeaRoseView {
     private var viewRadius: CGFloat {
         get {
             if bounds.width > bounds.height {
-                return (bounds.height - 30)/2
+                return (bounds.height - 50)/2
             } else {
-                return (bounds.width - 30)/2
+                return (bounds.width - 50)/2
             }
         }
     }

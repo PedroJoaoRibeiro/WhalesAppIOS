@@ -26,7 +26,7 @@ class DataModel: Object {
         self.longitude = longitude
         
         self.temperature = temperature
-        self.depth = depth
+        self.depth = abs(depth)
         self.altitude = altitude
         self.pressure = pressure
         self.turbidity = turbidity

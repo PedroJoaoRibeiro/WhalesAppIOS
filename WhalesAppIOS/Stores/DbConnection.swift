@@ -41,6 +41,13 @@ class DbConnection {
         return true
     }
     
+    public func updateDepth(id: String, depth: Double) -> Bool{
+        try! realm.write {
+            realm.create(DataModel.self, value: ["id": id, "depth": depth], update: true)
+        }
+        return true
+    }
+    
     
     //-------------------- To Manage Data easly --------------//
     
