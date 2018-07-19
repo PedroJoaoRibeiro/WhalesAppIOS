@@ -8,6 +8,7 @@
 
 
 import UIKit
+import DatePickerDialog
 
 class CrimeaRoseViewController: UIViewController {
 
@@ -106,7 +107,6 @@ class CrimeaRoseViewController: UIViewController {
         
         do {
             try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
-            updateLabels()
         } catch {
             print(error)
         }
@@ -150,36 +150,55 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfLabels = [String]()
         
         switch dateTypePicker.selectedRow(inComponent: 0) {
-        case 0: //Day
-            
-            break
-        case 1: //Week
-            
-            break
-        case 2: //Month
-            
-            break
-        case 3: //Year
-            for i in 0..<12 {
-                arrayOfLabels.append(Calendar.current.shortMonthSymbols[i])
-            }
-            break
-        default:
-            fatalError("pickerView in crimeaRose have more items then expected")
+            case 0: //Day
+                
+                break
+            case 1: //Week
+                
+                break
+            case 2: //Month
+                
+                break
+            case 3: //Year
+                for i in 0..<12 {
+                    arrayOfLabels.append(Calendar.current.shortMonthSymbols[i])
+                }
+                break
+            default:
+                fatalError("pickerView in crimeaRose have more items then expected")
         }
         
         return arrayOfLabels
     }
     
+    private func updateRose(){
+        switch dateTypePicker.selectedRow(inComponent: 0) {
+        case 0: //Day
+            drawChartForDay()
+            break
+        case 1: //Week
+            drawChartForWeek()
+            break
+        case 2: //Month
+            drawChartForMonth()
+            break
+        case 3: //Year
+            drawChartForYear()
+            break
+        default:
+            fatalError("pickerView in crimeaRose have more items then expected")
+        }
+    }
+    
     private func updateLabels(){
         switch dateTypePicker.selectedRow(inComponent: 0) {
         case 0: //Day
-            leftDateLabel.text = "Year: \(firstDateToCompare.toString(withFormat: "dd MMM yyyy"))"
-            rightDateLabel.text = "Year: \(secondDateToCompare.toString(withFormat: "dd MMM yyyy"))"
+            leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "dd MMM yyyy"))"
+            rightDateLabel.text = "\(secondDateToCompare.toString(withFormat: "dd MMM yyyy"))"
             break
         case 1: //Week
-            leftDateLabel.text = "Year: \(firstDateToCompare.toString(withFormat: "yyyy")) TODO"
-            rightDateLabel.text = "Year: \(secondDateToCompare.toString(withFormat: "yyyy")) TODO"
+            leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "yyyy")) TODO"
+            rightDateLabel.text = "\(secondDateToCompare.toString(withFormat: "yyyy")) TODO"
             break
         case 2: //Month
             leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "MMM yyyy"))"
@@ -193,7 +212,8 @@ class CrimeaRoseViewController: UIViewController {
         default:
             fatalError("pickerView in crimeaRose have more items then expected")
         }
-        
+        updateRose()
+
     }
     
     
@@ -224,28 +244,27 @@ class CrimeaRoseViewController: UIViewController {
     //--------------Handles changes
     ///handles the change on the segmented control, basicly only needs to check which dateTypePicker is selected and call the respective method
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        switch dateTypePicker.selectedRow(inComponent: 0) {
-        case 0: //Day
-            drawChartForDay()
-            break
-        case 1: //Week
-            drawChartForWeek()
-            break
-        case 2: //Month
-            drawChartForMonth()
-            break
-        case 3: //Year
-            drawChartForYear()
-            break
-        default:
-            fatalError("pickerView in crimeaRose have more items then expected")
-        }
+        updateRose()
     }
     
     @IBAction func firstDateButtonTouched(_ sender: UIButton) {
+        DatePickerDialog().show( "Pick a Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: firstDateToCompare ,datePickerMode: .date) {
+            (date) -> Void in
+            if let dt = date {
+                self.firstDateToCompare = dt
+                self.updateLabels()
+            }
+        }
     }
     
     @IBAction func secondDateButtonTouched(_ sender: UIButton) {
+        DatePickerDialog().show( "Pick a Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: secondDateToCompare, datePickerMode: .date) {
+            (date) -> Void in
+            if let dt = date {
+                self.secondDateToCompare = dt
+                self.updateLabels()
+            }
+        }
     }
 }
 
@@ -267,21 +286,7 @@ extension CrimeaRoseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
     /// Handles the selection of a new row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch row {
-        case 0: //Day
-            drawChartForDay()
-            break
-        case 1: //Week
-            drawChartForWeek()
-            break
-        case 2: //Month
-            drawChartForMonth()
-            break
-        case 3: //Year
-            drawChartForYear()
-            break
-        default:
-            fatalError("pickerView in crimeaRose have more items then expected")
-        }
+        updateLabels()
+        updateRose()
     }
 }

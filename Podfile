@@ -10,6 +10,7 @@ target 'WhalesAppIOS' do
   pod 'SwiftyJSON', '~> 4.1.0'
   pod 'Charts', '~> 3.1.1'
   pod 'RealmSwift' , '~> 3.6.0', :inhibit_warnings => true
+  pod 'DatePickerDialog'
 
   target 'WhalesAppIOSTests' do
     inherit! :search_paths
