@@ -24,7 +24,7 @@ class CubijsmViewController: UIViewController {
     
     private var currentDate = Date()
     private var arrayOfData = [DataModel]()
-    
+    private var arrayOfColors = [[UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)], [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)], [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)]]
     
     
     override func viewDidLoad(){
@@ -125,6 +125,17 @@ class CubijsmViewController: UIViewController {
     
     ///handels the change of the switches -> calls the method to update the data
     @IBAction func switchChanged(_ sender: UISwitch) {
+        var count = 0
+        var lastSwitch: UISwitch?
+        for swit in switches {
+            if swit.isOn && swit != sender{
+                count += 1
+                lastSwitch = swit
+            }
+        }
+        if count >= 3 {
+            lastSwitch!.setOn(false, animated: true)
+        }
         segmentedControllChanged(segmentedControl);
     }
     
@@ -170,27 +181,7 @@ class CubijsmViewController: UIViewController {
             return
         }
         
-        var lineChartEntry1 = [ChartDataEntry]()
-        var lineChartEntry2 = [ChartDataEntry]()
-        var lineChartEntry3 = [ChartDataEntry]()
-        
-        for obj in arrayOfData {
-            let value1 = ChartDataEntry(x: Double(obj.date.hour), y: obj.temperature)
-            let value2 = ChartDataEntry(x: Double(obj.date.hour), y: obj.depth)
-            let value3 = ChartDataEntry(x: Double(obj.date.hour), y: obj.pressure)
-            lineChartEntry1.append(value1)
-            lineChartEntry2.append(value2)
-            lineChartEntry3.append(value3)
-        }
-        
-        
-        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
-        
-        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
-        
-        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
-        
-        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
+        let data = selectDataToDisplay(arrayOfData: arrayOfData)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = DayValueFormatter()
@@ -213,27 +204,7 @@ class CubijsmViewController: UIViewController {
             return
         }
         
-        var lineChartEntry1 = [ChartDataEntry]()
-        var lineChartEntry2 = [ChartDataEntry]()
-        var lineChartEntry3 = [ChartDataEntry]()
-        
-        for obj in 0..<arrayOfData.count {
-            let value1 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].temperature)
-            let value2 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].depth)
-            let value3 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].pressure)
-            lineChartEntry1.append(value1)
-            lineChartEntry2.append(value2)
-            lineChartEntry3.append(value3)
-        }
-        
-        
-        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
-        
-        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
-        
-        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
-        
-        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
+        let data = selectDataToDisplay(arrayOfData: arrayOfData)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = WeekValueFormatter(initialWeekDate: currentDate.startOfWeek!)
@@ -257,27 +228,7 @@ class CubijsmViewController: UIViewController {
             return
         }
         
-        var lineChartEntry1 = [ChartDataEntry]()
-        var lineChartEntry2 = [ChartDataEntry]()
-        var lineChartEntry3 = [ChartDataEntry]()
-        
-        for obj in 0..<arrayOfData.count {
-            let value1 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].temperature)
-            let value2 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].depth)
-            let value3 = ChartDataEntry(x: Double(obj), y: arrayOfData[obj].pressure)
-            lineChartEntry1.append(value1)
-            lineChartEntry2.append(value2)
-            lineChartEntry3.append(value3)
-        }
-        
-        
-        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
-        
-        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
-        
-        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
-        
-        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
+        let data = selectDataToDisplay(arrayOfData: arrayOfData)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = MonthValueFormatter()
@@ -300,29 +251,8 @@ class CubijsmViewController: UIViewController {
             cubiChartView.noDataText = "There is no data for the current selected year"
             return
         }
-        
-        var lineChartEntry1 = [ChartDataEntry]()
-        var lineChartEntry2 = [ChartDataEntry]()
-        var lineChartEntry3 = [ChartDataEntry]()
-        
-        for obj in arrayOfData {
-            let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.temperature)
-            let value2 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.depth)
-            let value3 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.pressure)
-            lineChartEntry1.append(value1)
-            lineChartEntry2.append(value2)
-            lineChartEntry3.append(value3)
-        }
-        
-        
-        let line1 = lineChartGenerator(lineChartEntry: lineChartEntry1, label: "temperature", color: [UIColor(red:0.91, green:0.28, blue:0.33, alpha:1.0)])
-        
-        let line2 = lineChartGenerator(lineChartEntry: lineChartEntry2, label: "depth", color: [UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)])
-        
-        let line3 = lineChartGenerator(lineChartEntry: lineChartEntry3, label: "pressure", color: [UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)])
-        
-        
-        let data = selectDataToDisplay(temperature: line1, depth: line2, pressure: line3)
+ 
+        let data = selectDataToDisplay(arrayOfData: arrayOfData)
         
         //place this before data otherwise might get errors
         cubiChartView.xAxis.valueFormatter = YearValueFormatter()
@@ -334,22 +264,80 @@ class CubijsmViewController: UIViewController {
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
-    private func selectDataToDisplay(temperature: LineChartDataSet, depth: LineChartDataSet, pressure: LineChartDataSet) -> LineChartData{
+    private func selectDataToDisplay(arrayOfData: [DataModel]) -> LineChartData{
+        var count = 0
         let data = LineChartData()
         for swit in switches {
             if(swit.accessibilityIdentifier! == "temperature"){
                 if(swit.isOn){
-                    data.addDataSet(temperature)
+                    var lineChartEntry = [ChartDataEntry]()
+                    for obj in arrayOfData {
+                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.temperature)
+                        lineChartEntry.append(value1)
+                    }
+                    let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "temperature", color: arrayOfColors[count])
+                    count += 1
+                    data.addDataSet(line)
                 }
             }
             if(swit.accessibilityIdentifier! == "depth"){
                 if(swit.isOn){
-                    data.addDataSet(depth)
+                    var lineChartEntry = [ChartDataEntry]()
+                    for obj in arrayOfData {
+                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.depth)
+                        lineChartEntry.append(value1)
+                    }
+                    let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "depth", color: arrayOfColors[count])
+                    count += 1
+                    data.addDataSet(line)
                 }
             }
             if(swit.accessibilityIdentifier! == "pressure"){
                 if(swit.isOn){
-                    data.addDataSet(pressure)
+                    var lineChartEntry = [ChartDataEntry]()
+                    for obj in arrayOfData {
+                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.pressure)
+                        lineChartEntry.append(value1)
+                    }
+                    let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "pressure", color: arrayOfColors[count])
+                    count += 1
+                    data.addDataSet(line)
+                }
+            }
+            if(swit.accessibilityIdentifier! == "turbidity"){
+                if(swit.isOn){
+                    var lineChartEntry = [ChartDataEntry]()
+                    for obj in arrayOfData {
+                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.turbidity)
+                        lineChartEntry.append(value1)
+                    }
+                    let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "turbidity", color: arrayOfColors[count])
+                    count += 1
+                    data.addDataSet(line)
+                }
+            }
+            if(swit.accessibilityIdentifier! == "ph"){
+                if(swit.isOn){
+                    var lineChartEntry = [ChartDataEntry]()
+                    for obj in arrayOfData {
+                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.ph)
+                        lineChartEntry.append(value1)
+                    }
+                    let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "ph", color: arrayOfColors[count])
+                    count += 1
+                    data.addDataSet(line)
+                }
+            }
+            if(swit.accessibilityIdentifier! == "oxygen"){
+                if(swit.isOn){
+                    var lineChartEntry = [ChartDataEntry]()
+                    for obj in arrayOfData {
+                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.oxygen)
+                        lineChartEntry.append(value1)
+                    }
+                    let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "oxygen", color: arrayOfColors[count])
+                    count += 1
+                    data.addDataSet(line)
                 }
             }
         }
