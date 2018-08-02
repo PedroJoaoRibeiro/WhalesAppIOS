@@ -12,7 +12,7 @@ import SwiftyJSON
 
 
 class ConnectionToServer {
-    private let serverUrl = URL(string: "http://192.168.1.183:8080/data")
+    private let serverUrl = URL(string: "http://localhost:8080/data")
     
     public func sendDataToServer(){
         //checks to see if there is internte connection
@@ -77,7 +77,7 @@ class ConnectionToServer {
                     let json = JSON(value)
                     for (_,jsonObj):(String, JSON) in json {
                         
-                        let dataObj = DataModel(isFromServer: true, deviceId: jsonObj["deviceId"].string!, date: jsonObj["date"].string!, audioFile: jsonObj["audioFile"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, altitude: jsonObj["altitude"].double!, pressure: jsonObj["pressure"].double!, turbidity: jsonObj["turbidity"].double!, ph: jsonObj["ph"].double!, oxygen: jsonObj["oxygen"].double!)
+                        let dataObj = DataModel(isFromServer: true, deviceId: jsonObj["deviceId"].string!, date: jsonObj["date"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, altitude: jsonObj["altitude"].double!, pressure: jsonObj["pressure"].double!, turbidity: jsonObj["turbidity"].double!, ph: jsonObj["ph"].double!, oxygen: jsonObj["oxygen"].double!)
                         
                         db.saveModelToDb(obj: dataObj)
                     }

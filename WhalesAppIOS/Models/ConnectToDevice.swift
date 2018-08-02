@@ -80,9 +80,6 @@ class ConnectionToDevice {
                 case "date":
                     jsonObj[header] = JSON(String(currentLine[index]))
                     break
-                case "audioFile":
-                    jsonObj[header] = JSON(String(currentLine[index]))
-                    break
                 default:
                     jsonObj[header] = JSON(Double(String(currentLine[index]))!)
                 }
@@ -90,7 +87,7 @@ class ConnectionToDevice {
             
             if(!db.checkIfObjectExists(id:deviceId + jsonObj["date"].string!)){
                 
-                let dataObj = DataModel(isFromServer: false, deviceId: deviceId, date: jsonObj["date"].string!, audioFile: jsonObj["audioFile"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, altitude: jsonObj["altitude"].double!, pressure: jsonObj["pressure"].double!, turbidity: jsonObj["turbidity"].double!, ph: jsonObj["ph"].double!, oxygen: jsonObj["oxygen"].double!)
+                let dataObj = DataModel(isFromServer: false, deviceId: deviceId, date: jsonObj["date"].string!, latitude: jsonObj["latitude"].double!, longitude: jsonObj["longitude"].double!, temperature: jsonObj["temperature"].double!, depth: jsonObj["depth"].double!, altitude: jsonObj["altitude"].double!, pressure: jsonObj["pressure"].double!, turbidity: jsonObj["turbidity"].double!, ph: jsonObj["ph"].double!, oxygen: jsonObj["oxygen"].double!)
                 
                 db.saveModelToDb(obj: dataObj)
             }

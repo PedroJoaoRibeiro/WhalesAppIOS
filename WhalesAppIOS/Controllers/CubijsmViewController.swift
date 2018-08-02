@@ -49,7 +49,7 @@ class CubijsmViewController: UIViewController {
         
         updateLabel()
         setChartOptions()
-        drawCubicChartDay()
+        drawCubicChartYear()
         
     }
     

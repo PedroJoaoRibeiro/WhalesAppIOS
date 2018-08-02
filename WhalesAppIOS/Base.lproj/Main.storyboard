@@ -261,7 +261,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRu-xb-IQH">
                                         <rect key="frame" x="0.0" y="0.0" width="375.33333333333331" height="857"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J8N-dA-7mK">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="J8N-dA-7mK">
                                                 <rect key="frame" x="10.333333333333343" y="10" width="355" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="SDT-MW-HkS"/>
@@ -521,7 +521,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-wR-9ET">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="684"/>
                                 <connections>
                                     <outlet property="delegate" destination="Iyi-QI-wmK" id="otD-l4-wnc"/>
                                 </connections>
@@ -529,10 +529,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="gEy-wR-9ET" secondAttribute="trailing" id="HnE-sk-Pkc"/>
-                            <constraint firstAttribute="bottom" secondItem="gEy-wR-9ET" secondAttribute="bottom" id="SrH-Ms-O1c"/>
-                            <constraint firstItem="gEy-wR-9ET" firstAttribute="top" secondItem="xKf-Xn-lgc" secondAttribute="top" id="tbF-2D-mcd"/>
-                            <constraint firstItem="gEy-wR-9ET" firstAttribute="leading" secondItem="xKf-Xn-lgc" secondAttribute="leading" id="vQP-9V-sYV"/>
+                            <constraint firstItem="hiV-MS-BUY" firstAttribute="trailing" secondItem="gEy-wR-9ET" secondAttribute="trailing" id="HnE-sk-Pkc"/>
+                            <constraint firstItem="hiV-MS-BUY" firstAttribute="bottom" secondItem="gEy-wR-9ET" secondAttribute="bottom" constant="50" id="SrH-Ms-O1c"/>
+                            <constraint firstItem="gEy-wR-9ET" firstAttribute="top" secondItem="hiV-MS-BUY" secondAttribute="top" id="tbF-2D-mcd"/>
+                            <constraint firstItem="gEy-wR-9ET" firstAttribute="leading" secondItem="hiV-MS-BUY" secondAttribute="leading" id="vQP-9V-sYV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hiV-MS-BUY"/>
                     </view>

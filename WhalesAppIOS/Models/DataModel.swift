@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class DataModel: Object {
     
-    convenience init(isFromServer: Bool, deviceId: String, date: String, audioFile: String, latitude: Double, longitude: Double, temperature: Double, depth: Double, altitude: Double, pressure: Double, turbidity: Double, ph: Double, oxygen: Double) {
+    convenience init(isFromServer: Bool, deviceId: String, date: String, latitude: Double, longitude: Double, temperature: Double, depth: Double, altitude: Double, pressure: Double, turbidity: Double, ph: Double, oxygen: Double) {
         self.init()
         
         self.id = deviceId + date
@@ -21,7 +21,6 @@ class DataModel: Object {
         self.date = DateFormatter().stringToDate(str: date)!
         self.deviceId = deviceId
         
-        self.audioFile = audioFile
         self.latitude = latitude
         self.longitude = longitude
         
@@ -41,7 +40,6 @@ class DataModel: Object {
     @objc dynamic var date = Date()
     @objc dynamic var deviceId = ""
     
-    @objc dynamic var audioFile = ""
     
     @objc dynamic var latitude: Double = 0.0
     @objc dynamic var longitude: Double = 0.0
@@ -90,7 +88,6 @@ class DataModel: Object {
         json["deviceId"] = JSON(deviceId)
         json["date"] = JSON(ISO8601DateFormatter().string(from: date))
         
-        json["audioFile"] = JSON(audioFile)
         
         json["latitude"] = JSON(latitude)
         json["longitude"] = JSON(longitude)

@@ -61,7 +61,7 @@ class CrimeaRoseViewController: UIViewController {
         firstDateToCompare = Date() // current Date
         secondDateToCompare = Calendar.current.date(byAdding: .year, value: -1, to: firstDateToCompare)! // subtract one year to the current date
         
-        
+        updateLabels()
         drawChartForYear()
         
     }
@@ -74,6 +74,36 @@ class CrimeaRoseViewController: UIViewController {
         
     }
     private func drawChartForMonth(){
+        let arrayFirstMonth = DbConnection().getDateForMonth(currentDate: firstDateToCompare)
+        let arraySecondMonth = DbConnection().getDateForMonth(currentDate: secondDateToCompare)
+        
+        var arrayOfDataFirst: [Double]
+        var arrayOfDataSecond: [Double]
+    
+        if arrayFirstMonth.isEmpty {
+            arrayOfDataFirst = Array(repeating: 0, count: 12)
+        } else {
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstMonth)
+        }
+        
+        if arraySecondMonth.isEmpty {
+            arrayOfDataSecond = Array(repeating: 0, count: 12)
+        } else {
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondMonth)
+        }
+        
+        //array that handles the data
+        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
+        
+        
+        do {
+            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        } catch {
+            print(error)
+        }
         
     }
     
@@ -157,7 +187,7 @@ class CrimeaRoseViewController: UIViewController {
                 
                 break
             case 2: //Month
-                
+
                 break
             case 3: //Year
                 for i in 0..<12 {
