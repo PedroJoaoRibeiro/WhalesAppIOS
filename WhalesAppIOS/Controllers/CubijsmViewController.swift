@@ -195,7 +195,6 @@ class CubijsmViewController: UIViewController {
         cubiChartView.xAxis.axisMaximum = 23
         cubiChartView.xAxis.axisMinimum = 0
         cubiChartView.setVisibleXRange(minXRange: 0, maxXRange: 23)
-        //cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
     private func drawCubicChartWeek(){
@@ -220,7 +219,6 @@ class CubijsmViewController: UIViewController {
         cubiChartView.xAxis.axisMaximum = 6
         cubiChartView.xAxis.axisMinimum = 0
         cubiChartView.setVisibleXRange(minXRange: 6, maxXRange: 7)
-        cubiChartView.moveViewToX(Double(arrayOfData.count/2))
         
     }
     
@@ -244,9 +242,9 @@ class CubijsmViewController: UIViewController {
         
         //always place after adding the data
         cubiChartView.xAxis.axisMinimum = 0
-        cubiChartView.xAxis.axisMaximum = Double(currentDate.endOfMonth().day)
-        cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: 24)
-        cubiChartView.moveViewToX(Double(arrayOfData.count/2))
+        cubiChartView.xAxis.axisMaximum = Double(currentDate.endOfMonth().day - 1)
+        cubiChartView.setVisibleXRange(minXRange: 0, maxXRange: Double(currentDate.endOfMonth().day) - 1)
+        
     }
     
     
@@ -271,8 +269,8 @@ class CubijsmViewController: UIViewController {
         //always place after adding the data
         cubiChartView.xAxis.axisMaximum = 11
         cubiChartView.xAxis.axisMinimum = 0
-        //cubiChartView.setVisibleXRange(minXRange: Double(8), maxXRange: Double(12))
-        cubiChartView.moveViewToX(Double(arrayOfData.count/2))
+        
+       
     }
     
     private func selectDataToDisplay(arrayOfData: [DataModel]) -> LineChartData{
