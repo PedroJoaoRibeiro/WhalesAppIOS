@@ -85,8 +85,7 @@ class DbConnection {
         
         var finalArray = [DataModel]()
         
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate)
-        component.day = currentDate.startOfWeek?.day
+        let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: currentDate.startOfWeek!)
         var d = Calendar.current.date(from: component)!
         
         for _ in 0..<7 {
@@ -100,7 +99,6 @@ class DbConnection {
             for obj in finalArray {
                 for v in value {
                     if(obj.date.day == v.date.day){
-                        print(v.temperature)
                         obj.add(obj: v)
                     }
                 }

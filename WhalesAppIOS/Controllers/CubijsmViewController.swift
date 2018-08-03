@@ -133,6 +133,9 @@ class CubijsmViewController: UIViewController {
                 lastSwitch = swit
             }
         }
+        if count == 0 {
+            sender.setOn(true, animated: false)
+        }
         if count >= 3 {
             lastSwitch!.setOn(false, animated: true)
         }
@@ -189,7 +192,9 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = data
         
         //always place after adding the data
-        cubiChartView.setVisibleXRange(minXRange: 3, maxXRange: 24)
+        cubiChartView.xAxis.axisMaximum = 23
+        cubiChartView.xAxis.axisMinimum = 0
+        cubiChartView.setVisibleXRange(minXRange: 0, maxXRange: 23)
         //cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
@@ -212,6 +217,8 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = data
         
         //always place after adding the data
+        cubiChartView.xAxis.axisMaximum = 6
+        cubiChartView.xAxis.axisMinimum = 0
         cubiChartView.setVisibleXRange(minXRange: 6, maxXRange: 7)
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
         
@@ -236,6 +243,8 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = data
         
         //always place after adding the data
+        cubiChartView.xAxis.axisMinimum = 0
+        cubiChartView.xAxis.axisMaximum = Double(currentDate.endOfMonth().day)
         cubiChartView.setVisibleXRange(minXRange: Double(arrayOfData.count/4), maxXRange: 24)
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
@@ -260,7 +269,9 @@ class CubijsmViewController: UIViewController {
         cubiChartView.data = data
         
         //always place after adding the data
-        cubiChartView.setVisibleXRange(minXRange: Double(8), maxXRange: Double(12))
+        cubiChartView.xAxis.axisMaximum = 11
+        cubiChartView.xAxis.axisMinimum = 0
+        //cubiChartView.setVisibleXRange(minXRange: Double(8), maxXRange: Double(12))
         cubiChartView.moveViewToX(Double(arrayOfData.count/2))
     }
     
@@ -272,7 +283,7 @@ class CubijsmViewController: UIViewController {
                 if(swit.isOn){
                     var lineChartEntry = [ChartDataEntry]()
                     for obj in arrayOfData {
-                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.temperature)
+                        let value1 = ChartDataEntry(x: convertDateToXBasedOnType(date: obj.date), y: obj.temperature)
                         lineChartEntry.append(value1)
                     }
                     let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "temperature", color: arrayOfColors[count])
@@ -284,7 +295,7 @@ class CubijsmViewController: UIViewController {
                 if(swit.isOn){
                     var lineChartEntry = [ChartDataEntry]()
                     for obj in arrayOfData {
-                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.depth)
+                        let value1 = ChartDataEntry(x: convertDateToXBasedOnType(date: obj.date), y: obj.depth)
                         lineChartEntry.append(value1)
                     }
                     let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "depth", color: arrayOfColors[count])
@@ -296,7 +307,7 @@ class CubijsmViewController: UIViewController {
                 if(swit.isOn){
                     var lineChartEntry = [ChartDataEntry]()
                     for obj in arrayOfData {
-                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.pressure)
+                        let value1 = ChartDataEntry(x: convertDateToXBasedOnType(date: obj.date), y: obj.pressure)
                         lineChartEntry.append(value1)
                     }
                     let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "pressure", color: arrayOfColors[count])
@@ -308,7 +319,7 @@ class CubijsmViewController: UIViewController {
                 if(swit.isOn){
                     var lineChartEntry = [ChartDataEntry]()
                     for obj in arrayOfData {
-                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.turbidity)
+                        let value1 = ChartDataEntry(x: convertDateToXBasedOnType(date: obj.date), y: obj.turbidity)
                         lineChartEntry.append(value1)
                     }
                     let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "turbidity", color: arrayOfColors[count])
@@ -320,7 +331,7 @@ class CubijsmViewController: UIViewController {
                 if(swit.isOn){
                     var lineChartEntry = [ChartDataEntry]()
                     for obj in arrayOfData {
-                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.ph)
+                        let value1 = ChartDataEntry(x: convertDateToXBasedOnType(date: obj.date), y: obj.ph)
                         lineChartEntry.append(value1)
                     }
                     let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "ph", color: arrayOfColors[count])
@@ -332,7 +343,7 @@ class CubijsmViewController: UIViewController {
                 if(swit.isOn){
                     var lineChartEntry = [ChartDataEntry]()
                     for obj in arrayOfData {
-                        let value1 = ChartDataEntry(x: Double(obj.date.month - 1), y: obj.oxygen)
+                        let value1 = ChartDataEntry(x: convertDateToXBasedOnType(date: obj.date), y: obj.oxygen)
                         lineChartEntry.append(value1)
                     }
                     let line = lineChartGenerator(lineChartEntry: lineChartEntry, label: "oxygen", color: arrayOfColors[count])
@@ -343,6 +354,21 @@ class CubijsmViewController: UIViewController {
         }
         
         return data;
+    }
+    
+    private func convertDateToXBasedOnType(date: Date) -> Double{
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: // Day
+            return Double(date.hour)
+        case 1: // Week
+            return Double(date.weekDay - 1)
+        case 2: // Month
+            return Double(date.day - 1)
+        case 3: // Year
+            return Double(date.month - 1)
+        default:
+            return 0
+        }
     }
     
     ///generates the line to then add to the graph

@@ -33,12 +33,20 @@ extension Date {
         return Calendar.current.component(.hour, from: self)
     }
     
+    var weekDay : Int {
+        return Calendar.current.component(.weekday, from: self)
+    }
+    
     var day: Int {
         return Calendar.current.component(.day, from: self)
     }
     
     var month: Int {
         return Calendar.current.component(.month, from: self)
+    }
+    
+    var year: Int {
+        return Calendar.current.component(.year, from: self)
     }
     
     var startOfWeek: Date? {
@@ -61,6 +69,14 @@ extension Date {
         formatter.dateFormat = format
         
         return formatter.string(from: yourDate!)
+    }
+    
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
     }
     
     
