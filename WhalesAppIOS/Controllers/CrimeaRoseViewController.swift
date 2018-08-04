@@ -68,7 +68,36 @@ class CrimeaRoseViewController: UIViewController {
     
     
     private func drawChartForDay(){
+        let arrayFirstdDay = DbConnection().getDateForDay(currentDate: firstDateToCompare)
+        let arraySecondDay = DbConnection().getDateForDay(currentDate: secondDateToCompare)
+
+        var arrayOfDataFirst: [Double]
+        var arrayOfDataSecond: [Double]
         
+        
+        if arrayFirstdDay.isEmpty {
+            arrayOfDataFirst = Array(repeating: 0, count: 12)
+        } else {
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstdDay)
+        }
+        
+        if arraySecondDay.isEmpty {
+            arrayOfDataSecond = Array(repeating: 0, count: 12)
+        } else {
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondDay)
+        }
+        
+        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
+        
+        
+        do {
+            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        } catch {
+            print(error)
+        }
     }
     private func drawChartForWeek(){
         

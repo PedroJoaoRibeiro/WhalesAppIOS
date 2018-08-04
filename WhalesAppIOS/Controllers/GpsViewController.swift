@@ -30,18 +30,15 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
         let db = DbConnection()
         let arrayData = db.getDataFromDb()
         
-        let obj = arrayData[0]
-        
-        let initialLocation = CLLocationCoordinate2D(latitude: 0.0001, longitude: 0.0001)
+        let initialLocation = CLLocationCoordinate2D(latitude: arrayData.last!.latitude, longitude: arrayData.last!.longitude)
         centerMapOnLocation(location: initialLocation)
         
-        
-        
+        for obj in arrayData {
             let title = "Date: " + obj.date.toString(withFormat: "yyyy-MM-dd HH:mm:ss")
-            let coordinate = CLLocationCoordinate2D(latitude: 0.0001, longitude: 0.0001)
+            let coordinate = CLLocationCoordinate2D(latitude: obj.latitude, longitude: obj.longitude)
             let annotation = MapAnnotation(title: title, data: obj, coordinate: coordinate)
             mapView.addAnnotation(annotation)
-        
+        }
         
     }
     
