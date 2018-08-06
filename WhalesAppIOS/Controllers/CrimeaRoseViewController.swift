@@ -74,16 +74,28 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfDataFirst: [Double]
         var arrayOfDataSecond: [Double]
         
-        let minValue = getMinValue(minValue: getMinValue(minValue: Double.greatestFiniteMagnitude, array: arrayFirstdDay), array: arraySecondDay)
+        var (minValue, maxValue) = getMinMaxValue(minValue: Double.greatestFiniteMagnitude, maxValue: Double.leastNormalMagnitude, array: arrayFirstdDay)
+        (minValue, maxValue) = getMinMaxValue(minValue: minValue, maxValue: maxValue, array: arraySecondDay)
+        
+        // take 10 % of the min value to note diference between no values and the actual min value
+        if minValue == Double.greatestFiniteMagnitude {
+            //means that there is nothing to draw
+            minValue = 0
+            maxValue = 0
+        } else {
+            // scalle is better if starts always from zero
+            minValue = 0
+        }
+        
         
         if arrayFirstdDay.isEmpty {
-            arrayOfDataFirst = Array(repeating: 0, count: 12)
+            arrayOfDataFirst = Array(repeating: 0, count: 24)
         } else {
             arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstdDay, minValue: minValue)
         }
         
         if arraySecondDay.isEmpty {
-            arrayOfDataSecond = Array(repeating: 0, count: 12)
+            arrayOfDataSecond = Array(repeating: 0, count: 24)
         } else {
             arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondDay, minValue: minValue)
         }
@@ -94,10 +106,50 @@ class CrimeaRoseViewController: UIViewController {
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
         
-        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels(), maxValue: maxValue, minValue: minValue)
         
     }
     private func drawChartForWeek(){
+        
+        let arrayFirstWeek = DbConnection().getDateForWeek(currentDate: firstDateToCompare)
+        let arraySecondWeek = DbConnection().getDateForWeek(currentDate: secondDateToCompare)
+        
+        var arrayOfDataFirst: [Double]
+        var arrayOfDataSecond: [Double]
+        
+        var (minValue, maxValue) = getMinMaxValue(minValue: Double.greatestFiniteMagnitude, maxValue: Double.leastNormalMagnitude, array: arrayFirstWeek)
+        (minValue, maxValue) = getMinMaxValue(minValue: minValue, maxValue: maxValue, array: arraySecondWeek)
+        
+        // take 10 % of the min value to note diference between no values and the actual min value
+        if minValue == Double.greatestFiniteMagnitude {
+            //means that there is nothing to draw
+            minValue = 0
+            maxValue = 0
+        } else {
+            // scalle is better if starts always from zero
+            minValue = 0
+        }
+        
+        
+        if arrayFirstWeek.isEmpty {
+            arrayOfDataFirst = Array(repeating: 0, count: 7)
+        } else {
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstWeek, minValue: minValue)
+        }
+        
+        if arraySecondWeek.isEmpty {
+            arrayOfDataSecond = Array(repeating: 0, count: 7)
+        } else {
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondWeek, minValue: minValue)
+        }
+        
+        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
+        arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
+        
+        
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels(), maxValue: maxValue, minValue: minValue)
         
     }
     private func drawChartForMonth(){
@@ -107,7 +159,19 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfDataFirst: [Double]
         var arrayOfDataSecond: [Double]
         
-        let minValue = getMinValue(minValue: getMinValue(minValue: Double.greatestFiniteMagnitude, array: arrayFirstMonth), array: arraySecondMonth)
+        var (minValue, maxValue) = getMinMaxValue(minValue: Double.greatestFiniteMagnitude, maxValue: Double.leastNormalMagnitude, array: arrayFirstMonth)
+        (minValue, maxValue) = getMinMaxValue(minValue: minValue, maxValue: maxValue, array: arraySecondMonth)
+        
+        // take 10 % of the min value to note diference between no values and the actual min value
+        if minValue == Double.greatestFiniteMagnitude {
+            //means that there is nothing to draw
+            minValue = 0
+            maxValue = 0
+        } else {
+            // scalle is better if starts always from zero
+            minValue = 0
+        }
+        
         
         if arrayFirstMonth.isEmpty {
             arrayOfDataFirst = Array(repeating: 0, count: 12)
@@ -127,7 +191,7 @@ class CrimeaRoseViewController: UIViewController {
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
-        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels(), maxValue: maxValue, minValue: minValue)
         
     }
     
@@ -139,16 +203,27 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfDataFirst: [Double]
         var arrayOfDataSecond: [Double]
         
-        let minValue = getMinValue(minValue: getMinValue(minValue: Double.greatestFiniteMagnitude, array: arrayFirstYear), array: arraySecondYear)
+        var (minValue, maxValue) = getMinMaxValue(minValue: Double.greatestFiniteMagnitude, maxValue: Double.leastNormalMagnitude, array: arrayFirstYear)
+        (minValue, maxValue) = getMinMaxValue(minValue: minValue, maxValue: maxValue, array: arrayFirstYear)
+        
+        // take 10 % of the min value to note diference between no values and the actual min value
+        if minValue == Double.greatestFiniteMagnitude {
+            //means that there is nothing to draw
+            minValue = 0
+            maxValue = 0
+        } else {
+            // scalle is better if starts always from zero
+            minValue = 0
+        }
         
         if arrayFirstYear.isEmpty {
-            arrayOfDataFirst = Array(repeating: 0, count: 12)
+            arrayOfDataFirst = Array(repeating: minValue, count: 12)
         } else {
             arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstYear, minValue: minValue)
         }
         
         if arraySecondYear.isEmpty {
-            arrayOfDataSecond = Array(repeating: 0, count: 12)
+            arrayOfDataSecond = Array(repeating: minValue, count: 12)
         } else {
             arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondYear, minValue: minValue)
         }
@@ -161,7 +236,7 @@ class CrimeaRoseViewController: UIViewController {
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
         
-        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels(), maxValue: maxValue, minValue: minValue)
         
     }
     
@@ -202,39 +277,58 @@ class CrimeaRoseViewController: UIViewController {
         return arrayOfData
     }
     
-    private func getMinValue(minValue: Double, array: [DataModel]) -> Double{
+    private func getMinMaxValue(minValue: Double, maxValue: Double, array: [DataModel]) -> (Double, Double) {
         var min = minValue
+        var max = maxValue
         for obj in array {
             if !obj.isNull {
                 switch segmentedControl.selectedSegmentIndex {
                 case 0:
-                    if minValue > obj.temperature{
+                    if min > obj.temperature{
                         min = obj.temperature
+                    }
+                    if max < obj.temperature{
+                        max = obj.temperature
                     }
                     break
                 case 1:
-                    if minValue > obj.depth{
+                    if min > obj.depth{
                         min = obj.depth
+                    }
+                    if max < obj.depth{
+                        max = obj.depth
                     }
                     break
                 case 2:
-                    if minValue > obj.pressure{
+                    if min > obj.pressure{
                         min = obj.pressure
+                    }
+                    if max < obj.pressure{
+                        max = obj.pressure
                     }
                     break
                 case 3:
-                    if minValue > obj.turbidity{
+                    if min > obj.turbidity{
                         min = obj.turbidity
+                    }
+                    if max < obj.turbidity{
+                        max = obj.turbidity
                     }
                     break
                 case 4:
-                    if minValue > obj.ph{
+                    if min > obj.ph{
                         min = obj.ph
+                    }
+                    if max < obj.ph{
+                        max = obj.ph
                     }
                     break
                 case 5:
-                    if minValue > obj.oxygen{
+                    if min > obj.oxygen{
                         min = obj.oxygen
+                    }
+                    if max < obj.oxygen{
+                        max = obj.oxygen
                     }
                     break
                 default:
@@ -242,7 +336,7 @@ class CrimeaRoseViewController: UIViewController {
                 }
             }
         }
-        return min
+        return (min,max)
     }
     
     /// returns an array of the labels for the selected data
@@ -256,10 +350,14 @@ class CrimeaRoseViewController: UIViewController {
                 }
                 break
             case 1: //Week
-                
+                for i in 0..<7 {
+                    arrayOfLabels.append(Calendar.current.shortWeekdaySymbols[i])
+                }
                 break
             case 2: //Month
-
+                for i in 1...24 {
+                    arrayOfLabels.append(String(i))
+                }
                 break
             case 3: //Year
                 for i in 0..<12 {
@@ -299,8 +397,8 @@ class CrimeaRoseViewController: UIViewController {
             rightDateLabel.text = "\(secondDateToCompare.toString(withFormat: "dd MMM yyyy"))"
             break
         case 1: //Week
-            leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "yyyy")) TODO"
-            rightDateLabel.text = "\(secondDateToCompare.toString(withFormat: "yyyy")) TODO"
+            leftDateLabel.text = "\(firstDateToCompare.startOfWeek!.toString(withFormat: "dd/MMM")) - \(firstDateToCompare.endOfWeek!.toString(withFormat: "dd/MMM"))"
+            rightDateLabel.text = "\(secondDateToCompare.startOfWeek!.toString(withFormat: "dd/MMM")) - \(secondDateToCompare.endOfWeek!.toString(withFormat: "dd/MMM"))"
             break
         case 2: //Month
             leftDateLabel.text = "\(firstDateToCompare.toString(withFormat: "MMM yyyy"))"
@@ -389,6 +487,5 @@ extension CrimeaRoseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     /// Handles the selection of a new row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateLabels()
-        updateRose()
     }
 }

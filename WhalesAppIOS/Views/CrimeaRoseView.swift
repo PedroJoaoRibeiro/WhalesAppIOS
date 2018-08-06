@@ -42,28 +42,22 @@ class CrimeaRoseView: UIView {
     //----------------------- Public Methods ------------------------//
     
     /// calls the method to draw the vew with the data. Needs the values, the labels, and the colors
-    public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String]) {
+    public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String], maxValue: Double, minValue: Double) {
         //cleans the data
         self.arrayOfCrimeaRoseData = [CrimeaRoseData]()
         self.arrayOfLabels = [String]()
         self.arrayOfPaths = [UIBezierPath: Int]()
-        maxValue = CGFloat.leastNormalMagnitude
-        minValue = CGFloat.greatestFiniteMagnitude
+        self.maxValue = CGFloat(maxValue)
+        self.minValue = CGFloat(minValue)
         
         _ = self.subviews.map({$0.removeFromSuperview()})
         
         self.arrayOfCrimeaRoseData = arrayOfCrimeaRoseData
         self.arrayOfLabels = arrayOfLabels
         
-        // sets the scale to be the maximum of the data
-        for array in arrayOfCrimeaRoseData {
-            if(maxValue < CGFloat(array.arrayOfData.max()!)){
-                maxValue = CGFloat(array.arrayOfData.max()!)
-            }
-            if(minValue > CGFloat(array.arrayOfData.min()!)){
-                minValue = CGFloat(array.arrayOfData.min()!)
-            }
-        }
+        print(maxValue)
+        print(minValue)
+        
         updateDisplay()
     }
 
@@ -73,8 +67,22 @@ class CrimeaRoseView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         //if there is no data to show just present a label saying that
-        if(arrayOfLabels.count == 0) {
-            //TODO
+        if(maxValue == minValue) {
+            let label = UILabel()
+            
+            let x: CGFloat = bounds.midX
+            let y: CGFloat = bounds.midY
+            
+            label.font = labelFont
+            label.frame = CGRect(x: x, y: y, width: bounds.width, height: 50)
+            label.text = "There is no data for the current selected dates"
+            label.textAlignment = .center
+            label.textColor = labelTextColor
+            label.isHidden = areLabelsHidden
+            
+            label.center = CGPoint(x: x, y: y)
+    
+            self.addSubview(label)
         } else {
             
             var arrayOfObjs = [ObjtoDraw]()
@@ -97,7 +105,6 @@ class CrimeaRoseView: UIView {
             for obj in arrayOfObjs.sorted(by: {$0.radius > $1.radius}){
                 drawSmallSemiCircle(radius: obj.radius, startAngle: obj.startAngle, endAngle: obj.endAngle, fillColor: obj.fillColor, category: obj.category)
             }
-            
             
             // draws labels
             let angle = (2*CGFloat.pi) / CGFloat(arrayOfLabels.count)

@@ -165,14 +165,14 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gH8-dt-pUL">
                                                 <rect key="frame" x="0.0" y="0.0" width="177.66666666666666" height="30"/>
-                                                <state key="normal" title="First Date"/>
+                                                <state key="normal" title="Select First Date"/>
                                                 <connections>
                                                     <action selector="firstDateButtonTouched:" destination="oNY-yc-QyK" eventType="touchUpInside" id="RT1-6z-9PS"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvz-TJ-SlQ">
                                                 <rect key="frame" x="177.66666666666663" y="0.0" width="177.33333333333337" height="30"/>
-                                                <state key="normal" title="Second Date"/>
+                                                <state key="normal" title="Select Second Date"/>
                                                 <connections>
                                                     <action selector="secondDateButtonTouched:" destination="oNY-yc-QyK" eventType="touchUpInside" id="mNa-NO-vkZ"/>
                                                 </connections>
@@ -202,16 +202,16 @@
                                 <rect key="frame" x="0.0" y="90.000000000000028" width="375" height="421.66666666666674"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="iGq-T9-Wc7" customClass="CrimeaRoseView" customModule="WhalesAppIOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="421.66666666666669"/>
+                                        <rect key="frame" x="5" y="20" width="365" height="401.66666666666669"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="iGq-T9-Wc7" firstAttribute="leading" secondItem="aXt-Oy-qzm" secondAttribute="leading" id="8nP-CY-pzV"/>
+                                    <constraint firstItem="iGq-T9-Wc7" firstAttribute="leading" secondItem="aXt-Oy-qzm" secondAttribute="leading" constant="5" id="8nP-CY-pzV"/>
                                     <constraint firstAttribute="bottom" secondItem="iGq-T9-Wc7" secondAttribute="bottom" id="9CW-Jc-MV3"/>
-                                    <constraint firstItem="iGq-T9-Wc7" firstAttribute="top" secondItem="aXt-Oy-qzm" secondAttribute="top" id="KPg-jQ-2AD"/>
-                                    <constraint firstAttribute="trailing" secondItem="iGq-T9-Wc7" secondAttribute="trailing" id="Q80-hi-MHs"/>
+                                    <constraint firstItem="iGq-T9-Wc7" firstAttribute="top" secondItem="aXt-Oy-qzm" secondAttribute="top" constant="20" symbolic="YES" id="KPg-jQ-2AD"/>
+                                    <constraint firstAttribute="trailing" secondItem="iGq-T9-Wc7" secondAttribute="trailing" constant="5" id="Q80-hi-MHs"/>
                                 </constraints>
                             </view>
                         </subviews>
