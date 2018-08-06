@@ -74,17 +74,18 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfDataFirst: [Double]
         var arrayOfDataSecond: [Double]
         
+        let minValue = getMinValue(minValue: getMinValue(minValue: Double.greatestFiniteMagnitude, array: arrayFirstdDay), array: arraySecondDay)
         
         if arrayFirstdDay.isEmpty {
             arrayOfDataFirst = Array(repeating: 0, count: 12)
         } else {
-            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstdDay)
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstdDay, minValue: minValue)
         }
         
         if arraySecondDay.isEmpty {
             arrayOfDataSecond = Array(repeating: 0, count: 12)
         } else {
-            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondDay)
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondDay, minValue: minValue)
         }
         
         var arrayOfCrimeaRoseData = [CrimeaRoseData]()
@@ -93,11 +94,8 @@ class CrimeaRoseViewController: UIViewController {
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
         
-        do {
-            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
-        } catch {
-            print(error)
-        }
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        
     }
     private func drawChartForWeek(){
         
@@ -108,17 +106,19 @@ class CrimeaRoseViewController: UIViewController {
         
         var arrayOfDataFirst: [Double]
         var arrayOfDataSecond: [Double]
-    
+        
+        let minValue = getMinValue(minValue: getMinValue(minValue: Double.greatestFiniteMagnitude, array: arrayFirstMonth), array: arraySecondMonth)
+        
         if arrayFirstMonth.isEmpty {
             arrayOfDataFirst = Array(repeating: 0, count: 12)
         } else {
-            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstMonth)
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstMonth, minValue: minValue)
         }
         
         if arraySecondMonth.isEmpty {
             arrayOfDataSecond = Array(repeating: 0, count: 12)
         } else {
-            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondMonth)
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondMonth, minValue: minValue)
         }
         
         //array that handles the data
@@ -127,12 +127,7 @@ class CrimeaRoseViewController: UIViewController {
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
-        
-        do {
-            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
-        } catch {
-            print(error)
-        }
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
         
     }
     
@@ -144,16 +139,18 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfDataFirst: [Double]
         var arrayOfDataSecond: [Double]
         
+        let minValue = getMinValue(minValue: getMinValue(minValue: Double.greatestFiniteMagnitude, array: arrayFirstYear), array: arraySecondYear)
+        
         if arrayFirstYear.isEmpty {
             arrayOfDataFirst = Array(repeating: 0, count: 12)
         } else {
-            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstYear)
+            arrayOfDataFirst = getArrayOfDataFromSelectedComponent(array: arrayFirstYear, minValue: minValue)
         }
         
         if arraySecondYear.isEmpty {
             arrayOfDataSecond = Array(repeating: 0, count: 12)
         } else {
-            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondYear)
+            arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondYear, minValue: minValue)
         }
         
         
@@ -164,44 +161,88 @@ class CrimeaRoseViewController: UIViewController {
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
         
         
-        do {
-            try crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
-        } catch {
-            print(error)
-        }
+        crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels())
+        
     }
     
     
     /// returns an array based on the component selected in the segmentedControl
-    private func getArrayOfDataFromSelectedComponent(array: [DataModel])->[Double]{
+    private func getArrayOfDataFromSelectedComponent(array: [DataModel], minValue:Double)->[Double]{
         var arrayOfData = [Double]()
         
         for obj in array {
-            switch segmentedControl.selectedSegmentIndex {
-                case 0:
-                    arrayOfData.append(obj.temperature)
-                    break
-                case 1:
-                    arrayOfData.append(obj.depth)
-                    break
-                case 2:
-                    arrayOfData.append(obj.pressure)
-                    break
-                case 3:
-                    arrayOfData.append(obj.turbidity)
-                    break
-                case 4:
-                    arrayOfData.append(obj.ph)
-                    break
-                case 5:
-                    arrayOfData.append(obj.oxygen)
-                    break
-                default:
-                    fatalError("segmented control index error in CrimeaRoseViewController")
+            if obj.isNull {
+                arrayOfData.append(minValue)
+            } else {
+                switch segmentedControl.selectedSegmentIndex {
+                    case 0:
+                        arrayOfData.append(obj.temperature)
+                        break
+                    case 1:
+                        arrayOfData.append(obj.depth)
+                        break
+                    case 2:
+                        arrayOfData.append(obj.pressure)
+                        break
+                    case 3:
+                        arrayOfData.append(obj.turbidity)
+                        break
+                    case 4:
+                        arrayOfData.append(obj.ph)
+                        break
+                    case 5:
+                        arrayOfData.append(obj.oxygen)
+                        break
+                    default:
+                        fatalError("segmented control index error in CrimeaRoseViewController")
+                }
             }
         }
         
         return arrayOfData
+    }
+    
+    private func getMinValue(minValue: Double, array: [DataModel]) -> Double{
+        var min = minValue
+        for obj in array {
+            if !obj.isNull {
+                switch segmentedControl.selectedSegmentIndex {
+                case 0:
+                    if minValue > obj.temperature{
+                        min = obj.temperature
+                    }
+                    break
+                case 1:
+                    if minValue > obj.depth{
+                        min = obj.depth
+                    }
+                    break
+                case 2:
+                    if minValue > obj.pressure{
+                        min = obj.pressure
+                    }
+                    break
+                case 3:
+                    if minValue > obj.turbidity{
+                        min = obj.turbidity
+                    }
+                    break
+                case 4:
+                    if minValue > obj.ph{
+                        min = obj.ph
+                    }
+                    break
+                case 5:
+                    if minValue > obj.oxygen{
+                        min = obj.oxygen
+                    }
+                    break
+                default:
+                    fatalError("segmented control index error in CrimeaRoseViewController")
+                }
+            }
+        }
+        return min
     }
     
     /// returns an array of the labels for the selected data
@@ -210,7 +251,9 @@ class CrimeaRoseViewController: UIViewController {
         
         switch dateTypePicker.selectedRow(inComponent: 0) {
             case 0: //Day
-                
+                for i in 1...24 {
+                    arrayOfLabels.append(String(i))
+                }
                 break
             case 1: //Week
                 

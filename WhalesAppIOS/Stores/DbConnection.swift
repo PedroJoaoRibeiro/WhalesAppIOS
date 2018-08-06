@@ -64,7 +64,33 @@ class DbConnection {
             return [DataModel]()
         }
         
-        return array
+        let dict = Dictionary(grouping: array) {$0.date.hour}
+        
+        var finalArray = [DataModel]()
+        
+        let component = Calendar.current.dateComponents([.year, .month, .day], from: currentDate)
+        var d = Calendar.current.date(from: component)!
+        
+        for _ in 0..<24 {
+            let obj = DataModel()
+            obj.date = d
+            finalArray.append(obj)
+            d = Calendar.current.date(byAdding: .hour, value: 1, to: d)!
+        }
+        
+        for (_, value) in dict {
+            for obj in finalArray {
+                for v in value {
+                    if(obj.date.hour == v.date.hour){
+                        obj.add(obj: v)
+                    }
+                }
+                if(value.count > 0 && value[0].date.hour == obj.date.hour ){
+                    obj.divide(value: value.count)
+                }
+            }
+        }
+        return finalArray
     }
     
     ///gets the data for one week all days grouped in average

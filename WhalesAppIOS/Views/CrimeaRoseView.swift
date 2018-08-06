@@ -42,7 +42,7 @@ class CrimeaRoseView: UIView {
     //----------------------- Public Methods ------------------------//
     
     /// calls the method to draw the vew with the data. Needs the values, the labels, and the colors
-    public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String]) throws{
+    public func drawRose(arrayOfCrimeaRoseData: [CrimeaRoseData], arrayOfLabels:[String]) {
         //cleans the data
         self.arrayOfCrimeaRoseData = [CrimeaRoseData]()
         self.arrayOfLabels = [String]()
@@ -51,14 +51,6 @@ class CrimeaRoseView: UIView {
         minValue = CGFloat.greatestFiniteMagnitude
         
         _ = self.subviews.map({$0.removeFromSuperview()})
-        
-        
-        for obj in arrayOfCrimeaRoseData {
-            if(obj.arrayOfData.count != arrayOfLabels.count){
-                throw MyErrors.DiferentNumberOfElements(msg: "the number of labels doesn't match the number of elements in one of the arrays")
-            }
-        }
-        
         
         self.arrayOfCrimeaRoseData = arrayOfCrimeaRoseData
         self.arrayOfLabels = arrayOfLabels

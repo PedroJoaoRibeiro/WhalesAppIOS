@@ -31,6 +31,8 @@ class DataModel: Object {
         self.turbidity = turbidity
         self.ph = ph
         self.oxygen = oxygen
+        
+        isNull = false
     }
     
     
@@ -53,7 +55,7 @@ class DataModel: Object {
     @objc dynamic var ph: Double = 0.0
     @objc dynamic var oxygen: Double = 0.0
     
-    
+    var isNull = true
     
     override static func primaryKey() -> String? {
         return "id"
@@ -120,6 +122,8 @@ class DataModel: Object {
         self.turbidity += obj.turbidity
         self.ph += obj.ph
         self.oxygen += obj.oxygen
+        
+        self.isNull = false
     }
     
     public func divide(value: Int){
@@ -131,5 +135,6 @@ class DataModel: Object {
         self.turbidity /= Double(value)
         self.ph /= Double(value)
         self.oxygen /= Double(value)
+        
     }
 }
