@@ -55,9 +55,6 @@ class CrimeaRoseView: UIView {
         self.arrayOfCrimeaRoseData = arrayOfCrimeaRoseData
         self.arrayOfLabels = arrayOfLabels
         
-        print(maxValue)
-        print(minValue)
-        
         updateDisplay()
     }
 

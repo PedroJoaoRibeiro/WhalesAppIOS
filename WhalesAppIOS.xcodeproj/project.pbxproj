@@ -22,7 +22,6 @@
 		858C562620ED39F4004C4073 /* CrimeaRoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C562520ED39F4004C4073 /* CrimeaRoseView.swift */; };
 		859ADF2220C75D5600AE1B3C /* Pompeii.wav in Resources */ = {isa = PBXBuildFile; fileRef = 859ADF2120C75D5600AE1B3C /* Pompeii.wav */; };
 		85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748720C5E66E006DEC7F /* MapAnnotation.swift */; };
-		85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C6748920C608D2006DEC7F /* MapAnnotationView.swift */; };
 		85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */; };
 		85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DADA08209CEDA30068ADD4 /* DbConnection.swift */; };
 		85DF5348209CD8EC00958667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DF5347209CD8EC00958667 /* AppDelegate.swift */; };
@@ -35,10 +34,8 @@
 		85E9A0E6209D017D00D04393 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A0E5209D017D00D04393 /* Extensions.swift */; };
 		85E9A0E8209D33B100D04393 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9A0E7209D33B100D04393 /* Errors.swift */; };
 		85EE5AD120BE26BA00EB4BDD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE5AD020BE26BA00EB4BDD /* DataModel.swift */; };
-		85F837A020CEC58C0040F6B0 /* DataDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F8379F20CEC58C0040F6B0 /* DataDetailMapView.swift */; };
-		85F837A220CEC6060040F6B0 /* DataDetailMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */; };
-		85F837A620CED2740040F6B0 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F837A520CED2740040F6B0 /* CustomCell.xib */; };
-		85F837A820CED30A0040F6B0 /* DataDetailCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F837A720CED30A0040F6B0 /* DataDetailCustomCell.swift */; };
+		85FF168321190617000FB13F /* PopupLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF168221190617000FB13F /* PopupLauncher.swift */; };
+		85FF168521190D61000FB13F /* PopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF168421190D61000FB13F /* PopupCell.swift */; };
 		AEC3B5FF150EE6DB4442FB1D /* Pods_WhalesAppIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2590B64D46B5D96ED5E2E2D1 /* Pods_WhalesAppIOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +73,6 @@
 		858C562520ED39F4004C4073 /* CrimeaRoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeaRoseView.swift; sourceTree = "<group>"; };
 		859ADF2120C75D5600AE1B3C /* Pompeii.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pompeii.wav; sourceTree = "<group>"; };
 		85C6748720C5E66E006DEC7F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
-		85C6748920C608D2006DEC7F /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		85DADA06209CE20E0068ADD4 /* ConnectionToServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionToServer.swift; sourceTree = "<group>"; };
 		85DADA08209CEDA30068ADD4 /* DbConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnection.swift; sourceTree = "<group>"; };
 		85DF5344209CD8EC00958667 /* WhalesAppIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhalesAppIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,10 +91,8 @@
 		85E9A0E5209D017D00D04393 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		85E9A0E7209D33B100D04393 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		85EE5AD020BE26BA00EB4BDD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		85F8379F20CEC58C0040F6B0 /* DataDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailMapView.swift; sourceTree = "<group>"; };
-		85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataDetailMapView.xib; sourceTree = "<group>"; };
-		85F837A520CED2740040F6B0 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
-		85F837A720CED30A0040F6B0 /* DataDetailCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailCustomCell.swift; sourceTree = "<group>"; };
+		85FF168221190617000FB13F /* PopupLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupLauncher.swift; sourceTree = "<group>"; };
+		85FF168421190D61000FB13F /* PopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupCell.swift; sourceTree = "<group>"; };
 		96E106027A590110C4C2A8F5 /* Pods-WhalesAppIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhalesAppIOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhalesAppIOSTests/Pods-WhalesAppIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9A94B9C1F89CD65AEE9072AD /* Pods-WhalesAppIOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhalesAppIOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhalesAppIOSUITests/Pods-WhalesAppIOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A12AEE01B3546F4B9825B101 /* Pods-WhalesAppIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhalesAppIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhalesAppIOS/Pods-WhalesAppIOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,12 +231,8 @@
 		85DF5377209CDAD500958667 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				85C6748920C608D2006DEC7F /* MapAnnotationView.swift */,
-				85F8379F20CEC58C0040F6B0 /* DataDetailMapView.swift */,
-				85F837A720CED30A0040F6B0 /* DataDetailCustomCell.swift */,
-				85F837A120CEC6060040F6B0 /* DataDetailMapView.xib */,
-				85F837A520CED2740040F6B0 /* CustomCell.xib */,
 				858C562520ED39F4004C4073 /* CrimeaRoseView.swift */,
+				85FF168421190D61000FB13F /* PopupCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +245,7 @@
 				854C35D720BDB07300069576 /* CrimeaRoseViewController.swift */,
 				854C35D920BDB08C00069576 /* GpsViewController.swift */,
 				854C35DB20BDB09B00069576 /* CubijsmViewController.swift */,
+				85FF168221190617000FB13F /* PopupLauncher.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -405,8 +396,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85F837A620CED2740040F6B0 /* CustomCell.xib in Resources */,
-				85F837A220CEC6060040F6B0 /* DataDetailMapView.xib in Resources */,
 				85DF5352209CD8ED00958667 /* LaunchScreen.storyboard in Resources */,
 				85DF534F209CD8ED00958667 /* Assets.xcassets in Resources */,
 				859ADF2220C75D5600AE1B3C /* Pompeii.wav in Resources */,
@@ -527,15 +516,14 @@
 				8571D36520D9A65500839E19 /* MonthValueFormatter.swift in Sources */,
 				854C35DA20BDB08C00069576 /* GpsViewController.swift in Sources */,
 				855E9564209E3931005E3060 /* DateValueFormatter.swift in Sources */,
-				85F837A020CEC58C0040F6B0 /* DataDetailMapView.swift in Sources */,
 				854C35D820BDB07300069576 /* CrimeaRoseViewController.swift in Sources */,
-				85C6748A20C608D2006DEC7F /* MapAnnotationView.swift in Sources */,
+				85FF168321190617000FB13F /* PopupLauncher.swift in Sources */,
 				85C6748820C5E66E006DEC7F /* MapAnnotation.swift in Sources */,
 				85DADA07209CE20E0068ADD4 /* ConnectionToServer.swift in Sources */,
 				85EE5AD120BE26BA00EB4BDD /* DataModel.swift in Sources */,
 				8571D36320D935D200839E19 /* YearValueFormatter.swift in Sources */,
-				85F837A820CED30A0040F6B0 /* DataDetailCustomCell.swift in Sources */,
 				85DF5348209CD8EC00958667 /* AppDelegate.swift in Sources */,
+				85FF168521190D61000FB13F /* PopupCell.swift in Sources */,
 				854C35DC20BDB09B00069576 /* CubijsmViewController.swift in Sources */,
 				851B978C20A1EC750004D514 /* ConnectToDevice.swift in Sources */,
 				85DADA09209CEDA30068ADD4 /* DbConnection.swift in Sources */,
@@ -718,7 +706,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -734,7 +725,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -751,7 +745,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -769,7 +767,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -786,7 +788,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -803,7 +809,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KRVJK6VXPD;
 				INFOPLIST_FILE = WhalesAppIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = pedro.WhalesAppIOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

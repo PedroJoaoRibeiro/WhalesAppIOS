@@ -12,7 +12,7 @@ import SwiftyJSON
 
 
 class ConnectionToServer {
-    private let serverUrl = URL(string: "http://localhost:8080/data")
+    private let serverUrl = URL(string: "http://192.168.1.16:8080/data")
     
     public func sendDataToServer(){
         //checks to see if there is internte connection

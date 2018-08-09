@@ -86,3 +86,16 @@ extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
 
+extension UIView {
+    func addConstraintsWithFormat(format: String, views: UIView...){
+        var viewsDictionairy = [String: UIView]()
+        for (index, view) in views.enumerated(){
+            let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewsDictionairy[key] = view
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionairy))
+    }
+}
+

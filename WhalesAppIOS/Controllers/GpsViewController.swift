@@ -21,6 +21,7 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
     
     let regionRadius: CLLocationDistance = 10000
     
+    let popupLauncher = PopupLauncher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +56,24 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         
         if annotationView == nil {
-            annotationView = MapAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = false
+            
         } else {
             annotationView!.annotation = annotation
         }
         return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view is MKPinAnnotationView {
+            if let annotation = view.annotation as? MapAnnotation {
+                popupLauncher.handleBottomPopup(model: annotation.data)
+            }
+        }
+    }
+    
+    
     
     
     
