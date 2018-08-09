@@ -16,7 +16,7 @@ class PopupLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDeleg
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        cv.backgroundColor = UIColor.lightGray
+        cv.backgroundColor = UIColor(red: 239, green: 239, blue: 244, alpha: 1)
         return cv
     }()
     

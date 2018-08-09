@@ -88,14 +88,14 @@ class CrimeaRoseView: UIView {
                 
                 //seting the angle of each small circle
                 let angle = (2*CGFloat.pi) / CGFloat(arrayOfLabels.count)
-                var startAngle = CGFloat(2*CGFloat.pi);
+                var startAngle = CGFloat(3*CGFloat.pi/2);
                 
                 for i in 0..<array.arrayOfData.count{
                     let radius = scale(value: CGFloat(array.arrayOfData[i]))
                     
-                    arrayOfObjs.append(ObjtoDraw(radius: radius, startAngle: startAngle, endAngle: startAngle - angle, fillColor: array.color, category: i))
+                    arrayOfObjs.append(ObjtoDraw(radius: radius, startAngle: startAngle, endAngle: startAngle + angle, fillColor: array.color, category: i))
                     
-                    startAngle = startAngle - angle
+                    startAngle = startAngle + angle
                 }
             }
             
@@ -105,13 +105,13 @@ class CrimeaRoseView: UIView {
             
             // draws labels
             let angle = (2*CGFloat.pi) / CGFloat(arrayOfLabels.count)
-            var startAngle = CGFloat(2*CGFloat.pi);
+            var startAngle = CGFloat(3*CGFloat.pi/2);
             for i in 0..<arrayOfLabels.count {
                 let obj = arrayOfObjs.filter({$0.startAngle == startAngle}).max(by: {$0.radius < $1.radius})!
                 
-                drawLabels(string: arrayOfLabels[i], angle: startAngle - (angle/2), radius: obj.radius)
+                drawLabels(string: arrayOfLabels[i], angle: startAngle + (angle/2), radius: obj.radius)
                 
-                startAngle = startAngle - angle
+                startAngle = startAngle + angle
             }
         }
         
@@ -187,7 +187,7 @@ class CrimeaRoseView: UIView {
         
         let path = UIBezierPath()
         
-        path.addArc(withCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        path.addArc(withCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         path.addLine(to: CGPoint(x: bounds.midX, y: bounds.midY))
         path.close()
         

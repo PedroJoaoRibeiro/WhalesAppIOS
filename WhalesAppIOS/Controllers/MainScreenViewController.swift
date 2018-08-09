@@ -18,6 +18,8 @@ class MainScreenViewController: UIViewController {
         ConnectionToServer().sendDataToServer()
         ConnectionToServer().getDataFromServer()
         
+        
+        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
