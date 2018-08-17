@@ -44,7 +44,7 @@ class CrimeaRoseViewController: UIViewController {
     private var firstDateToCompare = Date()
     private var secondDateToCompare = Date()
     
-    private let pickerData = ["Day", "Week", "Moth", "Year"]
+    private let pickerData = ["Day", "Week", "Month", "Year"]
     
     
     private let firstUIColor = UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)
