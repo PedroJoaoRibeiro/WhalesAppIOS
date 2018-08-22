@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "date50.png",
+      "filename" : "icons8-temperatura-filled-50.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "date100.png",
+      "filename" : "icons8-temperatura-filled-100.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "date150.png",
+      "filename" : "icons8-temperatura-filled-150.png",
       "scale" : "3x"
     }
   ],

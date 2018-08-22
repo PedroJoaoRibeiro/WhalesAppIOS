@@ -27,6 +27,7 @@ class PopupCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "play_button")
         imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .black
         return imageView
     }()
     
@@ -47,7 +48,7 @@ class PopupCell: UICollectionViewCell {
         
         addConstraintsWithFormat(format: "H:|-10-[v0(30)]-10-[v1]|", views: iconImageView, textLabel)
         addConstraintsWithFormat(format: "V:|[v0]|", views: textLabel)
-        addConstraintsWithFormat(format: "V:|[v0(30)]", views: iconImageView)
+        addConstraintsWithFormat(format: "V:[v0(30)]", views: iconImageView)
         
         addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .centerY , relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }

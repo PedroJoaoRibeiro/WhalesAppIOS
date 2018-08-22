@@ -56,6 +56,9 @@ class CrimeaRoseViewController: UIViewController {
         self.dateTypePicker.delegate = self
         self.dateTypePicker.dataSource = self
         
+        leftDateLabel.backgroundColor = firstUIColor
+        rightDateLabel.backgroundColor = secondUIColor
+        
         dateTypePicker.selectRow(3, inComponent: 0, animated: false)
         
         firstDateToCompare = Date() // current Date

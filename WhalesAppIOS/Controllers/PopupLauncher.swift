@@ -23,7 +23,16 @@ class PopupLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDeleg
     let cellId = "cellId"
     
     var arrayCells: [CellInfo] = {
-        return [CellInfo(iconName: "play_button", text: "ja foi")]
+        return [
+            CellInfo(iconName: "date", text: ""),
+            CellInfo(iconName: "gps", text: ""),
+            CellInfo(iconName: "temperature", text: ""),
+            CellInfo(iconName: "depth", text: ""),
+            CellInfo(iconName: "pressure", text: ""),
+            CellInfo(iconName: "turbidity", text: ""),
+            CellInfo(iconName: "pH", text: ""),
+            CellInfo(iconName: "oxygen", text: ""),
+        ]
     }()
     
     override init(){
@@ -62,12 +71,17 @@ class PopupLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDeleg
                     }, completion: nil)
             
             
-            arrayCells.removeAll()
-            arrayCells.append(CellInfo(iconName: "date", text: model.date.toString(withFormat: "yyyy-MM-dd HH:mm")))
-            
-            arrayCells.append(CellInfo(iconName: "gps", text: String(format: "Lat: %.04f, Long: %.04f", model.latitude, model.longitude)))
-            
-            arrayCells.append(CellInfo(iconName: "play_button", text: String(model.temperature)))
+            arrayCells[0].text = model.date.toString(withFormat: "yyyy-MM-dd HH:mm")
+            arrayCells[1].text = String(format: "Lat: %.04f, Long: %.04f", model.latitude, model.longitude)
+            arrayCells[2].text = String(model.temperature)
+            arrayCells[3].text = String(model.depth)
+            arrayCells[4].text = String(model.pressure)
+            arrayCells[5].text = String(model.turbidity)
+            arrayCells[6].text = String(model.ph)
+            arrayCells[7].text = String(model.oxygen)
+
+        
+            self.collectionView.reloadData()
         }
         
     }
@@ -104,7 +118,7 @@ class PopupLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDeleg
 
 class CellInfo {
     let iconName: String
-    let text: String
+    var text: String
     
     init(iconName: String, text: String) {
         self.iconName = iconName
