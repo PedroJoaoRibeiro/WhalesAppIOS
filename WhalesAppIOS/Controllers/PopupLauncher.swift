@@ -70,17 +70,15 @@ class PopupLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDeleg
                     self.collectionView.frame = CGRect(x: 0, y: y, width: window.frame.width, height: height)
                     }, completion: nil)
             
-            
             arrayCells[0].text = model.date.toString(withFormat: "yyyy-MM-dd HH:mm")
             arrayCells[1].text = String(format: "Lat: %.04f, Long: %.04f", model.latitude, model.longitude)
-            arrayCells[2].text = String(model.temperature)
-            arrayCells[3].text = String(model.depth)
-            arrayCells[4].text = String(model.pressure)
-            arrayCells[5].text = String(model.turbidity)
-            arrayCells[6].text = String(model.ph)
-            arrayCells[7].text = String(model.oxygen)
-
-        
+            arrayCells[2].text = String(format: "Temperature: %.02f °C", model.temperature)
+            arrayCells[3].text = String(format: "Depth: %.02f m", model.depth)
+            arrayCells[4].text = String(format: "Pressure: %.02f bar", model.pressure)
+            arrayCells[5].text = String(format: "Turbidity: %d", model.turbidity)
+            arrayCells[6].text = String(format: "Ph: %.02f", model.ph)
+            arrayCells[7].text = String(format: "Oxygen: %.02f mg/L", model.oxygen)
+            
             self.collectionView.reloadData()
         }
         
@@ -116,6 +114,7 @@ class PopupLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDeleg
     }
 }
 
+/// model object for popupcells
 class CellInfo {
     let iconName: String
     var text: String

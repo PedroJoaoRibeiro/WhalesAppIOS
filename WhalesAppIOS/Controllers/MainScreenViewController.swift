@@ -34,11 +34,7 @@ class MainScreenViewController: UIViewController {
             self.setupLabel()
         })
         
-        
-        
         setupLabel()
-        
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +46,6 @@ class MainScreenViewController: UIViewController {
     @IBAction func connectToDevice(_ sender: UIButton) {
         print("button touched")
         ConnectionToDevice().getData(i: 0)
-        //ConnectionToDevice().getWavFile(fileName: "")
     }
     
     func setupLabel(){

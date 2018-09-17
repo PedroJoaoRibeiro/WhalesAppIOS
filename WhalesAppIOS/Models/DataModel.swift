@@ -10,8 +10,10 @@
 import RealmSwift
 import SwiftyJSON
 
+///Object that is used to save the data to Realm and also use it across the application
 class DataModel: Object {
     
+    /// init of the object used when receiving from server and device
     convenience init(isFromServer: Bool, deviceId: String, date: String, latitude: Double, longitude: Double, temperature: Double, depth: Double, altitude: Double, pressure: Double, turbidity: Double, ph: Double, oxygen: Double) {
         self.init()
         
@@ -55,18 +57,22 @@ class DataModel: Object {
     @objc dynamic var ph: Double = 0.0
     @objc dynamic var oxygen: Double = 0.0
     
+    //variable used to know if the object is a placeholder (ex average of real data)
     var isNull = true
     
+    ///returns the primary key id
     override static func primaryKey() -> String? {
         return "id"
     }
     
+    //returns coordinates in Lat:..., Long:...
     var coordinates: String {
         get {
             return "Lat: \(self.latitude), Long: \(self.longitude)"
         }
     }
     
+    ///returns an array of strings with all the information
     var array: [String] {
         get {
             var array = [String]()
@@ -83,6 +89,7 @@ class DataModel: Object {
         }
     }
     
+    /// converts the object into JSON to send to the server
     public func toJson()->JSON {
         var json = JSON()
         
@@ -105,6 +112,7 @@ class DataModel: Object {
         return json
     }
     
+    /// used to group objects to then calculate the average
     public func add(obj: DataModel){
         
         //standard
@@ -126,8 +134,8 @@ class DataModel: Object {
         self.isNull = false
     }
     
+    /// used to divide the values in order to obtain the average
     public func divide(value: Int){
-        //divide
         self.temperature /= Double(value)
         self.depth /= Double(value)
         self.altitude /= Double(value)
@@ -135,6 +143,5 @@ class DataModel: Object {
         self.turbidity /= Double(value)
         self.ph /= Double(value)
         self.oxygen /= Double(value)
-        
     }
 }

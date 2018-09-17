@@ -11,10 +11,10 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
+    ///array with the name of the view controllers so that they can be loaded next
     lazy var arrayUIViews: [UIViewController] = {
         return [self.viewControllerInstance(name: "MainPage"),
                 self.viewControllerInstance(name: "CrimeaRose"),
-                //self.viewControllerInstance(name: "CompareData"),
                 self.viewControllerInstance(name: "Cubijsm"),
                 self.viewControllerInstance(name: "Gps")]
     }()
@@ -43,7 +43,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = arrayUIViews.count
-        //        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
         pc.currentPageIndicatorTintColor = .mainPink
         pc.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
         return pc
@@ -60,11 +59,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
         
         setupBottomControls()
-        
-        
-        //NSNotification.addObserver(self)
     }
     
+    /// for layout of the scrollView
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         for view in self.view.subviews{
@@ -76,6 +73,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         }
     }
     
+    /// handles the change on the PageViewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = arrayUIViews.index(of: viewController) else {
             return nil
@@ -94,6 +92,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         return arrayUIViews[previousIndex]
     }
     
+    /// handles the change on the PageViewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = arrayUIViews.index(of: viewController) else {
             return nil
@@ -112,6 +111,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         return arrayUIViews[nextIndex]
     }
     
+    /// handles the change on the PageViewController
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
         pageControl.currentPage = arrayUIViews.index(of: pageContentViewController)!
@@ -120,12 +120,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     
     // Private Methods
     
-    // instantiates the views
+    /// instantiates the views
     private func viewControllerInstance(name:String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
     }
     
-    
+    /// sets the bottom controls and their layouts
     private func setupBottomControls() {
         
         let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
@@ -143,6 +143,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             ])
     }
     
+    ///handles the touch event on the prev button
     @objc private func prevButtonClicked(){
         // prevents from having negative index
         let nextIndex = max(pageControl.currentPage - 1, 0)
@@ -151,6 +152,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         setViewControllers([arrayUIViews[nextIndex]], direction: .reverse, animated: true, completion: nil)
     }
     
+    ///handles the touch event on the next button
     @objc private func nextButtonClicked(){
         // prevents from having negative index
         let nextIndex = min(pageControl.currentPage + 1, arrayUIViews.count - 1)

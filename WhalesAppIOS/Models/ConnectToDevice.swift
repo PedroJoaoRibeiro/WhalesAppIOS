@@ -13,7 +13,6 @@ import SwiftyJSON
 class ConnectionToDevice {
     
     let baseUrlString = "http://192.168.0.1/data?";
-    let baseUrlStringWav = "http://192.168.0.1/audio?";
     var upcomingDataDictionary = [String: String]()    // deviceId; csvData
     
     
@@ -92,23 +91,6 @@ class ConnectionToDevice {
                 db.saveModelToDb(obj: dataObj)
             }
             
-        }
-    }
-    
-    public func getWavFile(fileName: String){
-        
-        // url with id of the get part
-        let url = URL(string: baseUrlString + "PhotonTest12018-06-28T161950Z.wav?0")!
-        Alamofire.request(url)
-            .validate()
-            .responseJSON{response in
-                switch response.result {
-                    case .success(let value):
-                        print(value);
-                    case .failure(let error):
-                        print(error)
-                    }
-                
         }
     }
 }

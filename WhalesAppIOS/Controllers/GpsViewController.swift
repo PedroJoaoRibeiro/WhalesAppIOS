@@ -18,9 +18,10 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
     
     weak var annotation: MapAnnotation?
     
-    
+    //radius of the region to view on start
     let regionRadius: CLLocationDistance = 10000
     
+    // popupView
     let popupLauncher = PopupLauncher()
     
     override func viewDidLoad() {
@@ -43,13 +44,14 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    /// centers the map on a given location
     func centerMapOnLocation(location: CLLocationCoordinate2D) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location,
                                                                   regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    
+    /// generates a pin for each location
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation { return nil }
         let reuseIdentifier = "pin"
@@ -65,6 +67,7 @@ class GpsViewController: UIViewController, MKMapViewDelegate {
         return annotationView
     }
     
+    /// creates a popupLauncher when a location is touched
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view is MKPinAnnotationView {
             if let annotation = view.annotation as? MapAnnotation {
