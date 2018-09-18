@@ -345,21 +345,12 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvH-F1-Zgz" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="10.333333333333343" y="104" width="355" height="450"/>
+                                                <rect key="frame" x="10.333333333333343" y="104" width="355" height="525"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="450" id="K9t-N5-dMH"/>
+                                                    <constraint firstAttribute="height" constant="525" id="K9t-N5-dMH"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yr1-uD-MYz">
-                                                <rect key="frame" x="9.6666666666666572" y="554" width="355" height="75"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="75" id="VL5-Sk-jD6"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QlK-5H-Yrk" userLabel="optionSelection">
                                                 <rect key="frame" x="10.333333333333343" y="629" width="355" height="208"/>
                                                 <subviews>
@@ -497,16 +488,13 @@
                                             <constraint firstItem="p7b-td-a5r" firstAttribute="leading" secondItem="VRu-xb-IQH" secondAttribute="leading" constant="10" id="5bJ-Vr-gaB"/>
                                             <constraint firstItem="QlK-5H-Yrk" firstAttribute="leading" secondItem="VRu-xb-IQH" secondAttribute="leading" constant="10" id="9FD-BS-KLv"/>
                                             <constraint firstAttribute="trailing" secondItem="tvH-F1-Zgz" secondAttribute="trailing" constant="10" id="Io9-ic-4IK"/>
-                                            <constraint firstItem="yr1-uD-MYz" firstAttribute="bottom" secondItem="QlK-5H-Yrk" secondAttribute="top" id="Pcg-R7-bQy"/>
-                                            <constraint firstAttribute="trailing" secondItem="yr1-uD-MYz" secondAttribute="trailing" constant="10" id="aRc-g7-hCZ"/>
                                             <constraint firstItem="tvH-F1-Zgz" firstAttribute="top" secondItem="p7b-td-a5r" secondAttribute="bottom" constant="8" symbolic="YES" id="aaK-Oq-Ncz"/>
                                             <constraint firstItem="tvH-F1-Zgz" firstAttribute="leading" secondItem="VRu-xb-IQH" secondAttribute="leading" constant="10" id="d09-RQ-bk0"/>
-                                            <constraint firstItem="yr1-uD-MYz" firstAttribute="top" secondItem="tvH-F1-Zgz" secondAttribute="bottom" id="dEi-Kt-lsb"/>
                                             <constraint firstItem="J8N-dA-7mK" firstAttribute="leading" secondItem="VRu-xb-IQH" secondAttribute="leading" constant="10" id="g0f-AO-uY8"/>
                                             <constraint firstItem="J8N-dA-7mK" firstAttribute="top" secondItem="VRu-xb-IQH" secondAttribute="top" constant="10" id="kyq-oI-weG"/>
-                                            <constraint firstItem="yr1-uD-MYz" firstAttribute="leading" secondItem="VRu-xb-IQH" secondAttribute="leading" constant="10" id="oDu-YC-csr"/>
                                             <constraint firstAttribute="trailing" secondItem="p7b-td-a5r" secondAttribute="trailing" constant="10" id="oEc-6R-oP0"/>
                                             <constraint firstAttribute="trailing" secondItem="J8N-dA-7mK" secondAttribute="trailing" constant="10" id="qCc-t1-aST"/>
+                                            <constraint firstItem="QlK-5H-Yrk" firstAttribute="top" secondItem="tvH-F1-Zgz" secondAttribute="bottom" id="rKT-J8-hXd"/>
                                             <constraint firstItem="p7b-td-a5r" firstAttribute="top" secondItem="J8N-dA-7mK" secondAttribute="bottom" constant="8" symbolic="YES" id="sUw-nw-3BO"/>
                                             <constraint firstAttribute="trailing" secondItem="QlK-5H-Yrk" secondAttribute="trailing" constant="10" id="v7c-mz-tP8"/>
                                             <constraint firstAttribute="bottom" secondItem="QlK-5H-Yrk" secondAttribute="bottom" constant="20" symbolic="YES" id="wEF-MQ-6si"/>
@@ -538,7 +526,6 @@
                         <outlet property="dateLabel" destination="v9e-XS-yOi" id="JyZ-y3-CBZ"/>
                         <outlet property="forwardButton" destination="4lz-na-TJE" id="4bc-NG-a11"/>
                         <outlet property="segmentedControl" destination="J8N-dA-7mK" id="ejs-Jo-QB2"/>
-                        <outlet property="valueSelectedLabel" destination="yr1-uD-MYz" id="i3e-rh-IsY"/>
                         <outletCollection property="switches" destination="ezf-oY-XBJ" collectionClass="NSMutableArray" id="X92-fo-kgd"/>
                         <outletCollection property="switches" destination="AwE-wm-vGg" collectionClass="NSMutableArray" id="4TI-q8-NwE"/>
                         <outletCollection property="switches" destination="Fde-DS-0Qc" collectionClass="NSMutableArray" id="Biw-q1-3CP"/>

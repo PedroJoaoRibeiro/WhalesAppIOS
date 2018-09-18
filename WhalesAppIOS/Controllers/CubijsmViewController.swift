@@ -18,7 +18,6 @@ class CubijsmViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var valueSelectedLabel: UILabel!
     @IBOutlet var switches: [UISwitch]!
     
     
@@ -29,21 +28,6 @@ class CubijsmViewController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-        
-//        let db = DbConnection()
-//        let array = db.getDataFromDb()
-//        var date = DateFormatter().stringToDate(str: "2017-12-23T06:00:00Z")!
-//
-//        for i in array {
-//            if db.updateDates(id: i.id, newDate: date) {
-//                date = Calendar.current.date(byAdding: .hour, value: 6, to: date)!
-//            } else {
-//                print("here")
-//            }
-//        }
-//
-//        print(db.getDataFromDb())
         
         cubiChartView.delegate = self
         
@@ -433,25 +417,6 @@ extension CubijsmViewController: ChartViewDelegate {
     
     /// shows the information for the selected item on the chart
     public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        
-        if segmentedControl.selectedSegmentIndex == 0 {
-            for obj in arrayOfData {
-                if obj.date.hour == Int(entry.x) {
-                    if obj.temperature == 0 && obj.pressure == 0 && obj.temperature == 0 {
-                        valueSelectedLabel.text = ""
-                    } else {
-                    valueSelectedLabel.text = String(format: "Temperature: %.02f °C", obj.temperature) + "\n" + String(format: "Depth: %.02f m", obj.depth) + String(format: "\nPressure: %.02f bar", obj.pressure)
-                    }
-                }
-            }
-        } else {
-            let obj = arrayOfData[Int(entry.x)]
-            if obj.temperature == 0 && obj.pressure == 0 && obj.temperature == 0 {
-                valueSelectedLabel.text = ""
-            } else {
-                valueSelectedLabel.text = String(format: "Average Temperature: %.02f °C", obj.temperature) + String(format: "\nAverage Depth: %.02f m", obj.depth) + String(format: "\nAverage Pressure: %.02f bar", obj.pressure)
-            }
-        }
     }
     
 }
