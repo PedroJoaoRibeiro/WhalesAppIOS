@@ -39,6 +39,11 @@ class CrimeaRoseViewController: UIViewController {
     @IBOutlet weak var leftDateLabel: UILabel!
     @IBOutlet weak var rightDateLabel: UILabel!
     
+    
+    @IBOutlet weak var blueLabel: UILabel!
+    @IBOutlet weak var yellowLabel: UILabel!
+    
+    
     private var currentDate = Date()
     
     private var firstDateToCompare = Date()
@@ -49,6 +54,11 @@ class CrimeaRoseViewController: UIViewController {
     
     private let firstUIColor = UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)
     private let secondUIColor = UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)
+    
+    // arrays with the data
+    private var arrayLabels = [String]()
+    private var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+    private var indexTouched = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,14 +72,14 @@ class CrimeaRoseViewController: UIViewController {
         dateTypePicker.selectRow(3, inComponent: 0, animated: false)
         
         firstDateToCompare = Date() // current Date
-        secondDateToCompare = Calendar.current.date(byAdding: .year, value: -1, to: firstDateToCompare)! // subtract one year to the current date
+        secondDateToCompare = Calendar.current.date(byAdding: .year, value: 0, to: firstDateToCompare)! // subtract one year to the current date
         
         updateLabels()
         drawChartForYear()
         
     }
     
-    
+    ///draws the data to compare by day
     private func drawChartForDay(){
         let arrayFirstdDay = DbConnection().getDateForDay(currentDate: firstDateToCompare)
         let arraySecondDay = DbConnection().getDateForDay(currentDate: secondDateToCompare)
@@ -103,7 +113,7 @@ class CrimeaRoseViewController: UIViewController {
             arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondDay, minValue: minValue)
         }
         
-        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        arrayOfCrimeaRoseData = [CrimeaRoseData]()
         
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
@@ -112,6 +122,8 @@ class CrimeaRoseViewController: UIViewController {
         crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels(), maxValue: maxValue, minValue: minValue)
         
     }
+    
+    ///draws the data to compare by week
     private func drawChartForWeek(){
         
         let arrayFirstWeek = DbConnection().getDateForWeek(currentDate: firstDateToCompare)
@@ -146,7 +158,7 @@ class CrimeaRoseViewController: UIViewController {
             arrayOfDataSecond = getArrayOfDataFromSelectedComponent(array: arraySecondWeek, minValue: minValue)
         }
         
-        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        arrayOfCrimeaRoseData = [CrimeaRoseData]()
         
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
@@ -155,6 +167,8 @@ class CrimeaRoseViewController: UIViewController {
         crimeaRoseView.drawRose(arrayOfCrimeaRoseData: arrayOfCrimeaRoseData, arrayOfLabels: getArrayOfLabels(), maxValue: maxValue, minValue: minValue)
         
     }
+    
+    ///draws the data to compare by month
     private func drawChartForMonth(){
         let arrayFirstMonth = DbConnection().getDateForMonth(currentDate: firstDateToCompare)
         let arraySecondMonth = DbConnection().getDateForMonth(currentDate: secondDateToCompare)
@@ -189,7 +203,7 @@ class CrimeaRoseViewController: UIViewController {
         }
         
         //array that handles the data
-        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        arrayOfCrimeaRoseData = [CrimeaRoseData]()
         
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
@@ -207,7 +221,7 @@ class CrimeaRoseViewController: UIViewController {
         var arrayOfDataSecond: [Double]
         
         var (minValue, maxValue) = getMinMaxValue(minValue: Double.greatestFiniteMagnitude, maxValue: Double.leastNormalMagnitude, array: arrayFirstYear)
-        (minValue, maxValue) = getMinMaxValue(minValue: minValue, maxValue: maxValue, array: arrayFirstYear)
+        (minValue, maxValue) = getMinMaxValue(minValue: minValue, maxValue: maxValue, array: arraySecondYear)
         
         // take 10 % of the min value to note diference between no values and the actual min value
         if minValue == Double.greatestFiniteMagnitude {
@@ -233,7 +247,7 @@ class CrimeaRoseViewController: UIViewController {
         
         
         //array that handles the data
-        var arrayOfCrimeaRoseData = [CrimeaRoseData]()
+        arrayOfCrimeaRoseData = [CrimeaRoseData]()
         
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataFirst, color: firstUIColor))
         arrayOfCrimeaRoseData.append(CrimeaRoseData(arrayOfData: arrayOfDataSecond, color: secondUIColor))
@@ -370,10 +384,11 @@ class CrimeaRoseViewController: UIViewController {
             default:
                 fatalError("pickerView in crimeaRose have more items then expected")
         }
-        
+        arrayLabels = arrayOfLabels
         return arrayOfLabels
     }
     
+    /// updates the rose by checking what is selected in the dateTypePicker
     private func updateRose(){
         switch dateTypePicker.selectedRow(inComponent: 0) {
         case 0: //Day
@@ -393,6 +408,7 @@ class CrimeaRoseViewController: UIViewController {
         }
     }
     
+    /// updates the labels and all the other components
     private func updateLabels(){
         switch dateTypePicker.selectedRow(inComponent: 0) {
         case 0: //Day
@@ -416,6 +432,11 @@ class CrimeaRoseViewController: UIViewController {
             fatalError("pickerView in crimeaRose have more items then expected")
         }
         updateRose()
+        
+        if indexTouched != -1 {
+            blueLabel.text = String(format: "%.02f \(getEndOfStringForDataType())", arrayOfCrimeaRoseData[0].arrayOfData[indexTouched])
+            yellowLabel.text = String(format: "%.02f \(getEndOfStringForDataType())", arrayOfCrimeaRoseData[1].arrayOfData[indexTouched])
+        }
 
     }
     
@@ -427,8 +448,9 @@ class CrimeaRoseViewController: UIViewController {
         case .ended:
             for subview in crimeaRoseView.subviews {
                 if subview.frame.contains(tapGR.location(in: crimeaRoseView)) {
-                    if let label = subview as? UILabel {
-                        print(label.text!)
+                    if subview is UILabel {
+                        blueLabel.text = ""
+                        yellowLabel.text = ""
                     }
                 }
             }
@@ -436,18 +458,40 @@ class CrimeaRoseViewController: UIViewController {
             
             let index = crimeaRoseView.checkTap(point: tapGR.location(in: crimeaRoseView))
             if(index != -1){
-                print(Calendar.current.monthSymbols[index])
+                indexTouched = index
+                blueLabel.text = String(format: "%.02f \(getEndOfStringForDataType())", arrayOfCrimeaRoseData[0].arrayOfData[index])
+                yellowLabel.text = String(format: "%.02f \(getEndOfStringForDataType())", arrayOfCrimeaRoseData[1].arrayOfData[index])
             }
         default:
             break
         }
     }
     
+    ///returns the end symbol for the type of data selected
+    private func getEndOfStringForDataType() -> String{
+        switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                return "°C"
+            case 1:
+                return "m"
+            case 2:
+                return "bar"
+            case 3:
+                return ""
+            case 4:
+                return "pH"
+            case 5:
+                return "mg/L"
+            default:
+                fatalError("segmented control index error in CrimeaRoseViewController")
+            }
+    }
+    
     
     //--------------Handles changes
     ///handles the change on the segmented control, basicly only needs to check which dateTypePicker is selected and call the respective method
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        updateRose()
+        updateLabels()
     }
     
     @IBAction func firstDateButtonTouched(_ sender: UIButton) {
@@ -489,6 +533,11 @@ extension CrimeaRoseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
     /// Handles the selection of a new row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        ///remove label because of possible crash index out of range
+        indexTouched = -1
+        blueLabel.text = ""
+        yellowLabel.text = ""
+        
         updateLabels()
     }
 }

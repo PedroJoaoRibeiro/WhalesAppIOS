@@ -37,7 +37,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="183.66666666666666"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ocean Monitor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxb-vj-nPX">
-                                                        <rect key="frame" x="104.66666666666669" y="76.333333333333314" width="166" height="31.333333333333329"/>
+                                                        <rect key="frame" x="104.66666666666669" y="76.333333333333329" width="166" height="31.333333333333329"/>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <color key="textColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -164,7 +164,7 @@
                                 </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9nO-af-Wrg" userLabel="pickerStack">
-                                <rect key="frame" x="10" y="519.66666666666663" width="355" height="150"/>
+                                <rect key="frame" x="10" y="499.33333333333326" width="355" height="150"/>
                                 <subviews>
                                     <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2n4-z5-rP0">
                                         <rect key="frame" x="17.666666666666657" y="0.0" width="320" height="150"/>
@@ -175,7 +175,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1UG-A2-rqd">
-                                <rect key="frame" x="10" y="677.66666666666663" width="355" height="50.333333333333371"/>
+                                <rect key="frame" x="10" y="657.33333333333337" width="355" height="70.666666666666629"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8ya-EI-NkL">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -213,13 +213,33 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QXR-2s-rfR">
+                                        <rect key="frame" x="0.0" y="50.333333333333258" width="355" height="20.333333333333329"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKW-Wc-f8P" userLabel="blueLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="177.66666666666666" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hey-Ps-ccY" userLabel="yellowLabel">
+                                                <rect key="frame" x="177.66666666666663" y="0.0" width="177.33333333333337" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="jal-pK-paV"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXt-Oy-qzm">
-                                <rect key="frame" x="0.0" y="90.000000000000028" width="375" height="421.66666666666674"/>
+                                <rect key="frame" x="0.0" y="89.999999999999972" width="375" height="401.33333333333326"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="iGq-T9-Wc7" customClass="CrimeaRoseView" customModule="WhalesAppIOS" customModuleProvider="target">
-                                        <rect key="frame" x="5" y="20" width="365" height="401.66666666666669"/>
+                                        <rect key="frame" x="5" y="20" width="365" height="381.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -251,6 +271,7 @@
                         <viewLayoutGuide key="safeArea" id="hKj-j6-fQX"/>
                     </view>
                     <connections>
+                        <outlet property="blueLabel" destination="lKW-Wc-f8P" id="8YA-sw-akz"/>
                         <outlet property="crimeaRoseView" destination="iGq-T9-Wc7" id="BgL-BI-nis"/>
                         <outlet property="dateTypePicker" destination="2n4-z5-rP0" id="Bi5-vg-TKP"/>
                         <outlet property="leftButtonDatePicker" destination="gH8-dt-pUL" id="iSS-a1-yWI"/>
@@ -258,6 +279,7 @@
                         <outlet property="rightButtonDatePicker" destination="hvz-TJ-SlQ" id="auQ-9P-pNu"/>
                         <outlet property="rightDateLabel" destination="sar-bZ-bw5" id="CJk-0z-eib"/>
                         <outlet property="segmentedControl" destination="ukT-sj-pgO" id="zXT-k0-naq"/>
+                        <outlet property="yellowLabel" destination="hey-Ps-ccY" id="q9g-S5-Dql"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVr-o5-aPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
