@@ -28,7 +28,7 @@ class CubijsmViewController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
+    
         cubiChartView.delegate = self
         
         updateLabel()

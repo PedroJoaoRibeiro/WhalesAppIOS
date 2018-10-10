@@ -372,7 +372,14 @@ class CrimeaRoseViewController: UIViewController {
                 }
                 break
             case 2: //Month
-                for i in 1...24 {
+                var range = Calendar.current.range(of: .day, in: .month, for: firstDateToCompare)!
+                var numDays = range.count
+                
+                range = Calendar.current.range(of: .day, in: .month, for: secondDateToCompare)!
+                if numDays < range.count {
+                    numDays = range.count
+                }
+                for i in 1...numDays {
                     arrayOfLabels.append(String(i))
                 }
                 break
