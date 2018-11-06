@@ -52,8 +52,8 @@ class CrimeaRoseViewController: UIViewController {
     private let pickerData = ["Day", "Week", "Month", "Year"]
     
     
-    private let firstUIColor = UIColor(red:0.28, green:0.56, blue:0.19, alpha:1.0)
-    private let secondUIColor = UIColor(red:0.87, green:0.26, blue:0.36, alpha:1.0)
+    private let firstUIColor = UIColor(red:0.02, green:0.59, blue:1.00, alpha:1.0)
+    private let secondUIColor = UIColor(red:0.95, green:0.91, blue:0.31, alpha:1.0)
     
     // arrays with the data
     private var arrayLabels = [String]()

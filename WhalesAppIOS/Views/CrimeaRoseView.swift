@@ -195,7 +195,7 @@ class CrimeaRoseView: UIView {
         
         lineColor.setStroke()
         fillColor.setFill()
-        path.fill(with: .screen, alpha: 1)
+        path.fill(with: .multiply, alpha: 1)
         path.stroke()
         
         arrayOfPaths[path] = category
