@@ -45,7 +45,10 @@ class MainScreenViewController: UIViewController {
     
     @IBAction func connectToDevice(_ sender: UIButton) {
         print("button touched")
-        ConnectionToDevice().getData(i: 0)
+        ConnectionToDevice().getData(i: 0, completion: {
+            print("ja fui")
+            self.setupLabel()
+            })
     }
     
     func setupLabel(){

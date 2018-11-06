@@ -17,7 +17,7 @@ class ConnectionToDevice {
     
     
     /// gets the data from the photon
-    func getData(i: Int){
+    func getData(i: Int, completion : @escaping ()->()){
         
         // url with id of the get part
         let url = URL(string: baseUrlString + String(i))
@@ -44,9 +44,10 @@ class ConnectionToDevice {
                         print("here")
                         self.convertCSVDataAndSaveToDb(deviceId: json["deviceId"].string!)
                         print("all the data from photon is saved")
+                        completion()
                     } else {
                         print(json["dataPart"].int!)
-                        self.getData(i: json["dataPart"].int!)
+                        self.getData(i: json["dataPart"].int!, completion: {})
                     }
                 case .failure(let error):
                     print(error)
